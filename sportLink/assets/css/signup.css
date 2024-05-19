@@ -76,43 +76,102 @@
   .header .logo h1 span {
     color: var(--color-primary);
   }
-  
-  /*--------------------------------------------------------------
-  # Order History Section
-  --------------------------------------------------------------*/
-  .order-history {
-    padding-top: 150px; 
-    padding-bottom: 150px;
-  }
-  
-  .order-history-content {
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  .order-history-content h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
-  
-  .order-history-content p {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .order-item {
-    margin-bottom: 20px;
-  }
-  
-  #map {
-    width: 100%;
-    height: 400px;
-    margin-top: 20px;
-  }
+
 
 /*--------------------------------------------------------------
+# main
+--------------------------------------------------------------*/
+/* 회원가입 섹션 */
+#main {
+  padding-top: 150px;
+  padding-bottom: 80px;
+  background-color: #f9f9f9;
+}
+
+.signup .section-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.signup form {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.signup form .form-group {
+  margin-bottom: 20px;
+}
+
+.signup form label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 8px;
+}
+
+.signup form input[type="text"],
+.signup form input[type="email"],
+.signup form input[type="password"],
+.signup form input[type="tel"],
+.signup form select,
+.signup form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.signup form textarea {
+  resize: vertical;
+}
+
+.signup form button {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signup form button:hover {
+  background-color: #6c1ac2;
+}
+
+.signup .my-3 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup .loading,
+.signup .error-message,
+.signup .sent-message {
+  margin-top: 20px;
+  display: none;
+}
+
+.signup .error-message {
+  color: #ff0000;
+}
+
+.signup .sent-message {
+  color: #34c138;
+}
+
+
+
+  /*--------------------------------------------------------------
 # Scroll top button
 --------------------------------------------------------------*/
 .scroll-top {

@@ -1,4 +1,4 @@
-// order.js
+
 
 // 예시로 localStorage에 저장된 주문 데이터를 가져오는 함수
 function getOrderData() {
@@ -53,8 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
       // 구매 완료 메시지 (예시)
       alert('구매가 완료되었습니다!');
 
-      // 구매 내역 페이지로 이동 (예시: 경로는 필요에 따라 수정)
-      window.location.href = 'order_history.html';
     });
   });
 });
