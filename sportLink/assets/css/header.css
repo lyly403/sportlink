@@ -5,7 +5,6 @@
   --font-secondary: "Noto Sans KR", sans-serif;
 }
 
-
 /* Colors */
 :root {
   --color-default: #212529;
@@ -45,148 +44,39 @@ h6 {
   font-family: var(--font-secondary);
 }
 
-
 /*--------------------------------------------------------------
-# Hero Section
+# Header
 --------------------------------------------------------------*/
-.hero {
-  width: 100%;
-  background-size: cover;
-  position: relative;
-  min-height: 50vh;
-  background-color: #eee;
-  padding: 160px 0 60px 0;
+.header {
+  background: #fff;
+  transition: all 0.5s;
+  z-index: 997;
+  height: 90px;
+  border-bottom: 1px solid #fff;
 }
 
-.hero h2 {
-  font-size: 50px;
+.header.sticked {
+  border-color: #fff;
+  border-color: #eee;
+}
+
+.header .logo img {
+  max-height: 40px;
+  margin-right: 6px;
+}
+
+.header .logo h1 {
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: var(--color-secondary);
-  font-family: var(--font-primary);
+  color: #000;
+  margin: 0;
+  font-family: var(--font-secondary);
 }
 
-.hero h2 span {
+.header .logo h1 span {
   color: var(--color-primary);
 }
 
-.hero p {
-  color: #4f4f5a;
-  font-weight: 400;
-  margin-bottom: 30px;
-}
-
-.hero .btn-go {
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 1px;
-  display: inline-block;
-  margin-right: 50px; /* 원하는 간격(px)을 설정합니다. */
-  padding: 12px 36px;
-  border-radius: 50px;
-  transition: 0.5s;
-  color: #fff;
-  background: var(--color-primary);
-  box-shadow: 0 8px 28px rgba(42, 11, 105, 0.31);
-}
-
-
-/*--------------------------------------------------------------
-# Sections & Section Header
---------------------------------------------------------------*/
-section {
-  overflow: hidden;
-  padding: 80px 0;
-  scroll-margin-top: 90px;
-  overflow: clip;
-}
-
-.section-header {
-  text-align: center;
-  padding-bottom: 30px;
-}
-
-.section-header h2 {
-  font-size: 1px;
-  letter-spacing: 1px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-  color: #7f7f90;
-  text-transform: uppercase;
-  font-family: var(--font-default);
-}
-
-/*deal text*/
-.section-header p {
-  margin: 0;
-  font-size: 48px;
-  font-weight: 400;
-  font-family: var(--font-primary);
-}
-
-.section-header p span {
-  color: var(--color-primary);
-}
-
-/*--------------------------------------------------------------
-# Breadcrumbs
---------------------------------------------------------------*/
-.breadcrumbs {
-  padding: 15px 0;
-  background: rgba(55, 55, 63, 0.05);
-  margin-top: 90px;
-}
-
-@media (max-width: 575px) {
-  .breadcrumbs {
-    margin-top: 70px;
-  }
-}
-
-.breadcrumbs h2 {
-  font-size: 24px;
-  font-weight: 400;
-  margin: 0;
-}
-
-.breadcrumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-}
-
-.breadcrumbs ol li+li {
-  padding-left: 10px;
-}
-
-.breadcrumbs ol li+li::before {
-  display: inline-block;
-  padding-right: 10px;
-  color: #676775;
-  content: "/";
-}
-
-@media (max-width: 992px) {
-  .breadcrumbs .d-flex {
-    display: block !important;
-  }
-
-  .breadcrumbs h2 {
-    margin-bottom: 10px;
-  }
-
-  .breadcrumbs ol {
-    display: block;
-  }
-
-  .breadcrumbs ol li {
-    display: inline-block;
-  }
-}
 
 /*--------------------------------------------------------------
 # Scroll top button
@@ -274,7 +164,6 @@ section {
     transition-delay: 0 !important;
   }
 }
-
 
 /*--------------------------------------------------------------
 # Desktop Navigation
@@ -538,184 +427,3 @@ section {
     z-index: 9996;
   }
 }
-
-
-/*--------------------------------------------------------------
-# Deals Section
---------------------------------------------------------------*/
-.events .container-fluid {
-  padding: 0;
-}
-
-.events .event-item {
-  background-size: cover;
-  background-position: center;
-  min-height: 600px;
-  padding: 30px;
-  margin: 20px; 
-}
-
-
-@media (max-width: 575px) {
-  .events .event-item {
-    min-height: 500px;
-  }
-}
-
-.events .event-item:before {
-  content: "";
-  background: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  inset: 0;
-}
-
-.events .event-item h3 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 5px;
-  color: #fff;
-  position: relative;
-}
-
-.events .event-item .price {
-  color: #fff;
-  border-bottom: 2px solid var(--color-primary);
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.events .event-item .description {
-  margin-bottom: 0;
-  color: rgba(255, 255, 255, 0.9);
-  position: relative;
-}
-
-@media (min-width: 1200px) {
-  .events .swiper-slide-active+.swiper-slide {
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(255, 255, 255, 0.5);
-    z-index: 1;
-  }
-}
-
-.events .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.events .swiper-pagination .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background-color: #d1d1d7;
-  opacity: 1;
-}
-
-.events .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--color-primary);
-}
-
-/*--------------------------------------------------------------
-# Season Section
---------------------------------------------------------------*/
-.season {
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  min-height: 50vh;
-  padding: 80px 0 60px 0;
-  background-image: url('assets/img/water.jpg'); /* 배경 이미지 URL을 설정합니다. */
-  background-color: rgba(0, 0, 0, 0.5); /* 배경의 투명도를 조절합니다. */
-}
-
-.season h2 {
-  font-size: 50px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: var(--color-secondary);
-  font-family: var(--font-primary);
-  text-align: right; /* 텍스트를 오른쪽에 정렬합니다. */
-}
-
-.season h2 span {
-  color: var(--color-primary);
-}
-
-.season p {
-  color: #4f4f5a;
-  font-weight: 400;
-  margin-bottom: 30px;
-  text-align: right; /* 텍스트를 오른쪽에 정렬합니다. */
-}
-
-.season .btn-sgo {
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 12px 36px;
-  border-radius: 50px;
-  transition: 0.5s;
-  color: #fff;
-  background: var(--color-primary);
-  box-shadow: 0 8px 28px rgba(42, 11, 105, 0.31);
-}
-
-
-
-/*--------------------------------------------------------------
-# Gallery Section
---------------------------------------------------------------*/
-.gallery {
-  overflow: hidden;
-}
-
-.gallery .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.gallery .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  opacity: 1;
-}
-
-.gallery .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--color-primary);
-}
-
-.gallery .swiper-slide-active {
-  text-align: center;
-}
-
-@media (min-width: 992px) {
-  .gallery .swiper-wrapper {
-    padding: 40px 0;
-  }
-
-  .gallery .swiper-slide-active {
-    padding: 4px;
-    z-index: 1;
-    transform: scale(1.2);
-  }
-}
-
-
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
-.footer {
-  font-size: 14px;
-  background-color: #1f1f24;
-  padding: 50px 0;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.footer .copyright {
-  text-align: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
