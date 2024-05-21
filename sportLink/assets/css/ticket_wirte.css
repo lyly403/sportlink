@@ -45,39 +45,7 @@
     font-family: var(--font-secondary);
   }
   
-  /*--------------------------------------------------------------
-  # Header
-  --------------------------------------------------------------*/
-  .header {
-    background: #fff;
-    transition: all 0.5s;
-    z-index: 997;
-    height: 90px;
-    border-bottom: 1px solid #fff;
-  }
-  
-  .header.sticked {
-    border-color: #fff;
-    border-color: #eee;
-  }
-  
-  .header .logo img {
-    max-height: 40px;
-    margin-right: 6px;
-  }
-  
-  .header .logo h1 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #000;
-    margin: 0;
-    font-family: var(--font-secondary);
-  }
-  
-  .header .logo h1 span {
-    color: var(--color-primary);
-  }
-  
+
   
 /*--------------------------------------------------------------
 # Writing Section
@@ -142,18 +110,13 @@
     line-height: 0;
   }
   
-  .scroll-top:hover {
-    background: #ec2727;
-    color: #fff;
-  }
-  
   .scroll-top.active {
     visibility: visible;
     opacity: 1;
   }
   
   /*--------------------------------------------------------------
-  # Preloader
+  # Preloader(로딩페이지)
   --------------------------------------------------------------*/
   #preloader {
     position: fixed;
@@ -469,20 +432,4 @@
   }
 }
 
-
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
-.footer {
-  font-size: 14px;
-  background-color: #1f1f24;
-  padding: 50px 0;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.footer .copyright {
-  text-align: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
 

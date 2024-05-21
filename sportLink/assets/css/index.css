@@ -5,7 +5,6 @@
   --font-secondary: "Noto Sans KR", sans-serif;
 }
 
-
 /* Colors */
 :root {
   --color-default: #212529;
@@ -81,7 +80,7 @@ h6 {
   font-size: 15px;
   letter-spacing: 1px;
   display: inline-block;
-  margin-right: 50px; /* 원하는 간격(px)을 설정합니다. */
+  margin-right: 50px; 
   padding: 12px 36px;
   border-radius: 50px;
   transition: 0.5s;
@@ -211,18 +210,13 @@ section {
   line-height: 0;
 }
 
-.scroll-top:hover {
-  background: #ec2727;
-  color: #fff;
-}
-
 .scroll-top.active {
   visibility: visible;
   opacity: 1;
 }
 
 /*--------------------------------------------------------------
-# Preloader
+  # Preloader(로딩페이지)
 --------------------------------------------------------------*/
 #preloader {
   position: fixed;
@@ -703,19 +697,4 @@ section {
 }
 
 
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
-.footer {
-  font-size: 14px;
-  background-color: #1f1f24;
-  padding: 50px 0;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.footer .copyright {
-  text-align: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - Q&A</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/sportLink/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/sportLink/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/sportLink/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/sportLink/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Template CSS File -->
+  <link href="../../assets/css/Q&A.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <div id="header-container"></div>
+  <!-- End Header -->
+
+    <div align="center">
+    <h1>게시글 목록</h1>
+    <c:choose>
+      <c:when test="${empty boards}">
+        <h1>등록된 데이터가 존재하지 않습니다.</h1>
+      </c:when>
+      <c:otherwise>
+        <table>
+          <tr>
+            <th width="50">No.</th>
+            <th width="250">제목</th>
+            <th width="100">작성자</th>
+            <th width="100">작성일</th>
+            <th width="60">조회수</th>
+          </tr>
+          <c:forEach var="board" items="${boards}">
+            <tr>
+              <td>${board.no}</td>
+              <td onclick="location.href='boardContent?no=${board.no}'">
+                ${board.title}
+              </td>
+              <td>${board.id}</td>
+              <td>${board.writeDate}</td>
+              <td>${board.hits}</td>
+            </tr>
+          </c:forEach>
+          <tr>
+            <td colspan="4">
+              ${result}
+            </td>
+            <td><button type="button" onclick="location.href='boardWrite'">글쓰기</button></td>
+          </tr>
+        </table>
+      </c:otherwise>
+    </c:choose>
+  </div>
+
+
+  <!-- ======= Footer ======= -->
+  <div id="footer-container"></div>
+
+  <!-- Script to load header -->
+  <script src="../../assets/js/header.js"></script>
+  <script src="../../assets/js/footer.js"></script>
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/vendor/aos/aos.js"></script>
+<script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../../assets/js/main.js"></script>
+
+</body>
+</html>
