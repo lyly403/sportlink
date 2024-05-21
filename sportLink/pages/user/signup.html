@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SportLink - signup</title>
+  <title>SportLink - 회원가입</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -21,11 +21,8 @@
   <link href="/sportLink/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
   <!-- Template CSS File -->
-  <link href="../../assets/css/signup.css" rel="stylesheet">
-
-
+  <link href="/sportLink/assets/css/signup.css" rel="stylesheet">
 </head>
-
 
 <body>
 
@@ -33,71 +30,74 @@
   <div id="header-container"></div>
   <!-- End Header -->
 
-<!-- ======= 회원가입 Section ======= -->
-<main id="main" class="main-content">
+  <!-- ======= 회원가입 Section ======= -->
   <section id="signup" class="signup">
-    <div class="container" data-aos="fade-up">
-      <div class="section-title">
-        <h2>회원가입</h2>
-        <p>아래 양식을 작성하여 회원가입하세요.</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="signup-content">
+            <h2>회원가입</h2>
+            <p>아래 양식을 작성하여 회원가입하세요.</p>
+            <form method="post" role="form" class="signupform">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="username" class="form-control" id="username" placeholder="아이디" required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="이름" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="이메일" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="tel" class="form-control" name="phone" id="phone" placeholder="전화번호" required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <select class="form-control" name="gender" id="gender" required>
+                    <option value="">성별 선택</option>
+                    <option value="male">남성</option>
+                    <option value="female">여성</option>
+                    <option value="other">기타</option>
+                  </select>
+                </div>
+              </div>
+              <div class="text-center"><button type="submit">회원가입</button></div>
+            </form>
+          </div>
+        </div>
       </div>
-      <form action="forms/signup.php" method="post" role="form" class="php-email-form">
-        <div class="row">
-          <div class="col-md-6 form-group">
-            <input type="text" name="username" class="form-control" id="username" placeholder="아이디" required>
-          </div>
-          <div class="col-md-6 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="이름" required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 form-group">
-            <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required>
-          </div>
-          <div class="col-md-6 form-group">
-            <input type="email" class="form-control" name="email" id="email" placeholder="이메일" required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 form-group">
-            <input type="tel" class="form-control" name="phone" id="phone" placeholder="전화번호" required>
-          </div>
-          <div class="col-md-6 form-group">
-            <select class="form-control" name="gender" id="gender" required>
-              <option value="">성별 선택</option>
-              <option value="male">남성</option>
-              <option value="female">여성</option>
-              <option value="other">기타</option>
-            </select>
-          </div>
-        </div>
-        <div class="text-center"><button type="submit">회원가입</button></div>
-      </form>
     </div>
   </section><!-- End 회원가입 Section -->
-</main>
 
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
 
   <!-- ======= Footer ======= -->
   <div id="footer-container"></div>
 
   <!-- Script to load header -->
-  <script src="../../assets/js/header.js"></script>
-  <script src="../../assets/js/footer.js"></script>
+  <script src="../../assets/js/common/header.js"></script>
+  <script src="../../assets/js/common/footer.js"></script>
 
-<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Vendor JS Files -->
+  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/aos/aos.js"></script>
+  <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../../assets/vendor/purecounter/purecounter_vanilla.js"></script>
 
-<div id="preloader"></div>
-
-<!-- Vendor JS Files -->
-<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../../assets/vendor/aos/aos.js"></script>
-<script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="../../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-
-<!-- Template Main JS File -->
-<script src="../../assets/js/main.js"></script>
+  <!-- Template Main JS File -->
+  <script src="../../assets/js/common/main.js"></script>
+  <script src="../../assets/js/user/signup.js"></script>
 
 
 </body>
+
 </html>

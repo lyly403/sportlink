@@ -45,44 +45,48 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# 게시판
+/* ======= Board Section CSS ======= */
 --------------------------------------------------------------*/
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 20px; /* 여백 추가 */
+.board {
+  padding: 80px 0;
+  margin-top: 200px; /* 헤더 아래로 위치 조정 */
+  padding: 20px; /* 추가적인 패딩 설정 */
+  margin-bottom: 50px; /* 하단 여백 추가 */
 }
 
-th, td {
-  border: 1px solid black;
-  padding: 8px;
-  text-align: left;
+.board h2 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 30px;
 }
 
-th {
-  background-color: #f2f2f2;
+.board p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.board-content {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 150px; /* 헤더 아래로 내리기 */
+  margin-bottom: 50px;
 }
 
-tr:hover {
-  background-color: #ddd;
+
+.table {
+  margin-top: 20px;
 }
 
-td button {
-  padding: 5px 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.table th,
+.table td {
+  vertical-align: middle;
 }
 
-td button:hover {
-  background-color: #45a049;
-}
+
     /*--------------------------------------------------------------
 # Scroll top button
 --------------------------------------------------------------*/

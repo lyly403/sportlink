@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SportLink - Q&A</title>
+  <title>SportLink - 문의사항 게시판</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -25,67 +25,62 @@
 </head>
 
 <body>
+
   <!-- ======= Header ======= -->
   <div id="header-container"></div>
   <!-- End Header -->
 
-    <div align="center">
-    <h1>게시글 목록</h1>
-    <c:choose>
-      <c:when test="${empty boards}">
-        <h1>등록된 데이터가 존재하지 않습니다.</h1>
-      </c:when>
-      <c:otherwise>
-        <table>
-          <tr>
-            <th width="50">No.</th>
-            <th width="250">제목</th>
-            <th width="100">작성자</th>
-            <th width="100">작성일</th>
-            <th width="60">조회수</th>
-          </tr>
-          <c:forEach var="board" items="${boards}">
-            <tr>
-              <td>${board.no}</td>
-              <td onclick="location.href='boardContent?no=${board.no}'">
-                ${board.title}
-              </td>
-              <td>${board.id}</td>
-              <td>${board.writeDate}</td>
-              <td>${board.hits}</td>
-            </tr>
-          </c:forEach>
-          <tr>
-            <td colspan="4">
-              ${result}
-            </td>
-            <td><button type="button" onclick="location.href='boardWrite'">글쓰기</button></td>
-          </tr>
-        </table>
-      </c:otherwise>
-    </c:choose>
-  </div>
+  <!-- ======= 문의사항 게시판 Section ======= -->
+  <section id="board" class="board">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="board-content">
+            <h2>문의사항 게시판</h2>
+            <p>문의하신 내용을 확인하세요.</p>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">제목</th>
+                  <th scope="col">작성자</th>
+                  <th scope="col">이메일</th>
+                  <th scope="col">날짜</th>
+                </tr>
+              </thead>
+              <tbody id="boardContent">
+                <!-- 게시글 내용이 여기에 추가됩니다. -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End 문의사항 게시판 Section -->
 
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
 
   <!-- ======= Footer ======= -->
   <div id="footer-container"></div>
 
   <!-- Script to load header -->
-  <script src="../../assets/js/header.js"></script>
-  <script src="../../assets/js/footer.js"></script>
+  <script src="../../assets/js/common/header.js"></script>
+  <script src="../../assets/js/common/footer.js"></script>
 
-<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Vendor JS Files -->
+  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/aos/aos.js"></script>
+  <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../../assets/vendor/purecounter/purecounter_vanilla.js"></script>
 
-<div id="preloader"></div>
-
-<!-- Vendor JS Files -->
-<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../../assets/vendor/aos/aos.js"></script>
-<script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="../../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-
-<!-- Template Main JS File -->
-<script src="../../assets/js/main.js"></script>
+  <!-- Template Main JS File -->
+  <script src="../../assets/js/common/main.js"></script>
+  <!-- Board JS File -->
+  <script src="../../assets/js/Q&A/Q&A.js"></script>
 
 </body>
+
 </html>
