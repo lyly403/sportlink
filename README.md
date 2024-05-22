@@ -16,6 +16,7 @@
 - DB버전 및 DB이름 통일 필요할듯 논의 후 결정 (현파일 데이터 베이스이름 : sportslink )
 
 ### 마리아DB로 변경하려면 다음과 같이 데이터베이스 URL과 드라이버 클래스 이름을 변경
+
 ```
 spring:
 datasource:
@@ -31,5 +32,4 @@ open-in-view: false
 show-sql: true
 hibernate:
 ddl-auto: update
-```ate
-      ```
+```
