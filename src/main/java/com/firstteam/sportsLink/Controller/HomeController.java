@@ -10,6 +10,7 @@ public class HomeController {
     public String index() {
         return "index";
     }
+
     @GetMapping("/ticket")
     public String ticket() {
         return "ticket/ticket";  // ticket.html 파일을 반환
@@ -22,7 +23,7 @@ public class HomeController {
 
     @GetMapping("/qna")
     public String qna() {
-        return "qna/qna";  // Q&A_write.html 파일을 반환
+        return "qna/qna_write";  // Q&A_write.html 파일을 반환
     }
 
     @GetMapping("/order")
