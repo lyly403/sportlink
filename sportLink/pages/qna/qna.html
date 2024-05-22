@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SportLink - 문의하기</title>
+  <title>SportLink - 문의사항 게시판</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -20,8 +20,8 @@
   <link href="/sportLink/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/sportLink/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
-  <!-- Custom CSS File -->
-  <link href="../../assets/css/Q&A/Q&A_wirte.css" rel="stylesheet">
+  <!-- Template CSS File -->
+  <link href="../../assets/css/qna/qna.css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,36 +30,34 @@
   <div id="header-container"></div>
   <!-- End Header -->
 
-   <!-- ======= 문의하기 Section ======= -->
-   <section id="contact" class="contact">
+  <!-- ======= 문의사항 게시판 Section ======= -->
+  <section id="board" class="board">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <div class="contact-form">
-            <h2>문의하기</h2>
-            <p>문의사항이 있으시면 아래 양식을 작성해주세요.</p>
-            <form id="contactForm">
-              <div class="form-group">
-                <input type="text" id="name" class="form-control" placeholder="이름" required>
-              </div>
-              <div class="form-group">
-                <input type="email" id="email" class="form-control" placeholder="이메일" required>
-              </div>
-              <div class="form-group">
-                <input type="text" id="subject" class="form-control" placeholder="제목" required>
-              </div>
-              <div class="form-group">
-                <textarea id="message" class="form-control" rows="5" placeholder="문의 내용" required></textarea>
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">제출</button>
-              </div>
-            </form>
+        <div class="col-lg-12">
+          <div class="board-content">
+            <h2>문의사항 게시판</h2>
+            <p>문의하신 내용을 확인하세요.</p>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">제목</th>
+                  <th scope="col">작성자</th>
+                  <th scope="col">이메일</th>
+                  <th scope="col">날짜</th>
+                </tr>
+              </thead>
+              <tbody id="boardContent">
+                <!-- 게시글 내용이 여기에 추가됩니다. -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-  </section><!-- End 문의하기 Section -->
+  </section><!-- End 문의사항 게시판 Section -->
+
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -80,8 +78,8 @@
 
   <!-- Template Main JS File -->
   <script src="../../assets/js/common/main.js"></script>
-  <script src="../../assets/js/Q&A/Q&A_wirte.js"></script>
-
+  <!-- Board JS File -->
+  <script src="../../assets/js/qna/qna.js"></script>
 
 </body>
 

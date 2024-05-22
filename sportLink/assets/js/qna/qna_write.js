@@ -25,6 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.setItem('inquiries', JSON.stringify(inquiries));
   
       // 작성 완료 후 문의사항 게시판으로 이동
-      window.location.href = '/sportLink/pages/Q&A/Q&A.html';
+      window.location.href = '/sportLink/pages/qna/qna.html';
     });
   });
