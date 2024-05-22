@@ -1,0 +1,64 @@
+/* Fonts */
+:root {
+    --font-default: "Noto Sans KR", sans-serif;
+    --font-primary: "Noto Sans KR", sans-serif;
+    --font-secondary: "Noto Sans KR", sans-serif;
+  }
+  
+  /* Colors */
+  :root {
+    --color-default: #212529;
+    --color-primary: #8831cf;
+    --color-secondary: #37373f;
+  }
+  
+  /* Smooth scroll behavior */
+  :root {
+    scroll-behavior: smooth;
+  }
+  
+  /*--------------------------------------------------------------
+  # General
+  --------------------------------------------------------------*/
+  body {
+    font-family: var(--font-default);
+    color: var(--color-default);
+  }
+  
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #45118e;
+    text-decoration: none;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-secondary);
+  }
+  
+
+
+  /*--------------------------------------------------------------
+  # Footer
+  --------------------------------------------------------------*/
+  .footer {
+    font-size: 14px;
+    background-color: #1f1f24;
+    padding: 30px 0;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .footer .copyright {
+    text-align: center;
+    padding-top: 10px;
+  }
+  
+  

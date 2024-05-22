@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - Inner</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Template CSS File -->
+  <link href="/assets/css/ticket/ticket_wirte.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <div th:replace="layout/header :: header"></div>
+  <!-- End Header -->
+
+
+  <!-- ======= Writing Section ======= -->
+<section id="writing" class="writing">
+    <div class="container">
+        <form id="writeForm">
+  <section class="write-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" id="title" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="date">날짜 설정 (판매 마감일)</label>
+            <input type="date" id="date" class="form-control datepicker">
+          </div>
+
+          <div class="form-group">
+            <label for="location">지역</label>
+            <select id="location" class="form-control">
+              <option value="seoul">서울</option>
+              <option value="gyeonggi">경기</option>
+              <option value="incheon">인천</option>
+              <option value="gangwon">강원</option>
+              <option value="chungcheong">충청</option>
+              <option value="gyeongsang">경상</option>
+              <option value="jeolla">전라</option>
+              <option value="jeju">제주</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price">가격</label>
+            <input type="text" id="price" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="count"> 구매 수량 </label>
+            <input type="number" id="count" min="0" max="10" step="1" value="10" class="form-control datepicker">
+          </div>
+
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label for="category">종목</label>
+            <select id="category" class="form-control">
+                <option value="Soccer">축구</option>
+                <option value="Baseball">야구</option>
+                <option value="Volleyball">배구</option>
+                <option value="Basketball">농구</option>
+                <option value="Esports">E-스포츠</option>
+                <option value="UFC">UFC</option>
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="text-area">텍스트 영역</label>
+            <textarea id="text-area" class="form-control" rows="5"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="map">위치 (지도 API)</label>
+            <!-- Include map API here -->
+            <div id="map"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="image">이미지 업로드 </label>
+            <input type="file" id="image" class="form-control-file">
+          </div>
+
+      </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">글쓰기 완료</button>
+      </div>
+    </div>
+  </section><!-- End Write Section -->
+
+
+  <!-- ======= Footer ======= -->
+  <div id="footer-container"></div>
+
+  <!-- Script to load header -->
+    <!-- Script to load header -->
+    <script src="/assets/js/common/header.js"></script>
+    <script src="/assets/js/common/footer.js"></script>
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/common/main.js"></script>
+
+   <!-- Custom JavaScript for Write Page -->
+   <script src="/assets/js/ticket/filter.js"></script> 
+<script src="/assets/js/ticket/ticket.wirte.js"></script> 
+
+</body>
+</html>

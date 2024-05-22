@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - facility_inner</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Custom CSS for Detail Page -->
+  <link href="/assets/css/ticket/ticket_inner.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <div th:replace="layout/header :: header"></div>
+  <!-- End Header -->
+
+  <!-- ======= Detail Section ======= -->
+  <section id="detail" class="detail">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div class="detail-content">
+            <div id="detailContent">
+              <!-- 이곳에 글쓰기 페이지에서 작성한 내용이 표시될 부분 -->
+              <p><strong>제목:</strong> <span id="detailTitle"></span></p>
+              <p><strong>날짜:</strong> <span id="detailDate"></span></p>
+              <p><strong>지역:</strong> <span id="detailLocation"></span></p>
+              <p><strong>가격:</strong> <span id="detailPrice"></span></p>
+              <p><strong>구매 수량:</strong> <span id="detailCount"></span></p>
+              <p><strong>종목:</strong> <span id="detailCategory"></span></p>
+              <p><strong>텍스트 영역:</strong></p>
+              <p id="detailTextArea"></p>
+              <p><strong>위치 (지도 API):</strong></p>
+              <div id="map"></div>
+              <p><strong>이미지:</strong></p>
+              <img id="detailImage" src="" alt="Uploaded Image">
+   
+              <!-- 구매 버튼 -->
+              <div class="text-center mt-4">
+                <button id="purchaseButton" class="purchase-button"
+                data-title="상품 제목"
+                data-date="구매 날짜"
+                data-location="구매 지역"
+                data-price="상품 가격"
+                data-count="구매 수량"
+                data-category="상품 종목">구매하기</button>
+              </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</section><!-- End Detail Section -->
+
+  <!-- ======= Footer ======= -->
+  <div id="footer-container"></div>
+
+  <!-- Script to load header -->
+  <script src="/assets/js/common/header.js"></script>
+  <script src="/assets/js/common/footer.js"></script>
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/common/main.js"></script>
+
+</body>
+</html>

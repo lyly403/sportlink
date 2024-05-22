@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - Inner</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Template CSS File -->
+  <link href="/assets/css/ticket/ticket.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <div th:replace="layout/header :: header"></div>
+  <!-- End Header -->
+
+<!-- ======= filter ======= -->
+<div id="filter-container" class="container py-4">
+    <section id="filter-section" class="filter-bar row justify-content-center align-items-center">
+      <!-- 지역 필터링 -->
+      <div class="filter col-md-3 mb-3 mb-md-0">
+        <label for="location-filter" class="d-block text-center">지역</label>
+        <select id="location-filter" class="form-select w-100">
+          <option value="seoul">서울</option>
+          <option value="gyeonggi">경기</option>
+          <option value="incheon">인천</option>
+          <option value="gangwon">강원</option>
+          <option value="chungcheong">충청</option>
+          <option value="gyeongsang">경상</option>
+          <option value="jeolla">전라</option>
+          <option value="jeju">제주</option>
+        </select>
+      </div>
+  
+      <!-- 종목 필터링 -->
+      <div class="filter col-md-3 mb-3 mb-md-0">
+        <label for="category-filter" class="d-block text-center">종목</label>
+        <select id="category-filter" class="form-select w-100">
+          <option value="Soccer">축구</option>
+          <option value="Baseball">야구</option>
+          <option value="Volleyball">배구</option>
+          <option value="Basketball">농구</option>
+          <option value="Esports">E-스포츠</option>
+          <option value="UFC">UFC</option>
+        </select>
+      </div>
+  
+      <!-- 날짜 필터링 -->
+      <div class="filter col-md-3 mb-3 mb-md-0">
+        <label for="date-filter" class="d-block text-center">날짜</label>
+        <input type="date" id="date-filter" class="form-control">
+      </div>
+  
+      <!-- 검색 버튼 -->
+      <div class="filter col-md-3">
+        <button id="apply-filter" class="search-button w-100">검색</button>
+      </div>
+    </section>
+  </div>
+  
+<!-- ======= Product Section ======= -->
+<section class="product-section py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+      <div class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-4 row-cols-xl-5 justify-content-center">
+          <!-- Product Card 1 -->
+          <div class="col mb-5">
+              <div class="card h-100" data-url="inner2.html">
+                  <!-- Product Image -->
+                  <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="Product Image 1" />
+                  <!-- Product Details -->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product Name -->
+                          <h5 class="fw-bolder">Fancy Product</h5>
+                          <!-- Product Price -->
+                          <p>70,000</p>
+                      </div>
+                  </div>
+                  <!-- Product Actions -->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto view-options" href="ticket_inner.html">상세보기</a></div>
+                  </div>
+              </div>
+          </div>
+          <!-- Product Card 2 -->
+          <div class="col mb-5">
+              <div class="card h-100" data-url="detail.html?id=2">
+                  <!-- Product Image -->
+                  <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="Product Image 2" />
+                  <!-- Product Details -->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product Name -->
+                          <h5 class="fw-bolder">Special Item</h5>
+                          <!-- Product Reviews -->
+                          <div class="d-flex justify-content-center small text-warning mb-2">
+                              <div class="bi-star-fill"></div>
+                              <div class="bi-star-fill"></div>
+                              <div class="bi-star-fill"></div>
+                              <div class="bi-star-fill"></div>
+                              <div class="bi-star-fill"></div>
+                          </div>
+                          <!-- Product Price -->
+                          <p>
+                              <span class="text-muted text-decoration-line-through">130,000</span>
+                              90,000
+                          </p>
+                      </div>
+                  </div>
+                  <!-- Product Actions -->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="ticket_inner.html">상세보기</a></div>
+                  </div>
+              </div>
+          </div>
+          <!-- Product Card 3 -->
+          <div class="col mb-5">
+              <div class="card h-100">
+                  <!-- Product Image -->
+                  <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="Product Image 3" />
+                  <!-- Product Details -->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product Name -->
+                          <h5 class="fw-bolder">Sale Item</h5>
+                          <!-- Product Price -->
+                          <p>
+                              <span class="text-muted text-decoration-line-through">100,000</span>
+                              80,000
+                          </p>
+                      </div>
+                  </div>
+                  <!-- Product Actions -->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="ticket_inner.html">상세보기</a></div>
+                  </div>
+              </div>
+          </div>
+                    <!-- Product Card 4 -->
+                    <div class="col mb-5">
+                      <div class="card h-100">
+                          <!-- Product Image -->
+                          <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="Product Image 3" />
+                          <!-- Product Details -->
+                          <div class="card-body p-4">
+                              <div class="text-center">
+                                  <!-- Product Name -->
+                                  <h5 class="fw-bolder">Sale Item</h5>
+                                  <!-- Product Price -->
+                                  <p>
+                                      <span class="text-muted text-decoration-line-through">100,000</span>
+                                      80,000
+                                  </p>
+                              </div>
+                          </div>
+                          <!-- Product Actions -->
+                          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="ticket_inner.html">상세보기</a></div>
+                          </div>
+                      </div>
+                  </div>
+
+          <!-- Product Card 5 -->
+          <div class="col mb-5">
+              <div class="card h-100">
+                  <!-- Product Image -->
+                  <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="Product Image 4" />
+                  <!-- Product Details -->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product Name -->
+                          <h5 class="fw-bolder">Popular Item</h5>
+                          <!-- Product Reviews -->
+                          <div class="d-flex justify-content-center small text-warning mb-2">
+                              <div class="bi-star-fill"></div>
+                              <div class="bi-star-fill"></div>
+                              <div class="bi-star-fill"></div>
+                              <div class="bi-star-fill"></div>
+                              <div class="bi-star-fill"></div>
+                          </div>
+                          <!-- Product Price -->
+                          <p>25,000</p>
+                      </div>
+                  </div>
+                  <!-- Product Actions -->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="ticket_inner.html">상세보기</a></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+  <!-- ======= Footer ======= -->
+  <div th:replace="layout/footer :: footer"></div>
+
+  <!-- Script to load header -->
+  <script src="/assets/js/common/header.js"></script>
+  <script src="/assets/js/common/footer.js"></script>
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/common/main.js"></script>
+
+   <!-- Custom JavaScript for Write Page -->
+<script src="/assets/js/ticket/filter.js"></script> 
+
+</body>
+</html>

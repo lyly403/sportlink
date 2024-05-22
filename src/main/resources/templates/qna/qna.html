@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - 문의사항 게시판</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Template CSS File -->
+  <link href="/assets/css/Q&A/Q&A.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <div th:replace="layout/header :: header"></div>
+  <!-- End Header -->
+
+  <!-- ======= 문의사항 게시판 Section ======= -->
+  <section id="board" class="board">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="board-content">
+            <h2>문의사항 게시판</h2>
+            <p>문의하신 내용을 확인하세요.</p>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">제목</th>
+                  <th scope="col">작성자</th>
+                  <th scope="col">이메일</th>
+                  <th scope="col">날짜</th>
+                </tr>
+              </thead>
+              <tbody id="boardContent">
+                <!-- 게시글 내용이 여기에 추가됩니다. -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End 문의사항 게시판 Section -->
+
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- ======= Footer ======= -->
+  <div th:replace="layout/footer :: footer"></div>
+
+  <!-- Script to load header -->
+  <script src="/assets/js/common/header.js"></script>
+  <script src="/assets/js/common/footer.js"></script>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/common/main.js"></script>
+  <!-- Board JS File -->
+  <script src="/assets/js/Q&A/Q&A.js"></script>
+
+</body>
+
+</html>
