@@ -45,32 +45,36 @@
           </div>
         </div>
 
-        <!-- 댓글 섹션 -->
-        <div id="commentsSection">
+        <!-- 댓글 목록 -->
+        <div class="comments-section">
           <h3>댓글</h3>
           <div th:each="comment : ${comments}">
-            <p><strong th:text="${comment.author}">작성자</strong>: <span th:text="${comment.content}">댓글 내용</span> <small th:text="${comment.createdAt}">작성 날짜</small></p>
+            <p><strong th:text="${comment.author}"></strong> <span th:text="${comment.createdAt}"></span></p>
+            <p th:text="${comment.content}"></p>
           </div>
         </div>
 
-        <!-- 관리자 댓글 입력 폼 -->
-        <div id="adminCommentForm" th:if="${isAdmin}">
-          <h4>댓글 작성</h4>
+        <!-- 댓글 작성 폼 (관리자만) -->
+        <div th:if="${isAdmin}">
+          <h3>댓글 작성</h3>
           <form action="#" th:action="@{/addComment}" th:object="${newComment}" method="post">
             <input type="hidden" th:field="*{inquiryId}" th:value="${inquiry.id}" />
             <div class="form-group">
-              <textarea th:field="*{content}" class="form-control" placeholder="댓글 내용을 입력하세요" required></textarea>
+              <label for="commentAuthor">작성자</label>
+              <input type="text" class="form-control" id="commentAuthor" th:field="*{author}" />
             </div>
             <div class="form-group">
-              <input type="text" th:field="*{author}" class="form-control" placeholder="작성자 이름" required/>
+              <label for="commentContent">내용</label>
+              <textarea class="form-control" id="commentContent" th:field="*{content}" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">댓글 작성</button>
+            <button type="submit" class="btn btn-primary">댓글 달기</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section><!-- End 문의사항 상세 페이지 Section -->
+
 
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

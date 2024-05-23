@@ -14,10 +14,12 @@ import java.util.List;
 public class QnaController {
 
     private final QnaService qnaService;
+    private final CommentService commentService;
 
     @Autowired
-    public QnaController(QnaService qnaService) {
+    public QnaController(QnaService qnaService, CommentService commentService) {
         this.qnaService = qnaService;
+        this.commentService = commentService;
     }
 
     @PostMapping("/qna/save")
@@ -25,7 +27,6 @@ public class QnaController {
         qnaService.saveQna(qnaDTO);
         return "redirect:/qna-list"; // 저장 후 목록 페이지로 리다이렉트
     }
-
 
     @GetMapping("/qna-list")
     public String qna(Model model) {
@@ -39,11 +40,23 @@ public class QnaController {
         return "qna/qna";
     }
 
-    // 추가: 상세 페이지로 이동하는 핸들러
     @GetMapping("/qna-detail/{id}")
     public String qnaDetail(@PathVariable("id") Long id, Model model) {
         QnaDTO inquiry = qnaService.getInquiryById(id);
         model.addAttribute("inquiry", inquiry);
+
+        // 댓글 추가
+        List<CommentDTO> comments = commentService.getCommentsByInquiryId(id);
+        model.addAttribute("comments", comments);
+        model.addAttribute("newComment", new CommentDTO());
+        model.addAttribute("isAdmin", true); // 관리자 여부를 설정하는 로직을 추가해야 함
+
         return "qna/qna-detail";
+    }
+
+    @PostMapping("/addComment")
+    public String addComment(@ModelAttribute("newComment") CommentDTO newComment) {
+        commentService.saveComment(newComment);
+        return "redirect:/qna-detail/" + newComment.getInquiryId();
     }
 }
