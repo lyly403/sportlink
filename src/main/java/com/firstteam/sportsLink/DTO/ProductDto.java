@@ -1,23 +1,35 @@
 package com.firstteam.sportsLink.DTO;
 
+import com.firstteam.sportsLink.Entity.ProductEntity;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
 @Setter
 @Getter
-public class ProductDTO {
+public class ProductDto {
         private String title;
         private LocalDate endDate;
         private String location;
-        private BigDecimal price;
-        private int count;
+        private String price;
         private String category;
         private String description;
         private String imageUrl;
 
         // Getters and setters
+
+        public ProductEntity toEntity() {
+                ProductEntity product = new ProductEntity();
+                product.setTitle(this.title);
+                product.setEndDate(this.endDate);
+                product.setLocation(this.location);
+                product.setPrice(this.price);
+                product.setCategory(this.category);
+                product.setDescription(this.description);
+                product.setImageUrl(this.imageUrl);
+                return product;
+        }
 }

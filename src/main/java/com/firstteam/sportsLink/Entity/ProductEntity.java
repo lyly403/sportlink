@@ -1,9 +1,6 @@
 package com.firstteam.sportsLink.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +10,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
+@Table(name="product")
 public class ProductEntity {
 
     @Id
@@ -22,8 +20,7 @@ public class ProductEntity {
     private String title;
     private LocalDate endDate;
     private String location;
-    private BigDecimal price;
-    private int count;
+    private String price;
     private String category;
     private String description;
     private String imageUrl;
