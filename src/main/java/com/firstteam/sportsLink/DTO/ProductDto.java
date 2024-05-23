@@ -18,6 +18,8 @@ public class ProductDto {
         private String category;
         private String description;
         private String imageUrl;
+        private double latitude;
+        private double longitude;
 
         // Getters and setters
 
@@ -30,6 +32,8 @@ public class ProductDto {
                 product.setCategory(this.category);
                 product.setDescription(this.description);
                 product.setImageUrl(this.imageUrl);
+                product.setLatitude(this.latitude);
+                product.setLongitude(this.longitude);
                 return product;
         }
 }

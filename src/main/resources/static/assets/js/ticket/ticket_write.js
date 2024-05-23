@@ -20,3 +20,11 @@ document.getElementById('writeForm').addEventListener('submit', function(event) 
    상세 페이지 URL에 데이터 추가하여 이동
   window.location.href = `/sportLink/pages/ticket/ticket_inner.html?title=${encodeURIComponent(title)}&date=${encodeURIComponent(date)}&location=${encodeURIComponent(location)}&price=${encodeURIComponent(price)}&count=${encodeURIComponent(count)}&category=${encodeURIComponent(category)}&textArea=${encodeURIComponent(textArea)}`;
 });
+
+    // 지도 생성
+    var container = document.getElementById('map'); // 지도를 표시할 div
+    var options = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도 중심 좌표 (서울)
+        level: 3 // 지도 확대 레벨
+    };
+    var map = new kakao.maps.Map(container, options); // 지도 객체 생성
