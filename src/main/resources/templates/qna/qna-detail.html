@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SportLink - 문의사항 게시판</title>
+  <title>SportLink - 문의하기</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -21,7 +20,7 @@
   <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
   <!-- Custom CSS File -->
-  <link href="/assets/css/qna/qna.css" rel="stylesheet">
+  <link href="/assets/css/qna/qna_inner.css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,39 +29,25 @@
 <div th:replace="layout/header :: header"></div>
 <!-- End Header -->
 
-<!-- ======= 문의사항 게시판 Section ======= -->
-<section id="board" class="board">
+<!-- ======= 문의사항 상세 페이지 Section ======= -->
+<section id="inquiry-detail" class="inquiry-detail">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
-        <div class="board-content">
-          <h2>문의사항 게시판</h2>
-          <p>문의하신 내용을 확인하세요.</p>
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th scope="col">번호</th>
-              <th scope="col">제목</th>
-              <th scope="col">작성자</th>
-              <th scope="col">이메일</th>
-              <th scope="col">날짜</th>
-            </tr>
-            </thead>
-            <tbody id="boardContent">
-            <tr th:each="inquiry, rowStat : ${inquiries}">
-              <td th:text="${rowStat.index + 1}"></td>
-              <td><a th:href="@{/qna-detail/{id}(id=${inquiry.id})}" th:text="${inquiry.title}"></a></td>
-              <td th:text="${inquiry.author}"></td>
-              <td th:text="${inquiry.email}"></td>
-              <td th:text="${inquiry.date}"></td>
-            </tr>
-            </tbody>
-          </table>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="inquiry-detail-content">
+          <h2 id="inquirySubject" th:text="${inquiry.title}">문의 제목</h2>
+          <p id="inquiryName" th:text="'작성자: ' + ${inquiry.author}"></p>
+          <p id="inquiryEmail" th:text="'이메일: ' + ${inquiry.email}"></p>
+          <p id="inquiryDate" th:text="'작성 날짜: ' + ${inquiry.date}"></p>
+          <div id="inquiryMessage" class="message-container">
+            <p>문의 내용:</p>
+            <div id="messageContent" th:text="${inquiry.content}"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section><!-- End 문의사항 게시판 Section -->
+</section><!-- End 문의사항 상세 페이지 Section -->
 
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -81,7 +66,6 @@
 
 <!-- Template Main JS File -->
 <script src="/assets/js/common/main.js"></script>
-<!-- Board JS File -->
 
 </body>
 
