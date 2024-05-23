@@ -46,6 +46,8 @@
               <th scope="col">작성자</th>
               <th scope="col">이메일</th>
               <th scope="col">날짜</th>
+              <th scope="col">조회수</th>
+
             </tr>
             </thead>
             <tbody id="boardContent">
@@ -55,6 +57,8 @@
               <td th:text="${inquiry.author}"></td>
               <td th:text="${inquiry.email}"></td>
               <td th:text="${inquiry.date}"></td>
+              <td th:text="${inquiry.hit}"></td> <!-- 조회수를 출력 -->
+
             </tr>
             </tbody>
           </table>

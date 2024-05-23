@@ -25,8 +25,13 @@ public class QnaService {
         if (date == null) {
             date = LocalDate.now(); // 현재 날짜로 설정
         }
-        String sql = "INSERT INTO inquiries (title, author, email, date, content) VALUES (?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getAuthor(), qnaDTO.getEmail(), date, qnaDTO.getContent());
+        String sql = "INSERT INTO inquiries (title, author, email, date, content, hit) VALUES (?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getAuthor(), qnaDTO.getEmail(), date, qnaDTO.getContent(), 0);
+    }
+
+    public void increaseHit(Long id) {
+        String sql = "UPDATE inquiries SET hit = hit + 1 WHERE id = ?";
+        jdbcTemplate.update(sql, id);
     }
 
     // 데이터베이스에서 모든 문의사항을 가져오는 메서드

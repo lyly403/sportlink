@@ -1,11 +1,12 @@
 package com.firstteam.sportsLink.qna;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalDate;
 
-@Entity // 이 어노테이션을 추가하여 엔티티로 지정합니다.
+@Entity
 public class QnaDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +16,7 @@ public class QnaDTO {
     private String email;
     private LocalDate date;
     private String content;
+    private int hit; // 조회수 필드 유지
 
     public QnaDTO() {
     }
@@ -74,5 +76,13 @@ public class QnaDTO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getHit() {
+        return hit;
+    }
+
+    public void setHit(int hit) {
+        this.hit = hit;
     }
 }

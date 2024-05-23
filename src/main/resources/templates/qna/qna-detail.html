@@ -44,6 +44,29 @@
             <div id="messageContent" th:text="${inquiry.content}"></div>
           </div>
         </div>
+
+        <!-- 댓글 섹션 -->
+        <div id="commentsSection">
+          <h3>댓글</h3>
+          <div th:each="comment : ${comments}">
+            <p><strong th:text="${comment.author}">작성자</strong>: <span th:text="${comment.content}">댓글 내용</span> <small th:text="${comment.createdAt}">작성 날짜</small></p>
+          </div>
+        </div>
+
+        <!-- 관리자 댓글 입력 폼 -->
+        <div id="adminCommentForm" th:if="${isAdmin}">
+          <h4>댓글 작성</h4>
+          <form action="#" th:action="@{/addComment}" th:object="${newComment}" method="post">
+            <input type="hidden" th:field="*{inquiryId}" th:value="${inquiry.id}" />
+            <div class="form-group">
+              <textarea th:field="*{content}" class="form-control" placeholder="댓글 내용을 입력하세요" required></textarea>
+            </div>
+            <div class="form-group">
+              <input type="text" th:field="*{author}" class="form-control" placeholder="작성자 이름" required/>
+            </div>
+            <button type="submit" class="btn btn-primary">댓글 작성</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
