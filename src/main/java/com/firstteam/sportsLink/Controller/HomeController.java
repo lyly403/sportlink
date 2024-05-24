@@ -11,10 +11,10 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/ticket")
-    public String ticket() {
-        return "ticket/ticket";  // ticket.html 파일을 반환
-    }
+//    @GetMapping("/ticket")
+//    public String ticket() {
+//        return "ticket/ticket";  // ticket.html 파일을 반환
+//    }
 
     @GetMapping("/facility")
     public String facility() {

@@ -2,6 +2,7 @@ package com.firstteam.sportsLink.Controller;
 
 import com.firstteam.sportsLink.DTO.ProductDto;
 import com.firstteam.sportsLink.Entity.ProductEntity;
+import com.firstteam.sportsLink.Repository.ProductRepository;
 import com.firstteam.sportsLink.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Controller
 public class ProductController {
@@ -26,7 +28,10 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    String uploadDirectory = "src/main/resources/static/image"; // 경로 직접 지정
+    @Autowired
+    private ProductRepository productRepository;
+
+    String uploadDirectory = "src/main/resources/static/image/upload"; // 경로 직접 지정
 
     @GetMapping("/ticket/ticket_write")
     public String showProductForm(Model model) {
@@ -56,5 +61,12 @@ public class ProductController {
         ProductEntity product = productDto.toEntity();
         productService.saveProduct(product);
         return "redirect:/ticket";
+    }
+
+    @GetMapping("/ticket")
+    public String showProduct(Model model){
+        List<ProductEntity> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        return "ticket/ticket";
     }
 }
