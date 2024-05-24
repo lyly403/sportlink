@@ -1,12 +1,10 @@
 package com.firstteam.sportsLink.qna;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -106,6 +104,32 @@ public class QnaController {
 //    }
 
 
+    @GetMapping("/editInquiry/{id}")
+    public String editInquiryPage(@PathVariable("id") Long id, Model model) {
+        QnaDTO inquiry = qnaService.getInquiryById(id);
+
+        if (inquiry == null) {
+            return "error/404";
+        }
+
+        model.addAttribute("inquiry", inquiry);
+        return "qna/qna_edit";
+    }
+
+    @PostMapping("/updateInquiry")
+    public String updateInquiry(@ModelAttribute("inquiry") QnaDTO inquiry) {
+        qnaService.updateInquiry(inquiry);
+        return "redirect:/qna_inner/" + inquiry.getId(); // 수정된 결과를 보여줄 페이지로 리다이렉트
+    }
+
+    @PostMapping("/deleteInquiry")
+    public String deleteInquiry(@RequestParam("id") Long id) {
+        // inquiryId를 사용하여 해당 문의사항을 삭제하는 로직을 구현
+        qnaService.deleteInquiry(id);
+        // 삭제 후 리다이렉트할 URL을 반환합니다. 이 예에서는 메인 페이지로 리다이렉트합니다.
+        return "redirect:/";
+    }
+
     @PostMapping("/addComment")
     public String addComment(@ModelAttribute("newComment") CommentDTO newComment) {
         Long inquiryId = newComment.getInquiryId(); // 댓글이 속한 문의사항의 ID
@@ -117,3 +141,4 @@ public class QnaController {
         return "redirect:/qna_inner/" + inquiryId;
     }
 }
+

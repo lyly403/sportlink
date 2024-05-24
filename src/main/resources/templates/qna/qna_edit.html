@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>SportLink - 문의사항 수정</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+    <!-- Custom CSS File -->
+    <link href="/assets/css/qna/qna_edit.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<div th:replace="layout/header :: header"></div>
+<!-- End Header -->
+
+<!-- Inquiry Edit Section -->
+<section id="inquiry-edit" class="inquiry-edit">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="inquiry-edit-content">
+                    <h2>문의사항 수정</h2>
+                    <form th:action="@{/updateInquiry}" method="post" class="edit-form">
+                        <input type="hidden" name="id" th:value="${inquiry.id}" />
+                        <div class="form-group">
+                            <label for="editTitle">제목</label>
+                            <input type="text" class="form-control" id="editTitle" name="title" th:value="${inquiry.title}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editContent">내용</label>
+                            <textarea class="form-control" id="editContent" name="content" rows="5" required th:text="${inquiry.content}"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">수정 완료</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Inquiry Edit Section -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- ======= Footer ======= -->
+<div th:replace="layout/footer :: footer"></div>
+
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/common/main.js"></script>
+<!--<script src="/assets/js/qna/qna_edit.js"></script>-->
+
+</body>
+
+</html>

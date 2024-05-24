@@ -44,12 +44,11 @@
                         <p id="inquiryMessage" th:text="'작성 내용: ' + ${inquiry.content}"></p>
                     </div>
                     <div class="edit-delete-form">
-                        <form th:action="@{/editInquiry}" method="post" class="edit-button">
-                            <input type="hidden" name="inquiryId" th:value="${inquiry.id}" />
+                        <form th:action="@{/editInquiry/{id}(id=${inquiry.id})}" method="get" class="edit-button">
                             <button type="submit">수정</button>
                         </form>
                         <form th:action="@{/deleteInquiry}" method="post" class="delete-button">
-                            <input type="hidden" name="inquiryId" th:value="${inquiry.id}" />
+                            <input type="hidden" name="id" th:value="${inquiry.id}" />
                             <button type="submit" onclick="return confirm('정말로 이 문의사항을 삭제하시겠습니까?')">삭제</button>
                         </form>
                     </div>

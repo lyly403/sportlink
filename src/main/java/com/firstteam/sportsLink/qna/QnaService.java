@@ -51,4 +51,25 @@ public class QnaService {
             return null; // 결과가 없을 경우 null 반환
         }
     }
+
+//    public void editInquiry(QnaDTO qnaDTO) {
+//        // qnaDTO를 이용하여 DB에서 해당 문의사항을 수정하는 로직을 구현
+//        LocalDate date = qnaDTO.getDate();
+//        if (date == null) {
+//            date = LocalDate.now(); // 현재 날짜로 설정
+//        }
+//        String sql = "UPDATE inquiries SET title = ?, content = ? WHERE id = ?";
+//        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getContent(), qnaDTO.getId());
+//    }
+
+    public void updateInquiry(QnaDTO qnaDTO) {
+        String sql = "UPDATE inquiries SET title = ?, content = ? WHERE id = ?";
+        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getContent(), qnaDTO.getId());
+    }
+
+    public void deleteInquiry(Long id) {
+        String sql = "DELETE FROM inquiries WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }
+
