@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -68,5 +65,12 @@ public class ProductController {
         List<ProductEntity> products = productRepository.findAll();
         model.addAttribute("products", products);
         return "ticket/ticket";
+    }
+
+    @GetMapping("/ticket/ticket_inner/{id}")
+    public String showProductDetail(@PathVariable("id") Long id, Model model) {
+        ProductEntity product = productService.findProductById(id);
+        model.addAttribute("product", product);
+        return "ticket/ticket_inner";
     }
 }

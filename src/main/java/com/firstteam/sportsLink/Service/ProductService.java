@@ -15,4 +15,9 @@ public class ProductService {
     public void saveProduct(ProductEntity product) {
         productRepository.save(product);
     }
+
+    public ProductEntity findProductById(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
+    }
 }
