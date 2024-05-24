@@ -17,6 +17,7 @@
   scroll-behavior: smooth;
 }
 
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -76,7 +77,6 @@ h6 {
   margin-bottom: 50px;
 }
 
-
 .table {
   margin-top: 20px;
 }
@@ -84,6 +84,13 @@ h6 {
 .table th,
 .table td {
   vertical-align: middle;
+}
+
+/* Custom styles for the "글쓰기" button */
+.write-btn {
+  background-color: #8831cf; /* 배경색을 #8831cf로 고정 */
+  color: white; /* 텍스트 색상을 흰색으로 유지 */
+  border: none; /* 테두리 삭제 */
 }
 
 
@@ -165,7 +172,7 @@ h6 {
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
-    transition-delay: 0 !important;
+    transition-delay: 0s !important;
   }
 }
 

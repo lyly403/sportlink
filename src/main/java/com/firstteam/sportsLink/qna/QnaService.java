@@ -25,8 +25,8 @@ public class QnaService {
         if (date == null) {
             date = LocalDate.now(); // 현재 날짜로 설정
         }
-        String sql = "INSERT INTO inquiries (title, author, email, date, content, hit) VALUES (?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getAuthor(), qnaDTO.getEmail(), date, qnaDTO.getContent(), 0);
+        String sql = "INSERT INTO inquiries (title, author, date, content, hit) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getAuthor(), date, qnaDTO.getContent(), 0);
     }
 
     public void increaseHit(Long id) {

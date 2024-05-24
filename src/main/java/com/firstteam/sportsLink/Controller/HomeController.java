@@ -21,8 +21,8 @@ public class HomeController {
     }
 
     @GetMapping("/qna")
-    public String qna() {
-        return "qna/qna_write";  // Q&A_write.html 파일을 반환
+    public String redirectToQnaList() {
+        return "redirect:/qna-list";
     }
 
     @GetMapping("/order")

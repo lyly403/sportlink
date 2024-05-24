@@ -38,27 +38,26 @@
         <div class="board-content">
           <h2>문의사항 게시판</h2>
           <p>문의하신 내용을 확인하세요.</p>
+          <div class="d-flex justify-content-end mb-3">
+            <a href="/qna/new" class="btn btn-primary">글쓰기</a>
+          </div>
           <table class="table table-striped">
             <thead>
             <tr>
               <th scope="col">번호</th>
               <th scope="col">제목</th>
               <th scope="col">작성자</th>
-              <th scope="col">이메일</th>
               <th scope="col">날짜</th>
               <th scope="col">조회수</th>
-
             </tr>
             </thead>
             <tbody id="boardContent">
             <tr th:each="inquiry, rowStat : ${inquiries}">
               <td th:text="${rowStat.index + 1}"></td>
-              <td><a th:href="@{/qna-detail/{id}(id=${inquiry.id})}" th:text="${inquiry.title}"></a></td>
+              <td><a th:href="@{/qna_inner/{id}(id=${inquiry.id})}" th:text="${inquiry.title}"></a></td>
               <td th:text="${inquiry.author}"></td>
-              <td th:text="${inquiry.email}"></td>
               <td th:text="${inquiry.date}"></td>
-              <td th:text="${inquiry.hit}"></td> <!-- 조회수를 출력 -->
-
+              <td th:text="${inquiry.hit}"></td>
             </tr>
             </tbody>
           </table>

@@ -13,7 +13,6 @@ public class QnaDTO {
     private Long id;
     private String title;
     private String author;
-    private String email;
     private LocalDate date;
     private String content;
     private int hit; // 조회수 필드 유지
@@ -21,11 +20,10 @@ public class QnaDTO {
     public QnaDTO() {
     }
 
-    public QnaDTO(Long id, String title, String author, String email, LocalDate date, String content) {
+    public QnaDTO(Long id, String title, String author, LocalDate date, String content) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.email = email;
         this.date = date;
         this.content = content;
     }
@@ -52,14 +50,6 @@ public class QnaDTO {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public LocalDate getDate() {

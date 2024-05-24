@@ -40,23 +40,78 @@ public class QnaController {
         return "qna/qna";
     }
 
-    @GetMapping("/qna-detail/{id}")
-    public String qnaDetail(@PathVariable("id") Long id, Model model) {
-        QnaDTO inquiry = qnaService.getInquiryById(id);
-        model.addAttribute("inquiry", inquiry);
+    // 글쓰기 페이지를 반환하는 메서드 추가
+    @GetMapping("/qna/new")
+    public String newQna(Model model) {
+        model.addAttribute("qnaDTO", new QnaDTO());
+        return "qna/qna_write"; // qna_write.html로 매핑
+    }
 
-        // 댓글 추가
+    @GetMapping("/qna_inner/{id}")
+    public String qnainner(@PathVariable("id") Long id, Model model) {
+        if (id == null) {
+            // id가 null이면 404 오류 반환
+            return "error/404";
+        }
+
+        QnaDTO inquiry = qnaService.getInquiryById(id);
+        if (inquiry == null) {
+            // 해당 ID에 대한 문의사항이 없으면 404 오류 반환
+            return "error/404";
+        }
+
+        // 문의사항과 댓글을 모델에 추가하여 페이지 반환
         List<CommentDTO> comments = commentService.getCommentsByInquiryId(id);
+        model.addAttribute("inquiry", inquiry);
         model.addAttribute("comments", comments);
         model.addAttribute("newComment", new CommentDTO());
-        model.addAttribute("isAdmin", true); // 관리자 여부를 설정하는 로직을 추가해야 함
+        model.addAttribute("isAdmin", true);
 
-        return "qna/qna-detail";
+        return "qna/qna_inner";
     }
+
+//    // 관리자만 댓글 달기
+//    @GetMapping("/qna_inner/{id}")
+//    public String qnainner(@PathVariable("id") Long id, Model model, HttpSession session) {
+//
+//        // 세션에서 로그인한 사용자의 정보 가져오기
+//        UserDTO user = (UserDTO) session.getAttribute("user");
+//
+//        if (user != null && user.isAdmin()) { // 관리자인 경우에만 댓글 폼을 노출
+//            model.addAttribute("isAdmin", true);
+//        }
+//
+//        if (id == null) {
+//            // id가 null이면 404 오류 반환
+//            return "error/404";
+//        }
+//
+//        QnaDTO inquiry = qnaService.getInquiryById(id);
+//        if (inquiry == null) {
+//            // 해당 ID에 대한 문의사항이 없으면 404 오류 반환
+//            return "error/404";
+//        }
+//
+//        // 문의사항과 댓글을 모델에 추가하여 페이지 반환
+//        List<CommentDTO> comments = commentService.getCommentsByInquiryId(id);
+//        model.addAttribute("inquiry", inquiry);
+//        model.addAttribute("comments", comments);
+//        model.addAttribute("newComment", new CommentDTO());
+//        model.addAttribute("isAdmin", true);
+//
+//        return "qna/qna_inner";
+//    }
+
 
     @PostMapping("/addComment")
     public String addComment(@ModelAttribute("newComment") CommentDTO newComment) {
+        Long inquiryId = newComment.getInquiryId(); // 댓글이 속한 문의사항의 ID
+
+
+        // 댓글 저장
         commentService.saveComment(newComment);
-        return "redirect:/qna-detail/" + newComment.getInquiryId();
+
+        // 해당 문의사항 페이지로 리다이렉트
+        return "redirect:/qna_inner/" + inquiryId;
     }
 }
