@@ -18,6 +18,7 @@ public class ProductDto {
         private String category;
         private String description;
         private String imageUrl;
+        private String producttype;
         private double latitude;
         private double longitude;
 
@@ -34,6 +35,7 @@ public class ProductDto {
                 product.setImageUrl(this.imageUrl);
                 product.setLatitude(this.latitude);
                 product.setLongitude(this.longitude);
+                product.setProducttype(this.producttype);
                 return product;
         }
 }

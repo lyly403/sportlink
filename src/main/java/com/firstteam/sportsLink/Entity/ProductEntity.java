@@ -24,6 +24,7 @@ public class ProductEntity {
     private String category;
     private String description;
     private String imageUrl;
+    private String producttype;
     private double latitude;
     private double longitude;
 }

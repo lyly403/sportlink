@@ -31,7 +31,7 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    String uploadDirectory = "src/main/resources/static/image/upload"; // 경로 직접 지정
+    String uploadDirectory = "src/main/resources/static/image"; // 경로 직접 지정
 
     @GetMapping("/ticket/ticket_write")
     public String showProductForm(Model model) {
@@ -49,7 +49,7 @@ public class ProductController {
                 Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING); // 파일 복사
 
                 // 파일 경로를 DTO에 설정
-                productDto.setImageUrl("/uploads/" + fileName);
+                productDto.setImageUrl("/image/" + fileName);
             } catch (IOException e) {
                 e.printStackTrace();
                 // 파일 업로드에 실패한 경우 예외 처리
