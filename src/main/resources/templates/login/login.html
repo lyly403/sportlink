@@ -26,35 +26,41 @@
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
   <div th:replace="layout/header :: header"></div>
   <!-- End Header -->
 
    <!-- ======= login ======= -->
-   <div class="login-container">
-    <h1>Login</h1>
-    <div class="input-field">
-        <label for="username"></label>
-        <input type="text" id="username" placeholder="아이디">
-    </div>
-    <div class="input-field">
-        <label for="password"></label>
-        <input type="password" id="password" placeholder="비밀번호">
-    </div>
-    <div class="login-button">
-        <button>Login</button>
-    </div>
-    <div class="kakao-button">
-      <a href="kakao.html"><button>Kakao</button></a>
-    </div>
-    <div class="naver-button">
-        <a href="naver.html"><button>Naver</button></a>
-    </div>
-       <a href="/find-account">아이디 찾기 | </a>
-       <a href="/find-id">비밀번호 찾기 | </a>
-       <a href="#">회원가입</a>
-</div>
+  <form action = "/loginProc" method="post" id="f">
+      <div class="login-container">
+            <h1>Login</h1>
+          <tr>
+              <td>
+                  <span style="color: red" th:text="${msg}"></span>
+              </td>
+          </tr>
+            <div class="input-field">
+                <label for="id"></label>
+                <input type="text" name="id" id="id" placeholder="아이디">
+            </div>
+            <div class="input-field">
+                <label for="pw"></label>
+                <input type="password" name="pw" id="pw" placeholder="비밀번호">
+            </div>
+            <div class="login-button">
+                <button type="submit">Login</button>
+            </div>
+            <div class="kakao-button">
+              <a href="kakao.html"><button>Kakao</button></a>
+            </div>
+            <div class="naver-button">
+                <a href="naver.html"><button>Naver</button></a>
+            </div>
+               <a href="/find-account">아이디 찾기 | </a>
+               <a href="/find-id">비밀번호 찾기 | </a>
+               <a href="#">회원가입</a>
+      </div>
+  </form>
 <br>
   <div>
   <a href="/find-account">아이디 찾기 | </a>
