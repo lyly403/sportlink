@@ -9,7 +9,7 @@
 :root {
   --color-default: #212529;
   --color-primary: #8831cf;
-  --color-secondary: #37373f;
+  --color-secondary: #45118e;
 }
 
 /* Smooth scroll behavior */
@@ -17,33 +17,6 @@
   scroll-behavior: smooth;
 }
 
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
-body {
-  font-family: var(--font-default);
-  color: var(--color-default);
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-a:hover {
-  color: #45118e;
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-secondary);
-}
 
 /*--------------------------------------------------------------
 /* ======= Board Section CSS ======= */
@@ -87,12 +60,16 @@ h6 {
 }
 
 /* Custom styles for the "글쓰기" button */
-.write-btn {
-  background-color: #8831cf; /* 배경색을 #8831cf로 고정 */
-  color: white; /* 텍스트 색상을 흰색으로 유지 */
-  border: none; /* 테두리 삭제 */
+.btn.btn-primary {
+  background-color: #8831cf;
+  border-color: #8831cf; /
+  color: white; /* 텍스트 색상을 흰색으로 변경 */
 }
 
+.btn.btn-primary:hover {
+  background-color: #45118e; /* 마우스 호버 시 배경색 변경 */
+  border-color: #45118e; /* 마우스 호버 시 테두리 색상 변경 */
+}
 
     /*--------------------------------------------------------------
 # Scroll top button

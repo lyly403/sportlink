@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class QnaService {
 
+
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -50,5 +51,4 @@ public class QnaService {
             return null; // 결과가 없을 경우 null 반환
         }
     }
-
 }

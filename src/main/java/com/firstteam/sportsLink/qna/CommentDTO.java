@@ -1,5 +1,7 @@
 package com.firstteam.sportsLink.qna;
 
+import jakarta.persistence.Entity;
+
 public class CommentDTO {
     private Long id;
     private Long inquiryId;

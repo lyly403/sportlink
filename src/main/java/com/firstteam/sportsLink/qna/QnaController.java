@@ -60,6 +60,9 @@ public class QnaController {
             return "error/404";
         }
 
+        // 조회수 증가
+        qnaService.increaseHit(id);
+
         // 문의사항과 댓글을 모델에 추가하여 페이지 반환
         List<CommentDTO> comments = commentService.getCommentsByInquiryId(id);
         model.addAttribute("inquiry", inquiry);
@@ -106,7 +109,6 @@ public class QnaController {
     @PostMapping("/addComment")
     public String addComment(@ModelAttribute("newComment") CommentDTO newComment) {
         Long inquiryId = newComment.getInquiryId(); // 댓글이 속한 문의사항의 ID
-
 
         // 댓글 저장
         commentService.saveComment(newComment);
