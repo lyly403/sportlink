@@ -1,0 +1,108 @@
+package com.care.boot.board;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import com.care.boot.PageService;
+
+@Service
+public class BoardService {
+	@Autowired private BoardMapper mapper;
+	private String filePath = "E:\\Back\\web-project\\src\\main\\resources\\upload\\";
+	
+	// [ Board Form ]
+	public void boardForm(String cp, Model model) {
+		int currentPage = 1;
+		try{
+			currentPage = Integer.parseInt(cp);
+		}catch(Exception e){
+			currentPage = 1;
+		}
+		
+		int pageBlock = 3; // 한 페이지에 보일 데이터의 수 
+		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
+		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+		
+		List<BoardDTO> boards = mapper.boardForm(begin, end);
+		int totalCount = mapper.totalCount();
+		if(totalCount == 0) {
+			return ;
+		}
+		
+		String url = "boardForm?currentPage=";
+		String result = PageService.printPage(url, totalCount, pageBlock, currentPage);
+		
+		model.addAttribute("boards", boards);
+		model.addAttribute("result", result);
+	}
+	
+	// [ Board Write & Upload ]
+		@Autowired private HttpSession session;
+		public String boardWriteProc(MultipartHttpServletRequest multi) {
+			System.out.println("title : " + multi.getParameter("title"));
+			String sessionId = (String) session.getAttribute("id");
+			if(sessionId == null)
+				return "redirect:login";
+			
+			String title = multi.getParameter("title");
+			if(title == null || title.trim().isEmpty()) {
+				return "redirect:boardWrite";
+			}
+			
+			BoardDTO board = new BoardDTO();
+			board.setTitle(title);
+			board.setContent(multi.getParameter("content"));
+			board.setId(sessionId);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			board.setWriteDate(sdf.format(new Date()));
+			board.setFileName("");
+			
+			MultipartFile file = multi.getFile("upfile");
+			if(file.getSize() != 0) { // 클라이언트가 파일을 업로드 했다면
+				// 파일의 이름
+				sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+				String fileTime = sdf.format(new Date());
+				String fileName = file.getOriginalFilename();
+				
+				String suffix = fileName.substring(fileName.lastIndexOf(".")+1, fileName.length());
+				System.out.println("BoardService-boardWriteProc-suffix : " + suffix);
+
+				// 특정 확장자를 갖는 파일만 Upload를 허용
+				//if(suffix.equalsIgnoreCase("pdf") == false)
+				//	return "redirect:boardWrite";
+				
+				// 파일의 저장 경로 ( filePath 필드 추가 작업 진행 )
+				String fileSaveDirectory = filePath+sessionId;
+				File f = new File(fileSaveDirectory);
+				if(f.exists() == false) {
+					f.mkdirs();
+				}
+				
+				String fullPath = fileSaveDirectory + "\\" + fileTime + fileName;
+				board.setFileName(fullPath);
+				f = new File(fullPath);
+				try {
+					file.transferTo(f);
+				} catch (Exception e) {
+					e.printStackTrace();
+					board.setFileName("");
+				} 
+				
+				/*
+				 file.transferTo(); //파일을 이동시키는 기능 
+				 <input type="file" name="upfile"> 을 사용하여 서버에 파일 데이터가 전달되면
+				 웹서버가 임시파일로 저장을 함. 
+				 임시파일로 저장된 파일을 개발자가 원하는 경로로 이동시킬 때 file.transferTo()를 사용함.
+				 */
+			}
+			
+			// 조회수랑 게시글 번호는 INSERT 명령 시 입력
+			mapper.boardWriteProc(board);
+			return "redirect:boardForm";
+		}
+	
+}

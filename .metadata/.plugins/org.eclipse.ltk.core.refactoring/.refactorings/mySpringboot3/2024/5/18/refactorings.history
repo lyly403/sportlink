@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;footer.jsp, header.jsp, main.jsp&apos; to &apos;default&apos;" description="Move 3 resources to &apos;default&apos;" destination="src/main/webapp/jsp/default" element1="src/main/webapp/jsp/footer.jsp" element2="src/main/webapp/jsp/header.jsp" element3="src/main/webapp/jsp/main.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="3" stamp="1714624935355" updateReferences="true"/>
+</session>
