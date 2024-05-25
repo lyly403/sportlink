@@ -30,6 +30,11 @@ public class ProductController {
         model.addAttribute("productDTO", new ProductDTO());
         return "ticket/ticket_write";
     }
+    @GetMapping("/ticket/activity_write")
+    public String showActivityForm(Model model) {
+        model.addAttribute("productDTO", new ProductDTO());
+        return "ticket/activity_write";
+    }
 
     @PostMapping("/ticket/ticket_write")
     public String createProduct(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file) {
@@ -52,14 +57,40 @@ public class ProductController {
         productService.saveProduct(product);
         return "redirect:/ticket";
     }
+    @PostMapping("/ticket/activity_write")
+    public String createActivity(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file) {
+        if (!file.isEmpty()) {
+            try {
+                String fileName = StringUtils.cleanPath(file.getOriginalFilename()); // 파일명 정리
+                Path uploadPath = Paths.get(uploadDirectory); // 업로드 디렉토리 경로
+                Path filePath = uploadPath.resolve(fileName); // 파일 경로 설정
+                Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING); // 파일 복사
 
+                // 파일 경로를 DTO에 설정
+                productDTO.setImageUrl("/image/" + fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                // 파일 업로드에 실패한 경우 예외 처리
+                return "redirect:/ticket/ticket_write?uploadError";
+            }
+        }
+        ProductEntity product = productDTO.toEntity();
+        productService.saveProduct(product);
+        return "redirect:/activity";
+    }
     @GetMapping("/ticket")
-    public String showProduct(Model model) {
-        List<ProductEntity> products = productRepository.findAll();
-        model.addAttribute("products", products);
+    public String showViewTickets(Model model) {
+        List<ProductEntity> viewingTickets = productService.findViewingTickets();
+        model.addAttribute("view_ticket", viewingTickets);
         return "ticket/ticket";
     }
 
+    @GetMapping("/activity")
+    public String showActivityTickets(Model model) {
+        List<ProductEntity> activityTickets = productService.findActivityTickets();
+        model.addAttribute("activity_ticket", activityTickets);
+        return "ticket/activity";
+    }
     @GetMapping("/ticket/ticket_inner/{id}")
     public String showProductDetail(@PathVariable("id") Long id, Model model) {
         ProductEntity product = productService.findProductById(id);

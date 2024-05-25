@@ -18,7 +18,7 @@ public class HomeController {
 
     @GetMapping("/facility")
     public String facility() {
-        return "facility/facility";  // facility.html 파일을 반환
+        return "ticket/activity";  // facility.html 파일을 반환
     }
 
     @GetMapping("/qna")

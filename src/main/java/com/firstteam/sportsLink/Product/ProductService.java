@@ -2,14 +2,8 @@ package com.firstteam.sportsLink.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
-import java.io.IOException;
-import java.nio.file.Files;
+import java.util.List;
 
 
 @Service
@@ -29,6 +23,12 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
     }
 
+    public List<ProductEntity> findViewingTickets() {
+        return productRepository.findByProducttype("Viewingticket");
+    }
+    public List<ProductEntity> findActivityTickets() {
+        return productRepository.findByProducttype("Activity");
+    }
 
     public void updateProduct(Long id, ProductDTO productDTO) {
         ProductEntity product = productRepository.findById(id).orElse(null);

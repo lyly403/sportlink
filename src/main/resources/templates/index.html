@@ -30,7 +30,8 @@
   <!-- Script to load header -->
   <script src="/assets/js/common/header.js"></script>
   <script src="/assets/js/common/footer.js"></script>
-
+  <!-- 카카오 api 스크립트  -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5846dfc7f744d84867dbabc481ca99d5&libraries=services"></script>
 </head>
 
 <body>
@@ -47,7 +48,7 @@
         <h2 data-aos="fade-up">SportLink<br>함께 할수록 <br> 더 저렴한 운동 플랫폼</h2>
         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
           <a th:href="@{/ticket}" class="btn-go">관람티켓</a>
-          <a th:href="@{/facility}" class="btn-go">시설할인</a>
+          <a th:href="@{/activity}" class="btn-go">시설할인</a>
         </div>
       </div>
       <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
@@ -108,7 +109,7 @@
         <div data-aos="fade-up">
           <h2>다가오는 여름<br>시원한 수상 스포츠와 <br>함께</h2>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-            <a th:href="@{/facility}" class="btn-sgo">특가 확인</a>
+            <a th:href="@{/activity}" class="btn-sgo">특가 확인</a>
           </div>
         </div>
       </div>
@@ -128,8 +129,8 @@
         </div>
 
         <div class="mb-3">
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-        </div><!-- End Google Maps -->
+          <div id="map" style="width: 100%; height: 400px;">
+        </div><!-- End KAKAO Maps -->
 
       </div>
     </section>
@@ -154,7 +155,16 @@
   
   <!-- Template Main JS File -->
   <script src="/assets/js/common/main.js"></script>
-  
- 
+
+  <script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+  </script>
   </body>
   </html>
