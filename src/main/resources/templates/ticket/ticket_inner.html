@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - 티켓 상세 정보</title>
+  <meta content="최신 스포츠 이벤트 티켓 상세 정보를 확인하세요." name="description">
+  <meta content="스포츠, 티켓, 이벤트, 상세 정보" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Custom CSS for Detail Page -->
+  <link href="/assets/css/ticket/ticket_inner.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<div th:replace="layout/header :: header"></div>
+<!-- End Header -->
+
+<!-- ======= Detail Section ======= -->
+<section id="detail" class="detail">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <div class="detail-content" data-aos="fade-up">
+          <!-- 수정과 삭제 버튼 추가 -->
+          <div class="text-end mb-3">
+            <a th:href="@{'/ticket/edit_product/' + ${product.id}}" class="btn btn-primary">수정</a>
+            <form th:action="@{'/ticket/delete/' + ${product.id}}" method="post">
+              <button type="submit" class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</button>
+            </form>
+          </div>
+          <h1 class="text-center mb-4" th:text="${product.title}">제목</h1>
+          <p><strong>날짜:</strong> <span th:text="${product.endDate}">날짜</span></p>
+          <p><strong>지역:</strong> <span th:text="${product.location}">지역</span></p>
+          <p><strong>가격:</strong> <span th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">가격</span></p>
+          <p><strong>종목:</strong> <span th:text="${product.category}">종목</span></p>
+          <p><strong>설명:</strong></p>
+          <p th:text="${product.description}">텍스트 영역</p>
+          <p><strong>위치:</strong></p>
+          <div id="map"></div>
+          <p><strong>이미지:</strong></p>
+          <img th:src="${product.imageUrl}" alt="Uploaded Image" class="img-fluid">
+          <div class="text-center mt-4">
+            <button id="purchaseButton" class="purchase-button">구매하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Detail Section -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="layout/footer :: footer"></div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/common/main.js"></script>
+
+<!-- Custom JavaScript for Write Page -->
+<script src="/assets/js/ticket/ticket_inner.js"></script>
+
+<!-- Kakao Map API -->
+<script>
+  function loadKakaoMap() {
+    var script = document.createElement('script');
+    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=5846dfc7f744d84867dbabc481ca99d5&libraries=services&autoload=false";
+    document.head.appendChild(script);
+
+    script.onload = function() {
+      kakao.maps.load(function() {
+        // 지도 생성 및 마커 표시 함수
+        function displayMap(latitude, longitude) {
+          var container = document.getElementById('map');
+          var options = {
+            center: new kakao.maps.LatLng(latitude, longitude), // 초기 지도 중심 위치
+            level: 3 // 초기 지도 확대 레벨
+          };
+
+          // 지도 생성
+          var map = new kakao.maps.Map(container, options);
+
+          // 마커 생성
+          var markerPosition = new kakao.maps.LatLng(latitude, longitude);
+          var marker = new kakao.maps.Marker({
+            position: markerPosition
+          });
+
+          // 마커 지도에 표시
+          marker.setMap(map);
+        }
+
+        // 상세 페이지에서 product 객체의 위도(latitude)와 경도(longitude) 값을 가져와서 지도에 표시
+        var latitude = [[${product.latitude}]];
+        var longitude = [[${product.longitude}]];
+        displayMap(latitude, longitude);
+      });
+    };
+  }
+
+  // 페이지 로드 후 실행
+  window.onload = loadKakaoMap;
+</script>
+</body>
+</html>

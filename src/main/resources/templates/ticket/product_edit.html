@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - Inner</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <!-- 카카오 api 스크립트  -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5846dfc7f744d84867dbabc481ca99d5&libraries=services"></script>
+  <!-- Template CSS File -->
+  <link href="/assets/css/ticket/ticket_write.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<div th:replace="layout/header :: header"></div>
+<!-- End Header -->
+
+
+<!-- ======= Writing Section ======= -->
+<form th:object="${product}" th:action="@{'/ticket/update/' + ${product.id}}" method="post" enctype="multipart/form-data">
+  <div class="container">
+    <section class="write-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="title">제목</label>
+              <input type="text" id="title" class="form-control" th:field="*{title}" >
+            </div>
+
+            <div class="form-group">
+              <label for="date">날짜 설정 (판매 마감일)</label>
+              <input type="date" id="date" class="form-control datepicker" th:field="*{endDate}">
+            </div>
+
+            <div class="form-group">
+              <label for="location">지역</label>
+              <select id="location" class="form-control" th:field="*{location}">
+                <option value="seoul">서울</option>
+                <option value="gyeonggi">경기</option>
+                <option value="incheon">인천</option>
+                <option value="gangwon">강원</option>
+                <option value="chungcheong">충청</option>
+                <option value="gyeongsang">경상</option>
+                <option value="jeolla">전라</option>
+                <option value="jeju">제주</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="price">가격</label>
+              <input type="text" id="price" class="form-control" th:field="*{price}">
+            </div>
+
+            <div class="form-group">
+              <label for="text-area">텍스트 영역</label>
+              <textarea id="text-area" class="form-control" rows="5" th:field="*{description}"></textarea>
+            </div>
+
+
+            <div class="form-group">
+              <label for="image">이미지 업로드</label>
+              <input type="file" id="image" name="image" class="form-control-file">
+            </div>
+
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="category">종목</label>
+              <select id="category" class="form-control" th:field="*{category}">
+                <option value="Soccer">축구</option>
+                <option value="Baseball">야구</option>
+                <option value="Volleyball">배구</option>
+                <option value="Basketball">농구</option>
+                <option value="Esports">E-스포츠</option>
+                <option value="UFC">UFC</option>
+              </select>
+            </div>
+
+              <div class="form-group">
+              <label for="producttype">유형</label>
+              <select id="producttype" class="form-control" th:field="*{producttype}">
+                <option value="Viewingticket">관람티켓</option>
+                <option value="Activity">액티비티</option>
+              </select>
+            </div>
+
+            <input type="text" id="keyword" placeholder="장소를 입력하세요">
+            <button onclick="searchPlace()" id="searchButton">검색</button>
+            <div id="map" style="width: 500px; height: 400px;">
+
+              <label for="map">위치 (지도 API)</label>
+              <!-- Include map API here -->
+            </div>
+            <input type="hidden" id="latitude" name="latitude" th:field="*{latitude}">
+            <input type="hidden" id="longitude" name="longitude" th:field="*{longitude}">
+
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">수정 완료</button>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Write Section -->
+  </div>
+</form>
+
+<!-- ======= Footer ======= --><div th:replace="layout/footer :: footer"></div>
+
+<!-- Script to load header -->
+<script src="/assets/js/common/header.js"></script>
+<script src="/assets/js/common/footer.js"></script>
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!--<div id="preloader"></div>-->
+<!--카카오지도 api 스크립트-->
+<script>
+  //검색 클릭시 form제출 오류가 있어 스크립트 함수 추가
+  document.getElementById('searchButton').addEventListener('click', function(event) {
+    event.preventDefault(); // 폼의 기본 동작 중지
+    searchPlace(); // 장소 검색 함수 호출
+  });
+  // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+  var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+          };
+
+  // 지도를 생성합니다
+  var map = new kakao.maps.Map(mapContainer, mapOption);
+
+  // 장소 검색 객체를 생성합니다
+  var ps = new kakao.maps.services.Places();
+
+  // 키워드 검색 함수
+  function searchPlace() {
+    var keyword = document.getElementById('keyword').value; // 사용자가 입력한 키워드를 가져옵니다
+
+    // 장소 검색 요청을 수행합니다
+    ps.keywordSearch(keyword, placesSearchCB);
+  }
+
+  // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+  function placesSearchCB (data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+
+      // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+      // LatLngBounds 객체에 좌표를 추가합니다
+      var bounds = new kakao.maps.LatLngBounds();
+
+      for (var i=0; i<data.length; i++) {
+        displayMarker(data[i]);
+        bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+      }
+
+      // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+      map.setBounds(bounds);
+    }
+  }
+
+  // 지도에 마커를 표시하는 함수입니다
+  function displayMarker(place) {
+
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new kakao.maps.Marker({
+      map: map,
+      position: new kakao.maps.LatLng(place.y, place.x)
+    });
+
+    // 마커에 클릭이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'click', function() {
+      // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+      infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+      infowindow.open(map, marker);
+      document.getElementById('latitude').value = place.y;
+      document.getElementById('longitude').value = place.x;
+    });
+  }
+
+</script>
+
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/common/main.js"></script>
+
+<!-- Custom JavaScript for Write Page -->
+<script src="/assets/js/ticket/ticket_write.js"></script>
+
+</body>
+</html>

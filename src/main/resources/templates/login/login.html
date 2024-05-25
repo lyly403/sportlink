@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - login</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Custom CSS for Detail Page -->
+  <link href="/assets/css/login/login.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <div th:replace="layout/header :: header"></div>
+  <!-- End Header -->
+
+   <!-- ======= login ======= -->
+   <div class="login-container">
+    <h1>Login</h1>
+    <div class="input-field">
+        <label for="username"></label>
+        <input type="text" id="username" placeholder="아이디">
+    </div>
+    <div class="input-field">
+        <label for="password"></label>
+        <input type="password" id="password" placeholder="비밀번호">
+    </div>
+    <div class="login-button">
+        <button>Login</button>
+    </div>
+    <div class="kakao-button">
+      <a href="kakao.html"><button>Kakao</button></a>
+    </div>
+    <div class="naver-button">
+        <a href="naver.html"><button>Naver</button></a>
+    </div>
+       <a href="/find-account">아이디 찾기 | </a>
+       <a href="/find-id">비밀번호 찾기 | </a>
+       <a href="#">회원가입</a>
+</div>
+<br>
+  <div>
+  <a href="/find-account">아이디 찾기 | </a>
+  <a href="/find-id">비밀번호 찾기 | </a>
+  <a href="#">회원가입</a>
+  </div>
+
+  <!-- ======= Footer ======= -->
+  <div th:replace="layout/footer :: footer"></div>
+
+  <!-- Script to load header -->
+    <!-- Script to load header -->
+    <script src="/assets/js/common/header.js"></script>
+    <script src="/assets/js/common/footer.js"></script>
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/common/main.js"></script>
+<script src="/assets/js/login/login.js"></script>
+
+
+</body>
+</html>
