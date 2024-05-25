@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SportLink - 상세 페이지</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>SportLink - 티켓 상세 정보</title>
+  <meta content="최신 스포츠 이벤트 티켓 상세 정보를 확인하세요." name="description">
+  <meta content="스포츠, 티켓, 이벤트, 상세 정보" name="keywords">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,47 +22,23 @@
 
   <!-- Custom CSS for Detail Page -->
   <link href="/assets/css/ticket/ticket_inner.css" rel="stylesheet">
-
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <div th:replace="layout/header :: header"></div>
-  <!-- End Header -->
+<!-- ======= Header ======= -->
+<div th:replace="layout/header :: header"></div>
+<!-- End Header -->
 
 <!-- ======= Detail Section ======= -->
 <section id="detail" class="detail">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
-<<<<<<< Updated upstream
-        <div class="detail-content">
-          <div id="detailContent">
-            <!-- 이곳에 글쓰기 페이지에서 작성한 내용이 표시될 부분 -->
-            <p><strong>제목:</strong> <span th:text="${product.title}"></span></p>
-            <p><strong>날짜:</strong> <span th:text="${product.endDate}"></span></p>
-            <p><strong>지역:</strong> <span th:text="${product.location}"></span></p>
-            <p><strong>가격:</strong> <span th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></span></p>
-            <p><strong>종목:</strong> <span th:text="${product.category}"></span></p>
-            <p><strong>텍스트 영역:</strong></p>
-            <p th:text="${product.description}"></p>
-            <p id="detailTextArea"></p>
-            <p><strong>위치 (지도 API):</strong></p>
-            <div id="map" style="width: 100%; height: 400px;"></div>
-            <p><strong>이미지:</strong></p>
-            <img th:src="${product.imageUrl}" alt="Uploaded Image" style="object-fit: cover; width: 100%;">
-
- 
-            <!-- 구매 버튼 -->
-            <div class="text-center mt-4">
-              <button id="purchaseButton" class="purchase-button">구매하기</button>
-            </div>
-=======
         <div class="detail-content" data-aos="fade-up">
           <!-- 수정과 삭제 버튼 추가 -->
           <div class="text-end mb-3">
-              <a th:href="@{'/ticket/edit_product/' + ${product.id}}" class="btn btn-primary">수정</a>
+            <a th:href="@{'/ticket/edit_product/' + ${product.id}}" class="btn btn-primary">수정</a>
             <form th:action="@{'/ticket/delete/' + ${product.id}}" method="post">
               <button type="submit" class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</button>
             </form>
@@ -80,7 +56,6 @@
           <img th:src="${product.imageUrl}" alt="Uploaded Image" class="img-fluid">
           <div class="text-center mt-4">
             <button id="purchaseButton" class="purchase-button">구매하기</button>
->>>>>>> Stashed changes
           </div>
         </div>
       </div>
@@ -88,60 +63,62 @@
   </div>
 </section><!-- End Detail Section -->
 
-
- <!-- ======= Footer ======= -->
-  <div th:replace="layout/footer :: footer"></div>
-
- <!-- Script to load header -->
- <script src="/assets/js/common/header.js"></script>
- <script src="/assets/js/common/footer.js"></script>
-
-<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-<div id="preloader"></div>
+<!-- ======= Footer ======= -->
+<div th:replace="layout/footer :: footer"></div>
 
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/vendor/aos/aos.js"></script>
 <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- Template Main JS File -->
 <script src="/assets/js/common/main.js"></script>
 
-  <!-- Custom JavaScript for Write Page -->
+<!-- Custom JavaScript for Write Page -->
 <script src="/assets/js/ticket/ticket_inner.js"></script>
-  <!--  카카오api-->
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5846dfc7f744d84867dbabc481ca99d5&libraries=services"></script>
-  <script>
-    // 지도 생성 및 마커 표시 함수
-    function displayMap(latitude, longitude) {
-      var container = document.getElementById('map');
-      var options = {
-        center: new kakao.maps.LatLng(latitude, longitude), // 초기 지도 중심 위치
-        level: 3 // 초기 지도 확대 레벨
-      };
 
-      // 지도 생성
-      var map = new kakao.maps.Map(container, options);
+<!-- Kakao Map API -->
+<script>
+  function loadKakaoMap() {
+    var script = document.createElement('script');
+    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=5846dfc7f744d84867dbabc481ca99d5&libraries=services&autoload=false";
+    document.head.appendChild(script);
 
-      // 마커 생성
-      var markerPosition = new kakao.maps.LatLng(latitude, longitude);
-      var marker = new kakao.maps.Marker({
-        position: markerPosition
+    script.onload = function() {
+      kakao.maps.load(function() {
+        // 지도 생성 및 마커 표시 함수
+        function displayMap(latitude, longitude) {
+          var container = document.getElementById('map');
+          var options = {
+            center: new kakao.maps.LatLng(latitude, longitude), // 초기 지도 중심 위치
+            level: 3 // 초기 지도 확대 레벨
+          };
+
+          // 지도 생성
+          var map = new kakao.maps.Map(container, options);
+
+          // 마커 생성
+          var markerPosition = new kakao.maps.LatLng(latitude, longitude);
+          var marker = new kakao.maps.Marker({
+            position: markerPosition
+          });
+
+          // 마커 지도에 표시
+          marker.setMap(map);
+        }
+
+        // 상세 페이지에서 product 객체의 위도(latitude)와 경도(longitude) 값을 가져와서 지도에 표시
+        var latitude = [[${product.latitude}]];
+        var longitude = [[${product.longitude}]];
+        displayMap(latitude, longitude);
       });
-
-      // 마커 지도에 표시
-      marker.setMap(map);
-    }
-
-    // 페이지 로드 후 실행
-    window.onload = function() {
-      // 상세 페이지에서 product 객체의 위도(latitude)와 경도(longitude) 값을 가져와서 지도에 표시
-      var latitude = [[${product.latitude}]];
-      var longitude = [[${product.longitude}]];
-      displayMap(latitude,longitude);
     };
-  </script>
+  }
+
+  // 페이지 로드 후 실행
+  window.onload = loadKakaoMap;
+</script>
 </body>
 </html>

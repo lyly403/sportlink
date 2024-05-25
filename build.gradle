@@ -31,20 +31,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-=======
-//	implementation 'org.mariadb.jdbc:mariadb-java-client'
->>>>>>> Stashed changes
-=======
-//	implementation 'org.mariadb.jdbc:mariadb-java-client'
->>>>>>> Stashed changes
-=======
-//	implementation 'org.mariadb.jdbc:mariadb-java-client'
->>>>>>> Stashed changes
-	annotationProcessor 'org.projectlombok:lombok'
+	//runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
