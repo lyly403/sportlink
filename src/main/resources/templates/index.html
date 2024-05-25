@@ -156,15 +156,47 @@
   <!-- Template Main JS File -->
   <script src="/assets/js/common/main.js"></script>
 
-  <script>
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    var products = /*[[${products}]]*/ []; // Thymeleaf를 사용하여 제품 목록을 가져옴
 
-    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-    var map = new kakao.maps.Map(mapContainer, mapOption);
+    // 각 제품의 위치에 마커를 표시하는 함수
+    function displayMarkers(map, products) {
+        for (var i = 0; i < products.length; i++) {
+            var product = products[i];
+            var latLng = new kakao.maps.LatLng(product.latitude, product.longitude); // 제품의 위도와 경도
+
+            // 마커를 생성하고 지도에 표시
+            var marker = new kakao.maps.Marker({
+                position: latLng, // 마커의 위치
+                map: map // 마커가 표시될 지도
+            });
+            console.log("제품", i+1, "위도:", product.latitude, ", 경도:", product.longitude);
+        }
+    }
+
+    // 지도를 생성하고 제품의 위치에 마커 표시
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude; // 현재 위치의 위도
+            var lng = position.coords.longitude; // 현재 위치의 경도
+
+            var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+            var mapOption = {
+                center: new kakao.maps.LatLng(lat, lng), // 현재 위치를 중심으로 설정
+                level: 10 // 지도의 확대 레벨
+            };
+
+            // 지도를 생성
+            var map = new kakao.maps.Map(mapContainer, mapOption);
+
+            // 각 제품의 위치에 마커 표시
+            displayMarkers(map, products);
+        });
+    } else {
+        alert('Geolocation이 지원되지 않는 브라우저입니다');
+    }
+    /*]]>*/
   </script>
   </body>
   </html>

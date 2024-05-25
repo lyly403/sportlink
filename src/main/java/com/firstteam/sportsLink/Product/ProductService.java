@@ -23,6 +23,10 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
     }
 
+    public List<ProductEntity> findAllProduct() {
+        return productRepository.findAll();
+    }
+
     public List<ProductEntity> findViewingTickets() {
         return productRepository.findByProducttype("Viewingticket");
     }

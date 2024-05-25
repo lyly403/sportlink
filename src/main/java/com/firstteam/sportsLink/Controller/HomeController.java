@@ -1,13 +1,25 @@
 package com.firstteam.sportsLink.Controller;
 
+import com.firstteam.sportsLink.Product.ProductEntity;
+import com.firstteam.sportsLink.Product.ProductService;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    private ProductService productService;
+
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        List<ProductEntity> allProduct = productService.findAllProduct();
+        model.addAttribute("products", allProduct ); // "products"라는 이름으로 제품 목록 추가
         return "index";
     }
 
