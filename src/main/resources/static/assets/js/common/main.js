@@ -2,14 +2,6 @@
 (function() {
   "use strict";
 
-  /**  Preloader  */
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
-  }
-
   /** Navbar links active state on scroll */
   let navbarlinks = document.querySelectorAll('#navbar a');
 
