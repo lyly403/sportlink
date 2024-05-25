@@ -1,49 +1,19 @@
 /* Fonts */
 :root {
   --font-default: "Noto Sans KR", sans-serif;
-  --font-primary: "Noto Sans KR", sans-serif;
-  --font-secondary: "Noto Sans KR", sans-serif;
 }
 
 /* Colors */
 :root {
-  --color-default: #212529;
-  --color-primary: #8831cf;
-  --color-secondary: #37373f;
-}
+    --color-default: #212529;
+    --color-primary: #8831cf;
+    --color-secondary: #45118e;
+  }
 
 /* Smooth scroll behavior */
 :root {
   scroll-behavior: smooth;
 }
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
-body {
-  font-family: var(--font-default);
-  color: var(--color-default);
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-a:hover {
-  color: #45118e;
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-secondary);
-}
-
 
 
 /*--------------------------------------------------------------
@@ -113,7 +83,6 @@ h6 {
 #purchaseButton:hover {
   background-color: #6e1cb0;
 }
-
 
 /*--------------------------------------------------------------
 # Scroll top button
@@ -188,13 +157,12 @@ h6 {
     opacity: 0;
   }
 }
-
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
-    transition-delay: 0 !important;
+    transition-delay: 0s !important;
   }
 }
 
@@ -229,7 +197,7 @@ h6 {
     align-items: center;
     justify-content: space-between;
     padding: 0 3px;
-    font-family: var(--font-secondary);
+    font: var(--font-default);
     font-size: 16px;
     font-weight: 600;
     color: #7f7f90;
@@ -380,7 +348,7 @@ h6 {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    font-family: var(--font-secondary);
+    font: var(--font-default);
     border-bottom: 2px solid rgba(255, 255, 255, 0.8);
     font-size: 16px;
     font-weight: 600;
@@ -460,4 +428,5 @@ h6 {
     z-index: 9996;
   }
 }
+
 

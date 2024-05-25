@@ -1,8 +1,6 @@
 /* Fonts */
 :root {
   --font-default: "Noto Sans KR", sans-serif;
-  --font-primary: "Noto Sans KR", sans-serif;
-  --font-secondary: "Noto Sans KR", sans-serif;
 }
 
 /* Colors */
@@ -184,7 +182,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 3px;
-    font-family: var(--font-secondary);
+    font: var(--font-default);
     font-size: 16px;
     font-weight: 600;
     color: #7f7f90;
@@ -335,7 +333,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    font-family: var(--font-secondary);
+    font: var(--font-default);
     border-bottom: 2px solid rgba(255, 255, 255, 0.8);
     font-size: 16px;
     font-weight: 600;
