@@ -36,4 +36,5 @@ public class ProductDTO {
         product.setProducttype(this.producttype);
         return product;
     }
+
 }

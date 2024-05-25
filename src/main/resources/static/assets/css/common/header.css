@@ -26,7 +26,6 @@
   transition: all 0.5s;
   z-index: 997;
   height: 90px;
-  border-bottom: 1px solid #fff;
 }
 
 .header.sticked {
@@ -46,6 +45,7 @@
   margin: 0;
   font-family: var(--font-secondary);
 }
+
 
 .header .logo h1 span {
   color: var(--color-primary);

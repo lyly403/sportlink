@@ -28,5 +28,13 @@ public class CommentService {
         jdbcTemplate.update(sql, commentDTO.getInquiryId(), commentDTO.getContent(), commentDTO.getAuthor(), LocalDateTime.now());
     }
 
-    // 다른 CRUD 메서드들 추가 가능
+    public CommentDTO getCommentById(Long commentId) {
+        String sql = "SELECT * FROM comments WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{commentId}, new BeanPropertyRowMapper<>(CommentDTO.class));
+    }
+
+    public void deleteComment(Long commentId) {
+        String sql = "DELETE FROM comments WHERE id = ?";
+        jdbcTemplate.update(sql, commentId);
+    }
 }

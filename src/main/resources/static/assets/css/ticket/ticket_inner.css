@@ -77,6 +77,16 @@ body {
   border-radius: 10px;
 }
 
+.text-end {
+  display: flex; /* Flexbox를 사용하여 내부 요소를 가로로 배열 */
+  justify-content: flex-end; /* 내용을 오른쪽으로 정렬 */
+}
+
+.text-end .btn {
+  margin-left: 10px; /* 각 버튼 사이의 간격 설정 */
+}
+
+
 /*--------------------------------------------------------------
 # Scroll top button
 --------------------------------------------------------------*/

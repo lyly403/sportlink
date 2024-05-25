@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SportLink - 티켓 수정</title>
+  <meta content="최신 스포츠 이벤트 티켓 수정 페이지입니다." name="description">
+  <meta content="스포츠, 티켓, 이벤트, 수정" name="keywords">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Custom CSS for Edit Page -->
+  <link href="/assets/css/ticket/ticket_edit.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<div th:replace="layout/header :: header"></div>
+<!-- End Header -->
+
+<!-- ======= Edit Section ======= -->
+<section id="edit" class="edit">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <div class="edit-content" data-aos="fade-up">
+          <h1 class="text-center mb-4">티켓 수정</h1>
+          <form th:action="@{'/ticket/update/' + ${product.id}}" method="post" class="edit-form">
+            <input type="hidden" name="id" th:value="${product.id}" />
+            <div class="mb-3">
+              <label for="title" class="form-label">제목</label>
+              <input type="text" class="form-control" id="title" name="title" th:value="${product.title}" required>
+            </div>
+            <div class="mb-3">
+              <label for="endDate" class="form-label">날짜</label>
+              <input type="date" class="form-control" id="endDate" name="endDate" th:value="${product.endDate}" required>
+            </div>
+            <div class="mb-3">
+              <label for="location" class="form-label">지역</label>
+              <input type="text" class="form-control" id="location" name="location" th:value="${product.location}" required>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">가격</label>
+              <input type="number" class="form-control" id="price" name="price" th:value="${product.price}" required>
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">종목</label>
+              <input type="text" class="form-control" id="category" name="category" th:value="${product.category}" required>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">설명</label>
+              <textarea class="form-control" id="description" name="description" rows="5" required th:text="${product.description}"></textarea>
+            </div>
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary">저장하기</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Edit Section -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="layout/footer :: footer"></div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/common/main.js"></script>
+
+
+</body>
+</html>

@@ -164,6 +164,20 @@
     background-color: #5a1f9f; /* 마우스 호버 시 버튼 배경색 변경 */
   }
 
+.comment.submit {
+  padding: 8px 16px; /* 버튼 내 여백 설정 */
+  color: #fff; /* 버튼 텍스트 색상 설정 */
+  border: none; /* 버튼 테두리 없음 설정 */
+  border-radius: 4px; /* 버튼 테두리 둥글기 설정 */
+  font-size: 16px; /* 버튼 폰트 크기 설정 */
+  cursor: pointer; /* 포인터 커서 설정 */
+  background-color: #8831cf; /* 버튼 배경색 설정 */
+}
+
+.comment.submit:hover {
+  background-color: #5a1f9f; /* 마우스 호버 시 버튼 배경색 변경 */
+}
+
   @media (min-width: 768px) {
     .inquiry-detail-content {
       padding: 40px;

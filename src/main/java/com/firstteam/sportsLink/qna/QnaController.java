@@ -140,5 +140,11 @@ public class QnaController {
         // 해당 문의사항 페이지로 리다이렉트
         return "redirect:/qna_inner/" + inquiryId;
     }
+
+    @PostMapping("/deleteComment")
+    public String deleteComment(@RequestParam("commentId") Long commentId) {
+        commentService.deleteComment(commentId);
+        return "redirect:/qna"; // 댓글이 삭제된 후 리다이렉트할 경로
+    }
 }
 

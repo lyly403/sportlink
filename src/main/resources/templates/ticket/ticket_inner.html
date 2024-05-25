@@ -36,6 +36,15 @@
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
         <div class="detail-content" data-aos="fade-up">
+          <!-- 수정과 삭제 버튼 추가 -->
+          <div class="text-end mb-3">
+            <form th:action="@{/ticket/edit/{id}(id=${product.id})}" method="get" class="d-inline">
+              <button type="submit" class="btn btn-primary">수정</button>
+            </form>
+            <form th:action="@{'/ticket/delete/' + ${product.id}}" method="post">
+              <button type="submit" class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</button>
+            </form>
+          </div>
           <h1 class="text-center mb-4" th:text="${product.title}">제목</h1>
           <p><strong>날짜:</strong> <span th:text="${product.endDate}">날짜</span></p>
           <p><strong>지역:</strong> <span th:text="${product.location}">지역</span></p>

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import com.firstteam.sportsLink.Product.ProductDTO;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -56,7 +57,7 @@ public class ProductController {
     }
 
     @GetMapping("/ticket")
-    public String showProduct(Model model){
+    public String showProduct(Model model) {
         List<ProductEntity> products = productRepository.findAll();
         model.addAttribute("products", products);
         return "ticket/ticket";
@@ -67,5 +68,26 @@ public class ProductController {
         ProductEntity product = productService.findProductById(id);
         model.addAttribute("product", product);
         return "ticket/ticket_inner";
+    }
+
+//    내가추가한부분
+@GetMapping("/ticket/edit/{id}")
+public String showEditProductForm(@PathVariable("id") Long id, Model model) {
+    ProductEntity product = productService.findProductById(id);
+    model.addAttribute("product", product);  // ProductDTO 대신 ProductEntity 사용
+    return "ticket/edit_product";
+}
+
+    @PostMapping("/ticket/update/{id}")
+    public String updateProduct(@PathVariable("id") Long id, @ModelAttribute ProductDTO productDTO) {
+        productService.updateProduct(id, productDTO);
+        return "redirect:/ticket/ticket_inner/" + id;
+    }
+
+    // 삭제 기능 추가
+    @PostMapping("/ticket/delete/{id}")
+    public String deleteProduct(@PathVariable("id") Long id) {
+        productService.deleteProductById(id);
+        return "redirect:/ticket";
     }
 }
