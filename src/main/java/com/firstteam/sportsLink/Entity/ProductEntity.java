@@ -25,6 +25,24 @@ public class ProductEntity {
     private String description;
     private String imageUrl;
     private String producttype;
+<<<<<<< Updated upstream:src/main/java/com/firstteam/sportsLink/Entity/ProductEntity.java
+<<<<<<< Updated upstream:src/main/java/com/firstteam/sportsLink/Entity/ProductEntity.java
+<<<<<<< Updated upstream:src/main/java/com/firstteam/sportsLink/Entity/ProductEntity.java
     private double latitude;
     private double longitude;
 }
+=======
+    private Double latitude;
+    private Double longitude;
+}
+>>>>>>> Stashed changes:src/main/java/com/firstteam/sportsLink/Product/ProductEntity.java
+=======
+    private Double latitude;
+    private Double longitude;
+}
+>>>>>>> Stashed changes:src/main/java/com/firstteam/sportsLink/Product/ProductEntity.java
+=======
+    private Double latitude;
+    private Double longitude;
+}
+>>>>>>> Stashed changes:src/main/java/com/firstteam/sportsLink/Product/ProductEntity.java

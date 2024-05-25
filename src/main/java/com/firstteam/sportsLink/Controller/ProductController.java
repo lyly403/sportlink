@@ -73,4 +73,52 @@ public class ProductController {
         model.addAttribute("product", product);
         return "ticket/ticket_inner";
     }
+<<<<<<< Updated upstream:src/main/java/com/firstteam/sportsLink/Controller/ProductController.java
+<<<<<<< Updated upstream:src/main/java/com/firstteam/sportsLink/Controller/ProductController.java
+<<<<<<< Updated upstream:src/main/java/com/firstteam/sportsLink/Controller/ProductController.java
 }
+=======
+=======
+>>>>>>> Stashed changes:src/main/java/com/firstteam/sportsLink/Product/ProductController.java
+=======
+>>>>>>> Stashed changes:src/main/java/com/firstteam/sportsLink/Product/ProductController.java
+
+    @GetMapping("/ticket/edit_product/{id}")
+    public String editProduct(@PathVariable("id") Long id, Model model) {
+        ProductEntity product = productService.findProductById(id);
+        model.addAttribute("product", product);
+        return "ticket/product_edit";
+    }
+//    내가추가한부분
+
+
+    @PostMapping("/ticket/update/{id}")
+    public String updateProduct(@PathVariable("id") Long id, @ModelAttribute ProductDTO product, @RequestParam("image") MultipartFile file) {
+        String imageUrl = "";
+        if (!file.isEmpty()) {
+            try {
+                String fileName = StringUtils.cleanPath(file.getOriginalFilename()); // 파일명 정리
+                Path uploadPath = Paths.get(uploadDirectory); // 업로드 디렉토리 경로
+                Path filePath = uploadPath.resolve(fileName); // 파일 경로 설정
+                Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING); // 파일 복사
+                imageUrl = "/image/" + fileName;
+                product.setImageUrl(imageUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+                // 파일 업로드에 실패한 경우 예외 처리
+                // 적절한 방법으로 처리하거나 사용자에게 알리는 메시지를 반환
+                // 여기서는 간단히 로그 출력 후 리다이렉트
+                return "redirect:/ticket/ticket_write?uploadError";
+            }
+        }
+        productService.updateProduct(id, product);
+        return "redirect:/ticket/ticket_inner/" + id;
+    }
+    // 삭제 기능 추가
+    @PostMapping("/ticket/delete/{id}")
+    public String deleteProduct(@PathVariable("id") Long id) {
+        productService.deleteProductById(id);
+        return "redirect:/ticket";
+    }
+}
+>>>>>>> Stashed changes:src/main/java/com/firstteam/sportsLink/Product/ProductController.java
