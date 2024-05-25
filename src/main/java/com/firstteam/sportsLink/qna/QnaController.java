@@ -27,14 +27,19 @@ public class QnaController {
     }
 
     @GetMapping("/qna-list")
-    public String qna(Model model) {
-        // 서비스를 통해 모든 문의사항을 가져옵니다.
-        List<QnaDTO> inquiries = qnaService.getAllInquiries();
+    public String qna(Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
+        PageRequestDTO pageRequest = new PageRequestDTO(page, size);
+        List<QnaDTO> inquiries = qnaService.getInquiriesPaged(pageRequest);
+        int totalInquiries = qnaService.getTotalInquiryCount();
 
-        // 모델에 문의사항 목록을 추가합니다.
+        int startNumber = (page - 1) * size + 1;
+
         model.addAttribute("inquiries", inquiries);
+        model.addAttribute("totalPages", (int) Math.ceil((double) totalInquiries / size));
+        model.addAttribute("currentPage", page);
+        model.addAttribute("size", size);
+        model.addAttribute("startNumber", startNumber); // 항목 번호 시작점 추가
 
-        // qna.html 파일을 반환합니다.
         return "qna/qna";
     }
 

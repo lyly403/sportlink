@@ -71,5 +71,17 @@ public class QnaService {
         String sql = "DELETE FROM inquiries WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    public List<QnaDTO> getInquiriesPaged(PageRequestDTO pageRequest) {
+        int offset = (pageRequest.getPage() - 1) * pageRequest.getSize();
+        String sql = "SELECT * FROM inquiries LIMIT ?, ?";
+        return jdbcTemplate.query(sql, new Object[]{offset, pageRequest.getSize()}, new BeanPropertyRowMapper<>(QnaDTO.class));
+    }
+
+    public int getTotalInquiryCount() {
+        String sql = "SELECT COUNT(*) FROM inquiries";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
 }
 
