@@ -36,8 +36,12 @@
   <!-- ======= Header ======= -->
   <div th:replace="layout/header :: header"></div>
   <!-- End Header -->
-
-  </script>
+<!-- [ 로그인 성공 알림창 ] -->
+  <th:block th:if="${msg == '로그인 성공' || msg == '회원가입 성공'}">
+    <script>
+      top.alert("[[${msg}]]");
+    </script>
+  </th:block>
 
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center section-bg">

@@ -22,52 +22,67 @@
 
   <!-- Custom CSS for Detail Page -->
   <link href="/assets/css/login/login.css" rel="stylesheet">
-
 </head>
 
 <body>
   <!-- ======= Header ======= -->
   <div th:replace="layout/header :: header"></div>
   <!-- End Header -->
-
    <!-- ======= login ======= -->
   <form action = "/loginProc" method="post" id="f">
       <div class="login-container">
-            <h1>Login</h1>
-          <tr>
-              <td>
-                  <span style="color: red" th:text="${msg}"></span>
-              </td>
-          </tr>
-            <div class="input-field">
-                <label for="id"></label>
+            <h1 style="text-align: center">로그인</h1><br>
+
+            <div class="input-field" >
                 <input type="text" name="id" id="id" placeholder="아이디">
             </div>
             <div class="input-field">
-                <label for="pw"></label>
                 <input type="password" name="pw" id="pw" placeholder="비밀번호">
             </div>
+              <tr>
+                  <td>
+                      <span style="color: red;text-align: center" th:text="${msg}"></span>
+                  </td>
+              </tr>
             <div class="login-button">
                 <button type="submit">Login</button>
             </div>
             <div class="kakao-button">
-              <a href="kakao.html"><button>Kakao</button></a>
+              <a href=https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d08e141ab68de7d1967abb180fd6727f&redirect_uri=http://localhost:8080/KakaoLogin>
+                  <img src="assets/img/KakaoLogin.png" width=183 />
+              </a>
             </div>
-            <div class="naver-button">
-                <a href="naver.html"><button>Naver</button></a>
-            </div>
+              <div class="naver-button">
+                  <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=p3ROwzA2JVE8fm6AJHhi&redirect_uri=http://localhost:8080/NaverLogin">
+                      <img src="assets/img/NaverLogin.png" width=183 />
+                  </a>
+              </div>
+<!--            <div class="naver-button">-->
+<!--                <a id="naver-login-link" href="#">-->
+<!--                    <img src="assets/img/NaverLogin.png" width=183 />-->
+<!--                </a>-->
+<!--            </div>-->
+<!--                &lt;!&ndash;네이버 로그인 스크립트&ndash;&gt;-->
+<!--              <script type="text/javascript">-->
+<!--                  var naver_id_login = new naver_id_login("YOUR_CLIENT_ID", "YOUR_CALLBACK_URL");-->
+<!--                  var state = naver_id_login.getUniqState();-->
+<!--                  naver_id_login.setDomain("YOUR_SERVICE_URL");-->
+<!--                  naver_id_login.setState(state);-->
+<!--                  naver_id_login.setPopup(); // 팝업 창으로 열리게 설정-->
+<!--        -->
+<!--                  // 로그인 버튼 클릭 시 네이버 로그인 페이지로 이동-->
+<!--                  document.getElementById('naver-login-link').onclick = function() {-->
+<!--                      naver_id_login.init_naver_id_login();-->
+<!--                  };-->
+<!--              </script>-->
+          <div style="text-align: center">
                <a href="/find-account">아이디 찾기 | </a>
                <a href="/find-id">비밀번호 찾기 | </a>
                <a href="#">회원가입</a>
+          </div>
       </div>
   </form>
 <br>
-  <div>
-  <a href="/find-account">아이디 찾기 | </a>
-  <a href="/find-id">비밀번호 찾기 | </a>
-  <a href="#">회원가입</a>
-  </div>
-
   <!-- ======= Footer ======= -->
   <div th:replace="layout/footer :: footer"></div>
 
@@ -90,6 +105,9 @@
 <script src="/assets/js/common/main.js"></script>
 <script src="/assets/js/login/login.js"></script>
 
+<!--네이버 로그인 SDK-->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 </body>
 </html>
