@@ -75,7 +75,7 @@
                 <h3>KBO LEAGUE</h3>
                 <div class="price align-self-start">55,000 ~ </div>
                 <p class="description">
-                  그 누구보다 빠르게 예매하는 KBO 리그
+                  <a th:href="@{'/ticket/ticket_inner/1'}" style="color: white;">그 누구보다 빠르게 예매하는 KBO 리그</a>
                 </p>
               </div><!-- End Event item -->
   
@@ -83,7 +83,7 @@
                 <h3>V-LEAGUE</h3>
                 <div class="price align-self-start">100,000 ~ </div>
                 <p class="description">
-                  월드 클래스, 김연경 선수와 함께 
+                  <a th:href="@{'/ticket/ticket_inner/2'}" style="color: white;">월드 클래스, 김연경 선수와 함께</a>
                 </p>
               </div><!-- End Event item -->
   
@@ -91,7 +91,7 @@
                 <h3>K-LEAGUE</h3>
                 <div class="price align-self-start">80,000 ~ </div>
                 <p class="description">
-                  K 리그 유소년 최강자를 가린다!
+                  <a th:href="@{'/ticket/ticket_inner/3'}" style="color: white;">K 리그 유소년 최강자를 가린다!</a>
                 </p>
               </div>
           </div>
@@ -99,7 +99,7 @@
         </div>
       </section>
 
-   
+
 <!-- ======= season Section ======= -->
 <section id="season" class="season d-flex align-items-center" style="background-image: url('/assets/img/water2.jpg');">
   <div class="container">
@@ -171,6 +171,18 @@
                 position: latLng, // 마커의 위치
                 map: map // 마커가 표시될 지도
             });
+
+            // 마커에 클릭 이벤트 등록
+            kakao.maps.event.addListener(marker, 'click', (function(marker, product) {
+                return function() {
+                    var infowindow = new kakao.maps.InfoWindow({
+                        content: '<div style="padding:5px;font-size:12px;">' + product.title + '</div>', // 제품의 이름을 정보창에 표시
+                        removable: true
+                    });
+                    infowindow.open(map, marker);
+                };
+            })(marker, product));
+
             console.log("제품", i+1, "위도:", product.latitude, ", 경도:", product.longitude);
         }
     }
@@ -184,7 +196,7 @@
             var mapContainer = document.getElementById('map'); // 지도를 표시할 div
             var mapOption = {
                 center: new kakao.maps.LatLng(lat, lng), // 현재 위치를 중심으로 설정
-                level: 10 // 지도의 확대 레벨
+                level: 5 // 지도의 확대 레벨
             };
 
             // 지도를 생성
