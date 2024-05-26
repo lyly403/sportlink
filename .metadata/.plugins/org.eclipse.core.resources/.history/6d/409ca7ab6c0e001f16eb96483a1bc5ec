@@ -1,0 +1,5 @@
+package com.care.boot.board;
+
+public class BoardService {
+
+}

@@ -1,0 +1,38 @@
+package com.care.boot.board;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface BoardMapper {
+	
+	// [ Board Form ]
+	 List<BoardDTO> boardForm(@Param("begin") int begin, @Param("end") int end);
+	int totalCount();
+
+	// [ Board Write ]
+	void boardWriteProc(BoardDTO board);
+	
+	// [ Board Content ]
+		BoardDTO boardContent(int n);
+		void incrementHits(int n);
+		String boardDownload(int n);
+		
+	// [ Board Modify & Delete ]
+		int boardModifyProc(BoardDTO board);
+		void boardDeleteProc(int n);
+	
+		public interface BoardMapper {
+		    List<BoardDTO> boardForm(@Param("begin") int begin, @Param("end") int end);
+		    // 삭제된 게시글을 조회하는 메서드 추가
+		    List<BoardDTO> selectDeletedBoards();
+		    // 삭제된 상태를 업데이트하는 메서드 추가
+		    void updateDeletedStatus(@Param("no") int no, @Param("deleted") boolean deleted);
+		    // 나머지 메서드는 그대로 유지
+		}
+
+		   
+}
+

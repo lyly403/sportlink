@@ -1,0 +1,5 @@
+package com.care.boot.member;
+
+public class KakaoService {
+
+}
