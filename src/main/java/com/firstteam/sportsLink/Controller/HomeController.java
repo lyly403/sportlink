@@ -44,4 +44,11 @@ public class HomeController {
     public String memberlist() {
         return "user/member_list";  // order.html 파일을 반환
     }
+
+    @GetMapping("/")
+    public String firstPage(Model model) {
+        List<ProductEntity> allProduct = productService.findAllProduct();
+        model.addAttribute("products", allProduct ); // "products"라는 이름으로 제품 목록 추가
+        return "index";
+    }
 }

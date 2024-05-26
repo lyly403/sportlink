@@ -41,7 +41,7 @@ public class MemberController {
     }
 
     @PostMapping("/loginProc")
-    public String loginProc(String id, String pw, MemberDTO member, Model model, RedirectAttributes ra) {
+    public String loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, MemberDTO member, Model model, RedirectAttributes ra) {
         String msg = service.loginProc(id, pw);
         if(msg.equals("로그인 성공")) {
             ra.addFlashAttribute("msg", msg);
