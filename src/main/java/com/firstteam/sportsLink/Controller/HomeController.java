@@ -16,7 +16,7 @@ public class HomeController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index(Model model) {
         List<ProductEntity> allProduct = productService.findAllProduct();
         model.addAttribute("products", allProduct ); // "products"라는 이름으로 제품 목록 추가
@@ -32,25 +32,16 @@ public class HomeController {
     public String facility() {
         return "ticket/activity";  // facility.html 파일을 반환
     }
-
     @GetMapping("/qna")
     public String qna() {
         return "qna/qna_write";  // Q&A_write.html 파일을 반환
     }
-
     @GetMapping("/order")
     public String order() {
         return "user/order";  // order.html 파일을 반환
     }
-
-    @GetMapping("/signup")
-    public String signup() {
-        return "user/signup";  // signup.html 파일을 반환
+    @GetMapping("/member_list")
+    public String memberlist() {
+        return "user/member_list";  // order.html 파일을 반환
     }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login/login";  // login.html 파일을 반환
-    }
-
 }
