@@ -1,18 +1,28 @@
 package com.firstteam.sportsLink.Member;
 
+import com.firstteam.sportsLink.qna.PageRequestDTO;
+import com.firstteam.sportsLink.qna.QnaDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.lang.reflect.Member;
+import java.util.List;
 
 @Controller
 public class MemberController {
     @Autowired private MemberService service;
     @Autowired private HttpSession session;
     @Autowired private MemberService memberService;
+    @Autowired
+    private MemberRepository memberRepository;
 
     // [ 회원가입 ]
     @RequestMapping("/signup")
@@ -41,7 +51,7 @@ public class MemberController {
     }
 
     @PostMapping("/loginProc")
-    public String loginProc(String id, String pw, MemberDTO member, Model model, RedirectAttributes ra) {
+    public String loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, MemberDTO member, Model model, RedirectAttributes ra) {
         String msg = service.loginProc(id, pw);
         if(msg.equals("로그인 성공")) {
             ra.addFlashAttribute("msg", msg);
@@ -56,7 +66,7 @@ public class MemberController {
         session.invalidate();
         // Session 정보 초기화
         ra.addFlashAttribute("msg", "로그아웃");
-        //kakaoService.unlink();
+        //kakaoService.unlink(); // 카카오 회원탈퇴
         return "redirect:index";
     }
     // [ 카카오 로그인 ]
@@ -66,7 +76,7 @@ public class MemberController {
         System.out.println("code : " + code);
         kakaoService.getAccessToken(code);
         kakaoService.getUserInfo();
-        ra.addFlashAttribute("msg", session.getAttribute("role"));
+        ra.addFlashAttribute("msg", "로그인 성공");
         return "redirect:index";
     }
     // [ 네이버 로그인 ]
@@ -94,6 +104,13 @@ public class MemberController {
             ra.addFlashAttribute("msg", "로그인 후 이용해주세요");
             return "redirect:/login"; // 로그인 페이지로 리다이렉트
         }
+    }
+    @GetMapping("/member_list")
+    public String listMembers(Model model, @RequestParam(defaultValue = "0") int page) {
+        int size = 10; // 페이지당 항목 수
+        Page<MemberDTO> memberPage = memberService.getMemberList(page, size);
+        model.addAttribute("memberPage", memberPage);
+        return "/user/member_list";
     }
 }
 

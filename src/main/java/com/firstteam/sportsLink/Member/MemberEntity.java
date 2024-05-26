@@ -19,5 +19,5 @@ public class MemberEntity {
     private String email; // 홈페이지 > 이메일 || 네이버,카카오 > 이메일 id={account_email})
     private LocalDate create_date; // 생성 날짜
 
-    private MemberRole role; //권한(User,Admin)
+    private String role; //권한(기본값 : null, 관리자 : admin)
 }
