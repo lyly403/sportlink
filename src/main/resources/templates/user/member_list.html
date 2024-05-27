@@ -33,6 +33,11 @@
 </head>
 
 <body>
+<th:block th:if="${msg}">
+  <script>
+    top.alert("[[${msg}]]");
+  </script>
+</th:block>
 <!-- ======= Header ======= -->
 <div th:replace="layout/header :: header"></div>
 <!-- End Header -->
@@ -51,15 +56,17 @@
               <th scope="col">아이디</th>
               <th scope="col">이름</th>
               <th scope="col">이메일</th>
+              <th scope="col">전화번호</th>
               <th scope="col">가입날짜</th>
               <th scope="col">권한</th>
             </tr>
             </thead>
             <tbody id="boardContent">
             <tr th:each="member : ${memberPage.content}">
-              <td th:text="${member.userid}"></td>
+              <td><a th:href="@{'/member_info/' + ${member.userid}}" th:text="${member.userid}"></a></td>
               <td th:text="${member.username}"></td>
               <td th:text="${member.email}"></td>
+              <td th:text="${member.mobile}"></td>
               <td th:text="${member.create_date}"></td>
               <td th:text="${member.role}"></td>
             </tr>

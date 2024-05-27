@@ -17,6 +17,17 @@
     scroll-behavior: smooth;
 }
 
+.btn {
+    font: var(--font-default);
+    background-color: #8831cf; /* Button color */
+    color: #fff; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Inner padding */
+    font-size: 16px; /* Font size */
+    max-width: 100px; /* Maximum width */
+}
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/

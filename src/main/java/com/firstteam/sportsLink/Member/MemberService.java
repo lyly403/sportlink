@@ -42,6 +42,7 @@ public class MemberService {
         }
         try {
             member.setCreate_date(LocalDate.now());
+//            member.setRole("user");
             memberRepository.save(member.toEntity());
             return "회원가입 성공";
         } catch (Exception e) {
@@ -64,6 +65,7 @@ public class MemberService {
             session.setAttribute("userid", check.get().getUserid());
             session.setAttribute("username", check.get().getUsername());
             session.setAttribute("email", check.get().getEmail());
+            session.setAttribute("mobile", check.get().getMobile());
             session.setAttribute("role", check.get().getRole());
             /*
              * session.setAttribute("member", check);
@@ -90,7 +92,9 @@ public class MemberService {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setUserid(memberEntity.getUserid());
         memberDTO.setUsername(memberEntity.getUsername());
+        memberDTO.setPw(memberEntity.getPw());
         memberDTO.setEmail(memberEntity.getEmail());
+        memberDTO.setMobile(memberEntity.getMobile());
         memberDTO.setCreate_date(memberEntity.getCreate_date());
         memberDTO.setRole(memberEntity.getRole());
         // 필요한 경우 다른 필드도 추가
@@ -114,5 +118,50 @@ public class MemberService {
         Pageable pageable = PageRequest.of(page, size);
         Page<MemberEntity> memberPage = memberRepository.findAll(pageable);
         return memberPage.map(this::convertToDTO);
+    }
+
+//    // [ 회원 정보 수정 ]
+//    public String member_info_edit(MemberDTO member) {
+//        // 세션 아이디를 기반으로 사용자 조회
+//        MemberDTO existingMember = getMemberByUserid(member.getUserid());
+//
+//        if (existingMember != null) {
+//            // 사용자가 존재하는 경우 모바일 번호 업데이트
+//            existingMember.setMobile(member.getMobile());
+//            try {
+//                memberRepository.save(existingMember.toEntity());
+//                return "회원정보 수정완료.";
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                return "회원 정보 수정을 다시 시도하세요";
+//            }
+//        } else {
+//            // 사용자가 존재하지 않는 경우
+//            throw new RuntimeException("사용자를 찾을 수 없습니다: " + member.getUserid());
+//        }
+//    }
+// [ 회원 정보 수정 ]
+    public String member_info_edit(MemberDTO member) {
+        // 기존 회원 정보 조회
+        MemberDTO existingMember = getMemberByUserid(member.getUserid());
+
+        if (existingMember != null) {
+            // 사용자가 존재하는 경우 각 필드를 업데이트
+            existingMember.setMobile(member.getMobile());
+            if (member.getPw() != null && !member.getPw().isEmpty()) {
+                existingMember.setPw(member.getPw());
+            }
+
+            try {
+                memberRepository.save(existingMember.toEntity());
+                return "회원정보 수정완료.";
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "회원 정보 수정을 다시 시도하세요";
+            }
+        } else {
+            // 사용자가 존재하지 않는 경우
+            throw new RuntimeException("사용자를 찾을 수 없습니다: " + member.getUserid());
+        }
     }
 }

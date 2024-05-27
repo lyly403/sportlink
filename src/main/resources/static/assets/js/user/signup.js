@@ -20,18 +20,21 @@ function allCheck(){
         f.submit();
     }
 }
-
-function pwCheck(){
-    let pw = document.getElementById('pw');
-    confirm = document.getElementById('confirm');
-    label = document.getElementById('label');
-    if(pw.value == confirm.value){
-        label.innerHTML = '일치'
-    }else{
-        label.innerHTML = '불일치'
-    }
-    // window.alert('pwCheck 호출')
+// 전화번호 입력필드 전화번호 형식 변환
+function oninputPhone(target) {
+    target.value = target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 }
+
+// 회원가입 버튼 클릭 시 확인 창 표시
+document.getElementById("signup-button").addEventListener("click", function() {
+    var confirmed = confirm("회원가입 하시겠습니까?");
+    if (!confirmed) {
+        event.preventDefault(); // 기본 이벤트(폼 제출)를 막음
+        return false; // 이벤트 전파 중지
+    }
+});
 
 function loginCheck(){
     let id = document.getElementById('id');
