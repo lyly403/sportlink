@@ -44,7 +44,7 @@
           <li><a th:href="@{/activity}">시설할인권</a></li>
           <li th:if="${session.userid == null}"><a th:href="@{/signup}">회원가입</a></li>
           <li th:if="${session.userid == null}"><a th:href="@{/login}">Login</a></li>
-          <li th:if="${session.userid != null}"><a th:href="@{/qna}">문의하기</a></li>
+          <li th:if="${session.userid != null}"><a th:href="@{/qna-list}">문의하기</a></li>
           <li th:if="${session.userid != null}"><a th:href="@{/order}">주문내역</a></li>
           <li th:if="${session.userid != null}"><a th:href="@{'/member_info/' + ${session.userid}}">내정보</a></li>
           <li th:if="${session.role == 'admin'}"><a th:href="@{/member_list}">회원목록</a></li>

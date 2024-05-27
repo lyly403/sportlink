@@ -42,7 +42,7 @@ public class HomeController {
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
         if (userid != null) {
-            return "qna/qna_write";  // Q&A_write.html 파일을 반환
+            return "qna/qna_write";
         } else {
             model.addAttribute("msg", "로그인 후 이용해주세요");
             return "redirect:/login"; // 로그인 페이지로 리다이렉트
