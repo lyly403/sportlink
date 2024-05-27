@@ -25,7 +25,7 @@ public class PurchaseController {
     }
 
     @GetMapping("/order")
-    public String getOrderHistory(Model model, @SessionAttribute("id") String userid) {
+    public String getOrderHistory(Model model, @SessionAttribute("userid") String userid) {
         List<PurchaseEntity> orderHistory = purchaseService.getOrderHistoryByUserId(userid);
         System.out.println(orderHistory.toString());
         model.addAttribute("orderHistory", orderHistory);
