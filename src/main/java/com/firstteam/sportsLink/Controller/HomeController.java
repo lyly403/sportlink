@@ -36,10 +36,6 @@ public class HomeController {
     public String qna() {
         return "qna/qna_write";  // Q&A_write.html 파일을 반환
     }
-    @GetMapping("/order")
-    public String order() {
-        return "user/order";  // order.html 파일을 반환
-    }
     @GetMapping("/member_list")
     public String memberlist() {
         return "user/member_list";  // order.html 파일을 반환
