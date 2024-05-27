@@ -25,6 +25,11 @@
 </head>
 
 <body>
+<th:block th:if="${msg}">
+    <script>
+        top.alert("[[${msg}]]");
+    </script>
+</th:block>
   <!-- ======= Header ======= -->
   <div th:replace="layout/header :: header"></div>
   <!-- End Header -->
@@ -34,7 +39,7 @@
             <h1 style="text-align: center">로그인</h1><br>
 
             <div class="input-field" >
-                <input type="text" name="id" id="id" placeholder="아이디">
+                <input type="text" name="userid" id="userid" placeholder="아이디">
             </div>
             <div class="input-field">
                 <input type="password" name="pw" id="pw" placeholder="비밀번호">

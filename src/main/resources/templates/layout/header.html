@@ -42,13 +42,13 @@
         <ul>
           <li><a th:href="@{/ticket}">경기관람권</a></li>
           <li><a th:href="@{/activity}">시설할인권</a></li>
-          <li th:if="${session.id == null}"><a th:href="@{/signup}">회원가입</a></li>
-          <li th:if="${session.id == null}"><a th:href="@{/login}">Login</a></li>
-          <li th:if="${session.id != null}"><a th:href="@{/qna}">문의하기</a></li>
-          <li th:if="${session.id != null}"><a th:href="@{/order}">주문내역</a></li>
-          <li th:if="${session.id != null}"><a th:href="@{/member_info}">내정보</a></li>
-          <li th:if="${#strings.equals(session['role'],'admin')}"><a th:href="@{/member_list}">회원목록</a></li>
-          <li th:if="${session.id != null}"><a th:href="@{/logout}">Logout</a></li>
+          <li th:if="${session.userid == null}"><a th:href="@{/signup}">회원가입</a></li>
+          <li th:if="${session.userid == null}"><a th:href="@{/login}">Login</a></li>
+          <li th:if="${session.userid != null}"><a th:href="@{/qna}">문의하기</a></li>
+          <li th:if="${session.userid != null}"><a th:href="@{/order}">주문내역</a></li>
+          <li th:if="${session.userid != null}"><a th:href="@{/member_info}">내정보</a></li>
+          <li th:if="${session.role == 'admin'}"><a th:href="@{/member_list}">회원목록</a></li>
+          <li th:if="${session.userid != null}"><a th:href="@{/logout}">Logout</a></li>
         </ul>
       </nav>
 

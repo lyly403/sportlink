@@ -37,11 +37,10 @@
             <div class="col-lg-8 offset-lg-2">
                 <div class="contact-form">
                     <h2>내정보</h2>
-                    <p><strong>아이디:</strong> <span th:text="${member.id}"></span></p>
-                    <p><strong>이름:</strong> <span th:text="${member.user_name}"></span></p>
+                    <p><strong>아이디:</strong> <span th:text="${member.userid}"></span></p>
+                    <p><strong>이름:</strong> <span th:text="${member.username}"></span></p>
                     <p><strong>이메일:</strong> <span th:text="${member.email}"></span></p>
-<!--                    <p><strong>전화번호:</strong> <span th:text="${product.location}"></span></p>-->
-<!--                    <p><strong>성별:</strong> <span th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></span></p>-->
+                    <p><strong>권한:</strong> <span th:text="${session.role}"></span></p>
                 </div>
             </div>
         </div>
