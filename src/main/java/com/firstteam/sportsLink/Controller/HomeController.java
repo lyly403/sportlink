@@ -55,10 +55,6 @@ public class HomeController {
     public String order() {
         return "user/order";  // order.html 파일을 반환
     }
-    @GetMapping("/member_list")
-    public String memberlist() {
-        return "user/member_list";  // order.html 파일을 반환
-    }
 
     @GetMapping("/")
     public String firstPage(Model model) {
