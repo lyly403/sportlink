@@ -38,8 +38,8 @@
         <div class="detail-content" data-aos="fade-up">
           <!-- 수정과 삭제 버튼 추가 -->
           <div class="text-end mb-3">
-            <a th:if="${session.role == 'admin'}" th:href="@{'/ticket/edit_product/' + ${product.id}}" class="btn btn-primary">수정</a>
-            <form th:action="@{'/ticket/delete/' + ${product.id}}" method="post">
+            <a th:if="${session.role == 'admin'}" th:href="@{'/product/edit_product/' + ${product.id}}" class="btn btn-primary">수정</a>
+            <form th:action="@{'/product/delete/' + ${product.id}}" method="post">
               <button th:if="${session.role == 'admin'}" type="submit" class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</button>
             </form>
           </div>

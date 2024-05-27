@@ -38,7 +38,7 @@ public class MemberController {
     // [ 로그인 ]
     @RequestMapping("/login")
     public String login() {
-        return "/login/login";  // signup.html 파일을 반환
+        return "/user/login";  // signup.html 파일을 반환
     }
 
     @PostMapping("/loginProc")

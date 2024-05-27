@@ -73,7 +73,7 @@
       <!-- 검색 버튼 -->
       <div class="filter col-md-3">
         <button id="apply-filter" class="search-button w-100">검색</button>
-          <a th:if="${session.role == 'admin'}" th:href="@{/templates/product/ticket_write}" class="search-button w-100">상품추가</a>
+          <a th:if="${session.role == 'admin'}" th:href="@{/product/ticket_write}" class="search-button w-100">상품추가</a>
       </div>
     </section>
   </div>
@@ -98,7 +98,7 @@
                   </div>
                   <!-- Product Actions -->
                   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                      <div class="text-center"><a th:href="@{'/ticket/ticket_inner/' + ${product.id}}" class="btn btn-outline-dark mt-auto">상세보기</a></div>
+                      <div class="text-center"><a th:href="@{'/product/ticket_inner/' + ${product.id}}" class="btn btn-outline-dark mt-auto">상세보기</a></div>
                   </div>
               </div>
           </div>
