@@ -34,7 +34,7 @@
 
 
   <!-- ======= Writing Section ======= -->
-  <form th:object="${productDTO}" th:action="@{/ticket/ticket_write}" method="post" enctype="multipart/form-data">
+  <form th:object="${productDTO}" th:action="@{/templates/product/activity_write}" method="post" enctype="multipart/form-data">
     <div class="container">
   <section class="write-section">
     <div class="container">
@@ -75,18 +75,17 @@
           <div class="form-group">
             <label for="category">종목</label>
             <select id="category" class="form-control" th:field="*{category}">
+                <option value="Gym">헬스</option>
+                <option value="Ski">스키</option>
                 <option value="Soccer">축구</option>
-                <option value="Baseball">야구</option>
-                <option value="Volleyball">배구</option>
-                <option value="Basketball">농구</option>
-                <option value="Esports">E-스포츠</option>
-                <option value="UFC">UFC</option>
+                <option value="Golf">골프</option>
+                <option value="waterLeisure">수상레저</option>
             </select>
 
             <label for="producttype">유형</label>
             <select id="producttype" class="form-control" th:field="*{producttype}">
-              <option value="Viewingticket">관람티켓</option>
               <option value="Activity">액티비티</option>
+              <option value="Viewingticket">관람티켓</option>
             </select>
 
           </div>
@@ -208,7 +207,7 @@
 <script src="/assets/js/common/main.js"></script>
 
    <!-- Custom JavaScript for Write Page -->
-<script src="/assets/js/ticket/ticket_write.js"></script>
+<script src="/assets/js/product/ticket_write.js"></script>
 
 </body>
 </html>

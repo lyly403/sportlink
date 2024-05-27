@@ -60,7 +60,7 @@
             <p><strong th:text="${comment.author}"></strong> <span th:text="${comment.createdAt}"></span></p>
             <p th:text="${comment.content}"></p>
               <!-- 댓글 삭제 버튼 -->
-              <form th:action="@{/deleteComment}" method="post">
+              <form th:if="${session.role == 'admin'}" th:action="@{/deleteComment}" method="post">
                   <input type="hidden" name="commentId" th:value="${comment.id}" />
                   <button type="submit" class="comment submit">삭제</button>
               </form>
@@ -68,7 +68,7 @@
         </div>
 
         <!-- Comment Form -->
-        <div class="comment-form">
+        <div th:if="${session.role == 'admin'}" class="comment-form">
 <!--    <div class="comment-form" th:if="${isAdmin}"> 관리자만 댓글 달기 폼 보이도록 하는 코드-->
           <h2>댓글 작성</h2>
           <form action="#" th:action="@{/addComment}" th:object="${newComment}" method="post">
