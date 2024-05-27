@@ -65,9 +65,6 @@
     margin-bottom: 20px;
   }
 
-  .button-cell {
-          padding-right: 1px; /* 오른쪽 여백 조정 */
-      }
 
   .order-history-content p {
     font-size: 18px;
@@ -383,6 +380,16 @@
       background: rgba(255, 255, 255, 0.8);
       z-index: 9996;
     }
+
+    .button-cell .btn {
+        margin: 0 3px; /* 버튼 간격 조정 */
+    }
+
   }
-  
-  
+  .button-cell .btn {
+          margin: 0 1px; /* 버튼 간격 조정 */
+      }
+
+    .button-cell {
+            padding: 1px; /* 오른쪽 여백 조정 */
+        }
