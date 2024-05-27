@@ -84,20 +84,34 @@ public class MemberController {
     }
 
     // [ 내정보 ]
-    @GetMapping("/member_info")
-    public String memberInfo(HttpServletRequest request, Model model, RedirectAttributes ra) {
+    @GetMapping("/member_info/{userid}")
+    public String memberInfo(@PathVariable("userid") String userid,HttpServletRequest request, Model model, RedirectAttributes ra) {
         HttpSession session = request.getSession();
-        String userid = (String) session.getAttribute("userid");
+        String sessionuserid = (String) session.getAttribute("userid");
+        String role = (String) session.getAttribute("role");
+        if (userid == null) {
+            ra.addFlashAttribute("msg", "잘못된 사용자 아이디입니다.");
+            return "redirect:/index";
+        }
 
-        if (userid != null) {
+        if (sessionuserid == null ) {
+            ra.addFlashAttribute("msg", "로그인 후 이용해주세요.");
+            return "redirect:/login";
+        }
+
+        if (sessionuserid.equals(userid)) {
             MemberDTO memberDTO = memberService.getMemberByUserid(userid);
             model.addAttribute("member", memberDTO);
             return "user/member_info";
+        } else if ("admin".equals(role)) {
+            model.addAttribute("member", memberService.getMemberByUserid(userid));
+            return "user/member_info";
         } else {
-            ra.addFlashAttribute("msg", "로그인 후 이용해주세요.");
-            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+            ra.addFlashAttribute("msg", "접근 권한이 없습니다.");
+            return "redirect:/index";
         }
     }
+
     // [ 회원리스트 ]
     @GetMapping("/member_list")
     public String listMembers(HttpServletRequest request, RedirectAttributes ra, Model model, @RequestParam(defaultValue = "0") int page) {
@@ -113,6 +127,30 @@ public class MemberController {
             ra.addFlashAttribute("msg", "접근권한이 없습니다.");
             return "redirect:/index";
         }
+    }
+    // [ 회원정보 수정 ]
+    @PostMapping("/member_info_edit/{userid}")
+    public String memberInfoEdit(@PathVariable("userid") String userid ,MemberDTO member, Model model, RedirectAttributes ra, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String sessionuserid = (String) session.getAttribute("userid");
+        String role = (String) session.getAttribute("role");
+
+        if (sessionuserid != null) {
+            member.setUserid(userid); // 세션 아이디 설정
+            String msg = service.member_info_edit(member);
+            if (msg.equals("회원정보 수정완료.")) {
+                ra.addFlashAttribute("msg", msg);
+                return "redirect:/member_info/"+userid;
+            } else if (msg.equals("회원 정보 수정을 다시 시도하세요")) {
+                ra.addFlashAttribute("msg", "회원 정보 수정을 다시 시도하세요");
+                return "redirect:/member_info/"+userid;
+            }
+        } else {
+            ra.addFlashAttribute("msg", "로그인 후 이용해주세요.");
+            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+        }
+        model.addAttribute("msg", "회원 정보 수정을 다시 시도하세요");
+        return "redirect:/member_info"+userid;
     }
 }
 

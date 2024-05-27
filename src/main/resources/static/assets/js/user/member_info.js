@@ -17,3 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
         boardContent.innerHTML += row;
     });
 });
+
+// 전화번호 입력필드 전화번호 형식 변환
+function oninputPhone(target) {
+    target.value = target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+}
+
+// 수정하기 버튼 클릭 시 확인 창 표시
+document.getElementById("edit-button").addEventListener("click", function() {
+    var confirmed = confirm("회원정보를 수정하시겠습니까?");
+    if (!confirmed) {
+        event.preventDefault(); // 기본 이벤트(폼 제출)를 막음
+        return false; // 이벤트 전파 중지
+    }
+});
