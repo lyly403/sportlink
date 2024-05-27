@@ -1,6 +1,7 @@
 package com.firstteam.sportsLink.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -78,10 +79,22 @@ public class ProductController {
         productService.saveProduct(product);
         return "redirect:/activity";
     }
+//    @GetMapping("/ticket")
+//    public String showViewTickets(Model model) {
+//        List<ProductEntity> viewingTickets = productService.findViewingTickets();
+//        model.addAttribute("view_ticket", viewingTickets);
+//        return "ticket/ticket";
+//    }
+
     @GetMapping("/ticket")
-    public String showViewTickets(Model model) {
-        List<ProductEntity> viewingTickets = productService.findViewingTickets();
-        model.addAttribute("view_ticket", viewingTickets);
+    public String showViewTickets(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model) {
+        Page<ProductEntity> viewingTickets = productService.findViewingTickets(page, size);
+        model.addAttribute("view_ticket", viewingTickets.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", viewingTickets.getTotalPages());
         return "ticket/ticket";
     }
 

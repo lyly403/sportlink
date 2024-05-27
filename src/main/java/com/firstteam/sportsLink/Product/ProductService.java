@@ -1,6 +1,8 @@
 package com.firstteam.sportsLink.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +37,10 @@ public class ProductService {
     }
     public List<ProductEntity> findActivityTickets() {
         return productRepository.findByProducttype("Activity");
+    }
+
+    public Page<ProductEntity> findViewingTickets(int page, int size) {
+        return productRepository.findByProducttype("Viewingticket", PageRequest.of(page, size));
     }
 
     public void updateProduct(Long id, ProductDTO productDTO) {
