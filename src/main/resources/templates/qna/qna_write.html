@@ -22,9 +22,7 @@
   <!-- Custom CSS File -->
   <link href="/assets/css/qna/qna_write.css" rel="stylesheet">
 </head>
-
 <body>
-
   <!-- ======= Header ======= -->
   <div th:replace="layout/header :: header"></div>
   <!-- End Header -->
@@ -39,7 +37,7 @@
             <p>문의사항이 있으시면 아래 양식을 작성해주세요.</p>
             <form id="contactForm" action="/qna/save" method="POST">
               <div class="form-group">
-                <input type="text" id="author" name="author" class="form-control" placeholder="이름" required>
+                <input type="text" id="author" name="author" class="form-control" placeholder="이름" th:value="${session.userid}" required>
               </div>
               <div class="form-group">
                 <input type="text" id="title" name="title" class="form-control" placeholder="제목" required>
@@ -72,7 +70,5 @@
   <!-- Template Main JS File -->
   <script src="/assets/js/common/main.js"></script>
 
-
 </body>
-
 </html>
