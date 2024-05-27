@@ -105,11 +105,22 @@ public class ProductController {
         return "ticket/ticket_inner";
     }
 
+    @GetMapping("/ticket/go_ticket/order/{title}")
+    public String goOrderProduct(@PathVariable("title") String title, Model model) {
+        ProductEntity product = productService.findProductByTitle(title);
+        model.addAttribute("product", product);
+        return "ticket/ticket_inner";
+    }
+
     @GetMapping("/ticket/edit_product/{id}")
     public String editProduct(@PathVariable("id") Long id, Model model) {
         ProductEntity product = productService.findProductById(id);
         model.addAttribute("product", product);
-        return "ticket/product_edit";
+        if ("Viewingticket".equals(product.getProducttype())) {
+            return "ticket/product_edit";
+        } else {
+            return "ticket/activity_edit";
+        }
     }
 
 

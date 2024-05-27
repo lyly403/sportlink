@@ -15,6 +15,10 @@ public class PurchaseService {
         purchaseRepository.save(purchase);
     }
 
+    public void deleteProductById(Long id) {
+        purchaseRepository.deleteById(id);
+    }
+
     public List<PurchaseEntity> getOrderHistoryByUserId(String userid) {
         return purchaseRepository.findByUserid(userid);
     }

@@ -71,7 +71,7 @@
       <!-- 검색 버튼 -->
       <div class="filter col-md-3">
         <button id="apply-filter" class="search-button w-100">검색</button>
-          <a th:href="@{/ticket/activity_write}" class="search-button w-100">상품추가</a>
+          <a th:if="${session.role == 'admin'}" th:href="@{/ticket/activity_write}" class="search-button w-100">상품추가</a>
       </div>
     </section>
   </div>

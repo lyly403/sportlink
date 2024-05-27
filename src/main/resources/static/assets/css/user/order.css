@@ -64,7 +64,11 @@
     font-size: 32px;
     margin-bottom: 20px;
   }
-  
+
+  .button-cell {
+          padding-right: 1px; /* 오른쪽 여백 조정 */
+      }
+
   .order-history-content p {
     font-size: 18px;
     margin-bottom: 10px;

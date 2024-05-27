@@ -32,5 +32,10 @@ public class PurchaseController {
         return "/user/order"; // Thymeleaf 템플릿 파일 이름
     }
 
+    @PostMapping("/order/delete/{orderNo}")
+    public String deleteProduct(@PathVariable("orderNo") Long orderNo) {
+        purchaseService.deleteProductById(orderNo);
+        return "redirect:/order";
+    }
 }
 

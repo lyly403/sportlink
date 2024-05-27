@@ -181,7 +181,7 @@
             kakao.maps.event.addListener(marker, 'click', (function(marker, product) {
                 return function() {
                     var infowindow = new kakao.maps.InfoWindow({
-                        content: '<div style="padding:5px;font-size:12px;">' + product.title + '</div>', // 제품의 이름을 정보창에 표시
+                        content: '<a href="/ticket/go_ticket/' + encodeURIComponent(product.title) + '" style="padding:5px;font-size:12px;">' + product.title + '</a>', 
                         removable: true
                     });
                     infowindow.open(map, marker);
