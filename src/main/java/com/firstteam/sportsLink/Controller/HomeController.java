@@ -1,20 +1,26 @@
 package com.firstteam.sportsLink.Controller;
 
+import com.firstteam.sportsLink.Member.MemberDTO;
+import com.firstteam.sportsLink.Member.MemberService;
 import com.firstteam.sportsLink.Product.ProductEntity;
 import com.firstteam.sportsLink.Product.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Controller
 public class HomeController {
-
-    @Autowired
-    private ProductService productService;
+    @Autowired private HttpSession session;
+    @Autowired private ProductService productService;
+    @Autowired private MemberService memberService;
 
     @GetMapping("/index")
     public String index(Model model) {
@@ -32,10 +38,19 @@ public class HomeController {
     public String facility() {
         return "ticket/activity";  // facility.html 파일을 반환
     }
+
     @GetMapping("/qna")
-    public String qna() {
-        return "qna/qna_write";  // Q&A_write.html 파일을 반환
+    public String qna(HttpServletRequest request, Model model, RedirectAttributes ra) {
+        HttpSession session = request.getSession();
+        String userid = (String) session.getAttribute("userid");
+        if (userid != null) {
+            return "qna/qna_write";  // Q&A_write.html 파일을 반환
+        } else {
+            model.addAttribute("msg", "로그인 후 이용해주세요");
+            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+        }
     }
+
     @GetMapping("/order")
     public String order() {
         return "user/order";  // order.html 파일을 반환

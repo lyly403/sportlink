@@ -13,7 +13,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
@@ -101,24 +100,25 @@ public class KakaoService {
             System.out.println(jsonNode.get("kakao_account"));
             System.out.println(jsonNode.get("kakao_account").get("profile").get("nickname").get("email"));
 
-            String id = jsonNode.get("id").asText();
+            String userid = jsonNode.get("id").asText();
             String provider = "kakao_";
-            id = provider + id;
+            userid = provider + userid;
             String email = jsonNode.get("kakao_account").get("email").asText();
-            String user_name = jsonNode.get("kakao_account").get("profile").get("nickname").asText();
+            String username = jsonNode.get("kakao_account").get("profile").get("nickname").asText();
 
-            memberDTO.setId(id);
+            memberDTO.setUserid(userid);
             memberDTO.setEmail(email);
-            memberDTO.setUser_name(user_name);
+            memberDTO.setUsername(username);
             memberDTO.setCreate_date(LocalDate.now());
 
-            if (!memberService.isMemberExists(id)) {
+            if (!memberService.isMemberExists(userid)) {
                 memberService.registerNewMember(memberDTO);
             }
-            Optional<MemberEntity> memberEntity = memberRepository.findById(id);
-            session.setAttribute("email", email);
-            session.setAttribute("id", id);
-            session.setAttribute("role", memberEntity.get().getRole());
+            Optional<MemberEntity> check = Optional.ofNullable(memberRepository.findByUserid(userid));
+            session.setAttribute("userid", check.get().getUserid());
+            session.setAttribute("username", check.get().getUsername());
+            session.setAttribute("email", check.get().getEmail());
+            session.setAttribute("role", check.get().getRole());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,7 +149,7 @@ public class KakaoService {
 
             ObjectMapper om = new ObjectMapper();
             JsonNode jsonNode = om.readTree(conn.getInputStream());
-            System.out.println(jsonNode.get("id"));
+            System.out.println(jsonNode.get("userid"));
 
         } catch (Exception e) {
             e.printStackTrace();

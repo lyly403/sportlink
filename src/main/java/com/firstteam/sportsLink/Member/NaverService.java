@@ -10,8 +10,10 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -165,22 +167,25 @@ public class NaverService {
             System.out.println(jsonNode.get("response"));
             System.out.println(jsonNode.get("response").get("name").get("email"));
 
-            String id = jsonNode.get("response").get("id").asText();
+            String userid = jsonNode.get("response").get("id").asText();
             String provider = "naver_";
-            id = provider + id;
+            userid = provider + userid;
             String email = jsonNode.get("response").get("email").asText();
-            String user_name = jsonNode.get("response").get("name").asText();
+            String username = jsonNode.get("response").get("name").asText();
 
-            memberDTO.setId(id);
+            memberDTO.setUserid(userid);
             memberDTO.setEmail(email);
-            memberDTO.setUser_name(user_name);
+            memberDTO.setUsername(username);
+            memberDTO.setCreate_date(LocalDate.now());
 
-            if (!memberService.isMemberExists(id)) {
+            if (!memberService.isMemberExists(userid)) {
                 memberService.registerNewMember(memberDTO);
             }
-
-            session.setAttribute("id", email);
-            session.setAttribute("id", id);
+            Optional<MemberEntity> check = Optional.ofNullable(memberRepository.findByUserid(userid));
+            session.setAttribute("userid", check.get().getUserid());
+            session.setAttribute("username", check.get().getUsername());
+            session.setAttribute("email", check.get().getEmail());
+            session.setAttribute("role", check.get().getRole());
         } catch (Exception e) {
             e.printStackTrace();
         }

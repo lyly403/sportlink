@@ -1,28 +1,21 @@
 package com.firstteam.sportsLink.Member;
 
-import com.firstteam.sportsLink.qna.PageRequestDTO;
-import com.firstteam.sportsLink.qna.QnaDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.lang.reflect.Member;
-import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class MemberController {
     @Autowired private MemberService service;
     @Autowired private HttpSession session;
     @Autowired private MemberService memberService;
-    @Autowired
-    private MemberRepository memberRepository;
 
     // [ 회원가입 ]
     @RequestMapping("/signup")
@@ -51,8 +44,8 @@ public class MemberController {
     }
 
     @PostMapping("/loginProc")
-    public String loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, MemberDTO member, Model model, RedirectAttributes ra) {
-        String msg = service.loginProc(id, pw);
+    public String loginProc(@RequestParam("userid") String userid, @RequestParam("pw") String pw, MemberDTO member, Model model, RedirectAttributes ra) {
+        String msg = service.loginProc(userid, pw);
         if(msg.equals("로그인 성공")) {
             ra.addFlashAttribute("msg", msg);
             return "redirect:index";
@@ -94,23 +87,32 @@ public class MemberController {
     @GetMapping("/member_info")
     public String memberInfo(HttpServletRequest request, Model model, RedirectAttributes ra) {
         HttpSession session = request.getSession();
-        String id = (String) session.getAttribute("id");
+        String userid = (String) session.getAttribute("userid");
 
-        if (id != null) {
-            MemberDTO memberDTO = memberService.getMemberById(id);
+        if (userid != null) {
+            MemberDTO memberDTO = memberService.getMemberByUserid(userid);
             model.addAttribute("member", memberDTO);
             return "user/member_info";
         } else {
-            ra.addFlashAttribute("msg", "로그인 후 이용해주세요");
+            ra.addFlashAttribute("msg", "로그인 후 이용해주세요.");
             return "redirect:/login"; // 로그인 페이지로 리다이렉트
         }
     }
+    // [ 회원리스트 ]
     @GetMapping("/member_list")
-    public String listMembers(Model model, @RequestParam(defaultValue = "0") int page) {
-        int size = 10; // 페이지당 항목 수
-        Page<MemberDTO> memberPage = memberService.getMemberList(page, size);
-        model.addAttribute("memberPage", memberPage);
-        return "/user/member_list";
+    public String listMembers(HttpServletRequest request, RedirectAttributes ra, Model model, @RequestParam(defaultValue = "0") int page) {
+        HttpSession session = request.getSession();
+        String role = (String) session.getAttribute("role");
+        if (role.equals("admin")) {
+            int size = 10; // 페이지당 항목 수
+            Page<MemberDTO> memberPage = memberService.getMemberList(page, size);
+            model.addAttribute("memberPage", memberPage);
+            return "/user/member_list";
+        }
+        else {
+            ra.addFlashAttribute("msg", "접근권한이 없습니다.");
+            return "redirect:/index";
+        }
     }
 }
 
