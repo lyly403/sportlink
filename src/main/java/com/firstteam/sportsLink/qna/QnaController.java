@@ -27,7 +27,8 @@ public class QnaController {
     }
 
     @GetMapping("/qna-list")
-    public String qna(Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
+    public String qna(Model model, @RequestParam(name = "page", defaultValue = "1") int page,
+                      @RequestParam(name = "size", defaultValue = "10") int size) {
         PageRequestDTO pageRequest = new PageRequestDTO(page, size);
         List<QnaDTO> inquiries = qnaService.getInquiriesPaged(pageRequest);
         int totalInquiries = qnaService.getTotalInquiryCount();

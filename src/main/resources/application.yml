@@ -13,7 +13,7 @@ spring:
     #    생성한 사용자 계정 정보를 써야 합니다.
 
     username: root
-    password: mysql
+    password: 1234
   thymeleaf:
     cache: false
     # 404 에러 페이지를 표시하지 않게 하고, 존재하지 않는 핸들러에 대한 예외를 발생시키도록 합니다.
