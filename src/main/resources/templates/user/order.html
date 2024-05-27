@@ -50,7 +50,11 @@
               <tbody>
               <tr th:each="order : ${orderHistory}">
                 <td th:text="${order.orderNo}"></td>
-                <td th:text="${order.product_id}"></td>
+                <td>
+                  <a th:href="@{'/ticket/go_ticket/' + ${order.product_id}}">
+                    <span th:text="${order.product_id}"></span>
+                  </a>
+                </td>
                 <td th:text="${#numbers.formatDecimal(order.product_price, 0, 'COMMA', 0, 'POINT')} + '원'"></td>
                 <td th:text="${order.quantity}"></td>
                 <td th:text="${order.date}"></td>

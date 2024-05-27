@@ -98,12 +98,20 @@ public class ProductController {
         return "ticket/ticket_inner";
     }
 
+    @GetMapping("/ticket/go_ticket/{title}")
+    public String goProduct(@PathVariable("title") String title, Model model) {
+        ProductEntity product = productService.findProductByTitle(title);
+        model.addAttribute("product", product);
+        return "ticket/ticket_inner";
+    }
+
     @GetMapping("/ticket/edit_product/{id}")
     public String editProduct(@PathVariable("id") Long id, Model model) {
         ProductEntity product = productService.findProductById(id);
         model.addAttribute("product", product);
         return "ticket/product_edit";
     }
+
 
     @PostMapping("/ticket/update/{id}")
     public String updateProduct(@PathVariable("id") Long id, @ModelAttribute ProductDTO product, @RequestParam("image") MultipartFile file) {

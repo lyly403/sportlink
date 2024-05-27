@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     List<ProductEntity> findByProducttype(String producttype);
+    ProductEntity findByTitle(String title);
 }

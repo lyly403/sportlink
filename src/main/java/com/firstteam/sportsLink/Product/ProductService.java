@@ -22,6 +22,9 @@ public class ProductService {
         return productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
     }
+    public ProductEntity findProductByTitle(String title) {
+        return productRepository.findByTitle(title);
+    }
 
     public List<ProductEntity> findAllProduct() {
         return productRepository.findAll();
