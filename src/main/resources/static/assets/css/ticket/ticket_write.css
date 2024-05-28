@@ -1,121 +1,92 @@
 /* Fonts */
 :root {
-  --font-default: "Noto Sans KR", sans-serif;
+    --font-default: "Noto Sans KR", sans-serif;
+  }
+  
+  /* Colors */
+:root {
+  --color-default: #212529;
+  --color-primary: #8831cf;
+  --color-secondary: #45118e;
 }
 
-/* Colors */
-:root {
-    --color-default: #212529;
-    --color-primary: #8831cf;
-    --color-secondary: #45118e;
+  /* Smooth scroll behavior */
+  :root {
+    scroll-behavior: smooth;
   }
 
-/* Smooth scroll behavior */
-:root {
-  scroll-behavior: smooth;
-}
-
-
 /*--------------------------------------------------------------
-# Detail Section
+# Writing Section
 --------------------------------------------------------------*/
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f8f9fa;
-  color: #343a40;
-  background-color: #f8f9fa; /* 페이지의 배경색 설정 */
-  margin-top: 120px; /* 헤더 아래로 위치 조정 (조정된 값) */
-  padding: 20px; /* 추가적인 패딩 설정 */
-  margin-bottom: 50px; /* 하단 여백 추가 */
+
+.write-section {
+    background-color: #f8f9fa; /* 페이지의 배경색 설정 */
+    margin-top: 120px; /* 헤더 아래로 위치 조정 (조정된 값) */
+    padding: 20px; /* 추가적인 패딩 설정 */
+    margin-bottom: 50px; /* 하단 여백 추가 */
 }
 
-.detail {
-  padding: 60px 0;
+.write-section .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.detail-content {
+.write-section .form-group {
   font: var(--font-default);
-  background: #ffffff;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.detail-content img {
+.write-section label {
   font: var(--font-default);
-  border-radius: 10px;
-  margin-top: 20px;
+    font-weight: bold;
 }
 
-.detail-content p {
+.write-section .datepicker {
+    width: 100%;
+}
+
+.write-section .btn-primary {
   font: var(--font-default);
-  font-size: 1.1rem;
-  line-height: 1.6;
+   margin-top: 40px;
+    background-color: #8831cf;
+    border-color: #8831cf;
 }
 
-.detail-content .purchase-button {
+.write-section .btn-primary:hover {
   font: var(--font-default);
-  background-color: #8831cf;
-  color: #ffffff;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #45118e; /* 주 컬러보다 더 어두운 상태로 */
+    border-color: #45118e;
 }
 
-.detail-content .purchase-button:hover {
-  background-color: #45118e;
-}
-
-#map {
-  font: var(--font-default);
-  width: 100%;
-  height: 400px;
-  margin-top: 20px;
-  border-radius: 10px;
-}
-
-.text-end {
-  display: flex; /* Flexbox를 사용하여 내부 요소를 가로로 배열 */
-  justify-content: flex-end; /* 내용을 오른쪽으로 정렬 */
-}
-
-.text-end .btn {
-  margin-left: 10px; /* 각 버튼 사이의 간격 설정 */
-}
-
-
-/*--------------------------------------------------------------
+  /*--------------------------------------------------------------
 # Scroll top button
 --------------------------------------------------------------*/
 .scroll-top {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: 15px;
-  z-index: 99999;
-  background: var(--color-primary);
-  width: 44px;
-  height: 44px;
-  border-radius: 50px;
-  transition: all 0.4s;
-}
-
-.scroll-top i {
-  font-size: 24px;
-  color: #fff;
-  line-height: 0;
-}
-
-
-.scroll-top.active {
-  visibility: visible;
-  opacity: 1;
-}
-
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 99999;
+    background: var(--color-primary);
+    width: 44px;
+    height: 44px;
+    border-radius: 50px;
+    transition: all 0.4s;
+  }
+  
+  .scroll-top i {
+    font-size: 24px;
+    color: #fff;
+    line-height: 0;
+  }
+  
+  .scroll-top.active {
+    visibility: visible;
+    opacity: 1;
+  }
 
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
@@ -388,5 +359,7 @@ body {
     z-index: 9996;
   }
 }
+
+
 
 
