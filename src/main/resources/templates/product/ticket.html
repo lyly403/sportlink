@@ -65,10 +65,17 @@
       </div>
   
       <!-- 날짜 필터링 -->
-      <div class="filter col-md-3 mb-3 mb-md-0">
-        <label for="date-filter" class="d-block text-center">날짜</label>
-        <input type="date" id="date-filter" class="form-control">
-      </div>
+        <div class="filter col-md-3 mb-3 mb-md-0">
+            <label for="sort-filter" class="d-block text-center">정렬</label>
+            <select id="sort-filter" class="form-select w-100">
+                <option value="default">기본</option>
+                <option value="price-asc">가격 오름차순</option>
+                <option value="price-desc">가격 내림차순</option>
+                <option value="date-asc">날짜 오름차순</option>
+                <option value="date-desc">날짜 내림차순</option>
+            </select>
+        </div>
+
   
       <!-- 검색 버튼 -->
       <div class="filter col-md-3">
@@ -77,13 +84,12 @@
       </div>
     </section>
   </div>
-  
 <!-- ======= Product Section ======= -->
 <section class="product-section py-5">
   <div class="container px-4 px-lg-5 mt-5">
       <div class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-4 row-cols-xl-5 justify-content-center">
           <!-- Product Card 1 -->
-          <div th:each="product : ${view_ticket}" class= "col mb-5 product-card" th:attr="location=${product.location}, category=${product.category}">
+          <div th:each="product : ${view_ticket}" class= "col mb-5 product-card" th:attr="location=${product.location}, category=${product.category}, data-enddate=${product.endDate}">
               <div class="card h-100">
                   <!-- Product Image -->
                   <img class="card-img-top" th:src="${product.imageUrl}" alt="Product Image 1" style="object-fit: cover; width: 100%; height: 200px;"/>
@@ -94,6 +100,7 @@
                           <h5 class="fw-bolder" th:text="${product.title}">Fancy Product</h5>
                           <!-- Product Price -->
                           <p th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">Product Price</p>
+                          <p type="hidden" th:text="${product.endDate}"></p>
                       </div>
                   </div>
                   <!-- Product Actions -->
@@ -247,6 +254,7 @@
   function applyFilter() {
       var locationValue = document.getElementById('location-filter').value;
       var categoryValue = document.getElementById('category-filter').value;
+      var sortValue = document.getElementById('sort-filter').value;
 
       var productCards = document.querySelectorAll('.product-card');
 
@@ -266,6 +274,34 @@
               card.style.display = 'none';
           }
       });
+      var sortedCards = Array.from(productCards).filter(card => card.style.display !== 'none');
+
+      if (sortValue === 'price-asc') {
+          sortedCards.sort((a, b) => {
+              var priceA = parseInt(a.querySelector('.card-body p').innerText.replace(/[^0-9]/g, ''));
+              var priceB = parseInt(b.querySelector('.card-body p').innerText.replace(/[^0-9]/g, ''));
+              return priceA - priceB;
+          });
+      } else if (sortValue === 'price-desc') {
+          sortedCards.sort((a, b) => {
+              var priceA = parseInt(a.querySelector('.card-body p').innerText.replace(/[^0-9]/g, ''));
+              var priceB = parseInt(b.querySelector('.card-body p').innerText.replace(/[^0-9]/g, ''));
+              return priceB - priceA;
+          });
+      } else if (sortValue === 'date-asc' || sortValue === 'date-desc') {
+          sortedCards.sort((a, b) => {
+              var dateA = new Date(a.getAttribute('data-enddate'));
+              var dateB = new Date(b.getAttribute('data-enddate'));
+              if (sortValue === 'date-asc') {
+                  return dateA - dateB;
+              } else {
+                  return dateB - dateA;
+              }
+          });
+      }
+
+      var container = document.querySelector('.product-section .container .row');
+      sortedCards.forEach(card => container.appendChild(card));
   }
   </script>
   <div id="preloader"></div>

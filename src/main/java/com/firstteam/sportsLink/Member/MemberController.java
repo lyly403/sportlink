@@ -49,7 +49,7 @@ public class MemberController {
             return "redirect:index";
         }
         model.addAttribute("msg", msg);
-        return "login/login";
+        return "user/login";
     }
     // [ 로그아웃 ]
     @RequestMapping("/logout")
@@ -57,7 +57,7 @@ public class MemberController {
         session.invalidate();
         // Session 정보 초기화
         ra.addFlashAttribute("msg", "로그아웃");
-        //kakaoService.unlink(); // 카카오 회원탈퇴
+        kakaoService.unlink(); // 카카오 회원탈퇴
         return "redirect:index";
     }
     // [ 카카오 로그인 ]
