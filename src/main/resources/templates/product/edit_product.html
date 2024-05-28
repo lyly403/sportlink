@@ -37,7 +37,7 @@
       <div class="col-lg-8 offset-lg-2">
         <div class="edit-content" data-aos="fade-up">
           <h1 class="text-center mb-4">티켓 수정</h1>
-          <form  th:object="${product}" th:action="@{'/ticket/update/' + ${product.id}}" method="post" class="edit-form">
+          <form  th:object="${product}" th:action="@{'/product/update/' + ${product.id}}" method="post" class="edit-form">
             <input type="hidden" name="id" th:value="${product.id}" />
             <div class="mb-3">
               <label for="title" class="form-label">제목</label>
