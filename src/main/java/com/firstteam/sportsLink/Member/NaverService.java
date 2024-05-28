@@ -172,12 +172,10 @@ public class NaverService {
             userid = provider + userid;
             String email = jsonNode.get("response").get("email").asText();
             String username = jsonNode.get("response").get("name").asText();
-            String mobile = memberService.getMemberByUserid(userid).getMobile();
 
             memberDTO.setUserid(userid);
             memberDTO.setUsername(username);
             memberDTO.setEmail(email);
-            memberDTO.setUsername(mobile);
             memberDTO.setCreate_date(LocalDate.now());
 //            memberDTO.setRole("user");
 

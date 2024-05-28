@@ -38,7 +38,7 @@ public class MemberController {
     // [ 로그인 ]
     @RequestMapping("/login")
     public String login() {
-        return "/login/login";  // signup.html 파일을 반환
+        return "/user/login";  // signup.html 파일을 반환
     }
 
     @PostMapping("/loginProc")
@@ -49,7 +49,7 @@ public class MemberController {
             return "redirect:index";
         }
         model.addAttribute("msg", msg);
-        return "login/login";
+        return "user/login";
     }
     // [ 로그아웃 ]
     @RequestMapping("/logout")

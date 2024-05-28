@@ -105,12 +105,11 @@ public class KakaoService {
             userid = provider + userid;
             String email = jsonNode.get("kakao_account").get("email").asText();
             String username = jsonNode.get("kakao_account").get("profile").get("nickname").asText();
-            String mobile = memberService.getMemberByUserid(userid).getMobile();
+
 
             memberDTO.setUserid(userid);
             memberDTO.setEmail(email);
             memberDTO.setUsername(username);
-            memberDTO.setUsername(mobile);
             memberDTO.setCreate_date(LocalDate.now());
 //            memberDTO.setRole("user");
 
