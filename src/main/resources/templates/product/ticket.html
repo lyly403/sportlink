@@ -99,12 +99,12 @@
                           <!-- Product Name -->
                           <h5 class="fw-bolder" th:text="${product.title}">Fancy Product</h5>
                           <!-- Product Price -->
+                          <p th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">Product Price</p>
+                          <p type="hidden" th:text="${product.endDate}"></p>
                       </div>
                   </div>
                   <!-- Product Actions -->
                   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
-                      <p th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">Product Price</p>
-                      <p type="hidden" th:text="${product.endDate}"></p>
                       <div class="text-center"><a th:href="@{'/product/ticket_inner/' + ${product.id}}" class="btn btn-outline-dark mt-auto">상세보기</a></div>
                   </div>
               </div>
