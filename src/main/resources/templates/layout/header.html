@@ -32,7 +32,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <a href="/" class="logo d-flex align-items-center me-auto me-lg-0">
+      <a href="/" class="logo d-flex align-items-center me-auto me-lg-0" style="text-decoration:none">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>SportLink<span>.</span></h1>
@@ -41,11 +41,14 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a th:href="@{/ticket}">경기관람권</a></li>
-          <li><a th:href="@{/facility}">시설할인권</a></li>
-          <li><a th:href="@{/qna}">문의하기</a></li>
-          <li><a th:href="@{/order}">주문내역</a></li>
-          <li><a th:href="@{/signup}">회원가입</a></li>
-          <li><a th:href="@{/login}">Login</a></li>
+          <li><a th:href="@{/activity}">시설할인권</a></li>
+          <li th:if="${session.id == null}"><a th:href="@{/signup}">회원가입</a></li>
+          <li th:if="${session.id == null}"><a th:href="@{/login}">Login</a></li>
+          <li th:if="${session.id != null}"><a th:href="@{/qna}">문의하기</a></li>
+          <li th:if="${session.id != null}"><a th:href="@{/order}">주문내역</a></li>
+          <li th:if="${session.id != null}"><a th:href="@{/member_info}">내정보</a></li>
+          <li th:if="${#strings.equals(session['role'],'admin')}"><a th:href="@{/member_list}">회원목록</a></li>
+          <li th:if="${session.id != null}"><a th:href="@{/logout}">Logout</a></li>
         </ul>
       </nav>
 
