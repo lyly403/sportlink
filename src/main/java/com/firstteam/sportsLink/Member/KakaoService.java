@@ -123,7 +123,6 @@ public class KakaoService {
             session.setAttribute("role", check.get().getRole());
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("오류발생");
         }
         return memberDTO;
 		/*
