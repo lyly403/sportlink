@@ -42,6 +42,9 @@ public class ProductService {
     public Page<ProductEntity> findViewingTickets(int page, int size) {
         return productRepository.findByProducttype("Viewingticket", PageRequest.of(page, size));
     }
+    public Page<ProductEntity> findActivityTickets(int page, int size) {
+        return productRepository.findByProducttype("Activity", PageRequest.of(page, size));
+    }
 
     public void updateProduct(Long id, ProductDTO productDTO) {
         ProductEntity product = productRepository.findById(id).orElse(null);

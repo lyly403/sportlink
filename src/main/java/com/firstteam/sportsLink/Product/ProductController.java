@@ -58,7 +58,8 @@ public class ProductController {
         productService.saveProduct(product);
         return "redirect:/ticket";
     }
-    @PostMapping("/ticket/activity_write")
+
+    @PostMapping("/product/activity_write")
     public String createActivity(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file) {
         if (!file.isEmpty()) {
             try {
@@ -79,12 +80,7 @@ public class ProductController {
         productService.saveProduct(product);
         return "redirect:/activity";
     }
-//    @GetMapping("/ticket")
-//    public String showViewTickets(Model model) {
-//        List<ProductEntity> viewingTickets = productService.findViewingTickets();
-//        model.addAttribute("view_ticket", viewingTickets);
-//        return "ticket/ticket";
-//    }
+
 
     @GetMapping("/ticket")
     public String showViewTickets(
@@ -99,10 +95,15 @@ public class ProductController {
     }
 
     @GetMapping("/activity")
-    public String showActivityTickets(Model model) {
-        List<ProductEntity> activityTickets = productService.findActivityTickets();
-        model.addAttribute("activity_ticket", activityTickets);
-        return "product/activity";
+    public String showActivity(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model) {
+        Page<ProductEntity> activityTickets = productService.findActivityTickets(page, size);
+        model.addAttribute("activity_ticket", activityTickets.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", activityTickets.getTotalPages());
+        return "product/activity1";
     }
     @GetMapping("/product/ticket_inner/{id}")
     public String showProductDetail(@PathVariable("id") Long id, Model model) {

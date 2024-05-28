@@ -57,9 +57,9 @@
             <option value="all">전체</option>
             <option value="Gym">헬스</option>
             <option value="Ski">스키</option>
-          <option value="Golf">골프</option>
-          <option value="Soccer">축구</option>
-          <option value="waterLeisure">수상레저</option>
+            <option value="Golf">골프</option>
+            <option value="Soccer">축구</option>
+            <option value="waterLeisure">수상레저</option>
         </select>
       </div>
   
@@ -74,15 +74,15 @@
                 <option value="date-desc">날짜 내림차순</option>
             </select>
         </div>
+
   
       <!-- 검색 버튼 -->
       <div class="filter col-md-3">
         <button id="apply-filter" class="search-button w-100">검색</button>
-          <a th:if="${session.role == 'admin'}" th:href="@{/product/activity_write}" class="search-button w-100">상품추가</a>
+          <a th:if="${session.role == 'admin'}" th:href="@{/product/ticket_write}" class="search-button w-100">상품추가</a>
       </div>
     </section>
   </div>
-  
 <!-- ======= Product Section ======= -->
 <section class="product-section py-5">
   <div class="container px-4 px-lg-5 mt-5">
@@ -99,6 +99,7 @@
                           <h5 class="fw-bolder" th:text="${product.title}">Fancy Product</h5>
                           <!-- Product Price -->
                           <p th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">Product Price</p>
+                          <p type="hidden" th:text="${product.endDate}"></p>
                       </div>
                   </div>
                   <!-- Product Actions -->
@@ -112,15 +113,15 @@
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
                 <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
-                    <a class="page-link" th:href="@{/ticket(page=${currentPage - 1}, size=${size})}" aria-label="Previous">
+                    <a class="page-link" th:href="@{/activity(page=${currentPage - 1}, size=${size})}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${i == currentPage} ? 'active'">
-                    <a class="page-link" th:href="@{/ticket(page=${i}, size=${size})}" th:text="${i + 1}">1</a>
+                    <a class="page-link" th:href="@{/activity(page=${i}, size=${size})}" th:text="${i + 1}">1</a>
                 </li>
                 <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
-                    <a class="page-link" th:href="@{/ticket(page=${currentPage + 1}, size=${size})}" aria-label="Next">
+                    <a class="page-link" th:href="@{/activity(page=${currentPage + 1}, size=${size})}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
