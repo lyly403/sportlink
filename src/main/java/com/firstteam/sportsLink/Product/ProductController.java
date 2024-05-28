@@ -119,14 +119,14 @@ public class ProductController {
         return "product/ticket_inner";
     }
 
-    @GetMapping("/ticket/go_ticket/order/{title}")
-    public String goOrderProduct(@PathVariable("title") String title, Model model) {
-        ProductEntity product = productService.findProductByTitle(title);
+    @GetMapping("/ticket/go_ticket/order/{id}")
+    public String goOrderProduct(@PathVariable("id") Long id, Model model) {
+        ProductEntity product = productService.findProductById(id);
         model.addAttribute("product", product);
         return "product/ticket_inner";
     }
 
-    @GetMapping("/ticket/edit_product/{id}")
+    @GetMapping("/product/edit_product/{id}")
     public String editProduct(@PathVariable("id") Long id, Model model) {
         ProductEntity product = productService.findProductById(id);
         model.addAttribute("product", product);

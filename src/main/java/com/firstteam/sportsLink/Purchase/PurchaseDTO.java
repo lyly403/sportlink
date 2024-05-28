@@ -16,6 +16,7 @@ public class PurchaseDTO {
     private Long product_price;
     private Long quantity;
     private LocalDate date;
+    private Long product;
 
 
     public PurchaseEntity toEntity(){
@@ -25,6 +26,7 @@ public class PurchaseDTO {
         purchaseEntity.setProduct_id(this.product_id);
         purchaseEntity.setProduct_price(this.product_price);
         purchaseEntity.setQuantity(this.quantity);
+        purchaseEntity.setProduct(this.product);
         purchaseEntity.setDate(LocalDate.now());
         return purchaseEntity;
     }

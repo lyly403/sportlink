@@ -29,6 +29,10 @@
     color: var(--color-primary);
     text-decoration: none;
   }
+
+  th {
+    white-space: nowrap; /* 텍스트가 길어져도 줄바꿈하지 않고 한 줄로 표시 */
+  }
   
   a:hover {
     color: #45118e;
@@ -43,7 +47,14 @@
   h6 {
     font-family: var(--font-secondary);
   }
-  
+  .line {
+  white-space: nowrap;
+  }
+  td span {
+    overflow: hidden;
+    text-overflow: ellipsis; /* 글자가 너무 길 경우 말줄임표(...)로 표시 */
+    word-wrap: break-word; /* 글자가 너무 길어질 경우 줄바꿈 수행 */
+  }
   
   /*--------------------------------------------------------------
   # Order History Section
@@ -52,12 +63,17 @@
     padding-top: 150px; 
     padding-bottom: 150px;
   }
+
+  #orderHistoryContent {
+    max-width: 2000px; /* 더 넓은 최대 너비 설정 */
+  }
   
   .order-history-content {
     background: #fff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    max-width: 100%
   }
   
   .order-history-content h2 {
@@ -383,13 +399,18 @@
 
     .button-cell .btn {
         margin: 0 3px; /* 버튼 간격 조정 */
+        white-space: nowrap;
     }
-
+th {
+  white-space: nowrap; /* 텍스트가 길어져도 줄바꿈하지 않고 한 줄로 표시 */
+}
   }
   .button-cell .btn {
           margin: 0 1px; /* 버튼 간격 조정 */
+          white-space: nowrap;
       }
 
     .button-cell {
             padding: 1px; /* 오른쪽 여백 조정 */
+            white-space: nowrap;
         }

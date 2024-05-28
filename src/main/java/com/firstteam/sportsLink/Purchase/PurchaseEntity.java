@@ -22,6 +22,7 @@ public class PurchaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderNo;
 
+    private Long product;
     private String userid;
     private String product_id;
     private Long product_price;
