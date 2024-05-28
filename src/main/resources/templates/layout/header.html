@@ -22,12 +22,13 @@
   
   <!-- Template Main CSS File -->
   <link href="/assets/css/common/header.css" rel="stylesheet">
+  <!-- Template Main JS File -->
+  <script src="/assets/js/common/main.js"></script>
 
 
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
@@ -50,10 +51,16 @@
           <li th:if="${session.role == 'admin'}"><a th:href="@{/member_list}">회원목록</a></li>
           <li th:if="${session.userid != null}"><a th:href="@{/logout}">Logout</a></li>
         </ul>
+        <div class="container" style="width: 268px;">
+          <span class="weatherInfo"></span>
+          <img class="weatherIcon">
+        </div>
       </nav>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
     </div>
+
   </header><!-- End Header -->
+</body>
