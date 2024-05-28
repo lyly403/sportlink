@@ -38,6 +38,17 @@
   margin-right: 6px;
 }
 
+.header .logo h1 a:hover,
+.header .logo h1 a:focus,
+.header .logo h1 a:active {
+  text-decoration: none; /* 모든 상태에서 밑줄 제거 */
+}
+
+.header .logo {
+  text-decoration: none;
+  color: inherit;
+}
+
 .header .logo h1 {
   font-size: 28px;
   font-weight: 700;
@@ -49,5 +60,10 @@
 
 .header .logo h1 span {
   color: var(--color-primary);
+}
+
+.header .logo h1 a {
+  text-decoration: none; /* a 태그의 밑줄 제거 */
+  color: inherit; /* a 태그의 기본 색상을 상속 */
 }
 
