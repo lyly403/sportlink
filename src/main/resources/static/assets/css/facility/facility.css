@@ -140,6 +140,7 @@
       display: flex;
       list-style: none;
       align-items: center;
+      overflow: visible; /* 스크롤바 없애기 */
     }
   
     .navbar li {

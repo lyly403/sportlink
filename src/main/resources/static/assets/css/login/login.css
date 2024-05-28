@@ -322,6 +322,7 @@ h6 {
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
+    overflow: visible; /* 스크롤바 없애기 */
   }
 
   .navbar a,
