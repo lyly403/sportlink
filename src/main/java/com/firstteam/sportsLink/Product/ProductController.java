@@ -105,7 +105,6 @@ public class ProductController {
         model.addAttribute("totalPages", activityTickets.getTotalPages());
         return "product/activity1";
     }
-
     @GetMapping("/product/ticket_inner/{id}")
     public String showProductDetail(@PathVariable("id") Long id, Model model) {
         ProductEntity product = productService.findProductById(id);

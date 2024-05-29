@@ -3,6 +3,8 @@ package com.firstteam.sportsLink.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,9 +42,11 @@ public class ProductService {
     }
 
     public Page<ProductEntity> findViewingTickets(int page, int size) {
-        return productRepository.findByProducttype("Viewingticket", PageRequest.of(page, size));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+        return productRepository.findByProducttype("Viewingticket", pageable);
     }
     public Page<ProductEntity> findActivityTickets(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
         return productRepository.findByProducttype("Activity", PageRequest.of(page, size));
     }
 
