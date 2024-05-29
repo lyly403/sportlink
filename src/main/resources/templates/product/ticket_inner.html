@@ -39,7 +39,7 @@
           <!-- 수정과 삭제 버튼 추가 -->
           <div class="text-end mb-3">
             <a th:if="${session.role == 'admin'}" th:href="@{'/product/edit_product/' + ${product.id}}" class="btn btn-primary">수정</a>
-            <form th:action="@{'/product/delete/' + ${product.id}}" method="post" onsubmit="return validateForm()">
+            <form th:action="@{'/product/delete/' + ${product.id}}" method="post">
               <button th:if="${session.role == 'admin'}" type="submit" class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</button>
             </form>
           </div>
@@ -125,21 +125,7 @@
     };
   }
 
-  function validateForm() {
-            var title = document.querySelector('[th\\:text="${product.title}"]').textContent;
-            var endDate = document.querySelector('[th\\:text="${product.endDate}"]').textContent;
-            var location = document.querySelector('[th\\:text="${product.location}"]').textContent;
-            var price = document.querySelector('[th\\:text="${product.price}"]').textContent;
-            var category = document.querySelector('[th\\:text="${product.category}"]').textContent;
-            var description = document.querySelector('[th\\:text="${product.description}"]').textContent;
-            var imageUrl = document.querySelector('[th\\:src="${product.imageUrl}"]').getAttribute("src");
 
-            if (!title || !endDate || !location || !price || !category || !description || !imageUrl) {
-                alert("상품정보를 입력하세요");
-                return false;
-            }
-            return true;
-        }
 
   // 페이지 로드 후 실행
   window.onload = loadKakaoMap;

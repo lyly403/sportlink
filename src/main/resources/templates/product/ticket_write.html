@@ -34,7 +34,7 @@
 
 
   <!-- ======= Writing Section ======= -->
-  <form th:object="${productDTO}" th:action="@{/product/ticket_write}" method="post" enctype="multipart/form-data">
+  <form th:object="${productDTO}" th:action="@{/product/ticket_write}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
     <div class="container">
   <section class="write-section">
     <div class="container">
@@ -196,6 +196,22 @@
             document.getElementById('longitude').value = place.x;
         });
     }
+    function validateForm() {
+            var title = document.getElementById("title").value.trim();
+            var endDate = document.getElementById("date").value.trim();
+            var location = document.getElementById("location").value;
+            var price = document.getElementById("price").value.trim();
+            var description = document.getElementById("text-area").value.trim();
+            var category = document.getElementById("category").value;
+            var producttype = document.getElementById("producttype").value;
+            var image = document.getElementById("image").files.length;
+
+            if (!title || !endDate || !location || !price || !description || !category || !producttype || !image) {
+                alert("상품정보를 모두 입력하세요");
+                return false;
+            }
+            return true;
+        }
 
   </script>
 
