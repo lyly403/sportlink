@@ -69,8 +69,8 @@
             <label for="sort-filter" class="d-block text-center">정렬</label>
             <select id="sort-filter" class="form-select w-100">
                 <option value="default">기본</option>
-                <option value="price-asc">가격 오름차순</option>
-                <option value="price-desc">가격 내림차순</option>
+                <option value="price-asc">가격 낮은순</option>
+                <option value="price-desc">가격 높은순</option>
                 <option value="date-asc">날짜 오름차순</option>
                 <option value="date-desc">날짜 내림차순</option>
             </select>
@@ -85,50 +85,22 @@
     </section>
   </div>
 <!-- ======= Product Section ======= -->
-<section class="product-section py-5">
-  <div class="container px-4 px-lg-5 mt-5">
-      <div class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-4 row-cols-xl-5 justify-content-center">
-          <!-- Product Card 1 -->
-          <div th:each="product : ${view_ticket}" class= "col mb-5 product-card" th:attr="location=${product.location}, category=${product.category}, data-enddate=${product.endDate}">
-              <div class="card h-100">
-                  <!-- Product Image -->
-                  <img class="card-img-top" th:src="${product.imageUrl}" alt="Product Image 1" style="object-fit: cover; width: 100%; height: 200px;"/>
-                  <!-- Product Details -->
-                  <div class="card-body p-4 text-center">
-                      <div class="text-center">
-                          <!-- Product Name -->
-                          <h5 class="fw-bolder" th:text="${product.title}">Fancy Product</h5>
-                          <!-- Product Price -->
-                          <p th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">Product Price</p>
-                          <p type="hidden" th:text="${product.endDate}"></p>
-                      </div>
-                  </div>
-                  <!-- Product Actions -->
-                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
-                      <div class="text-center"><a th:href="@{'/product/ticket_inner/' + ${product.id}}" class="btn btn-outline-dark mt-auto">상세보기</a></div>
-                  </div>
-              </div>
+  <section class="product-section py-5">
+      <div class="container px-4 px-lg-5 mt-5">
+          <div class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-4 row-cols-xl-5 justify-content-center" id="product-cards">
+              <!-- Product Cards will be dynamically inserted here -->
           </div>
-</section>
-  <div>
-      <nav aria-label="Page navigation">
-          <ul class="pagination justify-content-center">
-              <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
-                  <a class="page-link" th:href="@{/ticket(page=${currentPage - 1}, size=${size})}" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                  </a>
-              </li>
-              <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${i == currentPage} ? 'active'">
-                  <a class="page-link" th:href="@{/ticket(page=${i}, size=${size})}" th:text="${i + 1}">1</a>
-              </li>
-              <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
-                  <a class="page-link" th:href="@{/ticket(page=${currentPage + 1}, size=${size})}" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                  </a>
-              </li>
-          </ul>
-      </nav>
-  </div>
+          <!-- Pagination Controls -->
+          <div class="d-flex justify-content-center">
+              <nav>
+                  <ul class="pagination" id="pagination-controls">
+                      <!-- Pagination items will be dynamically inserted here -->
+                  </ul>
+              </nav>
+          </div>
+      </div>
+  </section>
+
 
   <!-- ======= Footer ======= -->
   <div th:replace="layout/footer :: footer"></div>
@@ -145,61 +117,111 @@
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  <script th:inline="javascript">
+      /*<![CDATA[*/
+      const products = /*[[${view_ticket}]]*/ []; // 초기 데이터 로드
+      /*]]>*/
+  </script>
   <script>
-      document.getElementById('apply-filter').addEventListener('click', applyFilter);
+      document.addEventListener('DOMContentLoaded', () => {
+          const itemsPerPage = 10;
+          let currentPage = 1;
+          let filteredProducts = products; // 전체 데이터를 유지
 
-  function applyFilter() {
-      var locationValue = document.getElementById('location-filter').value;
-      var categoryValue = document.getElementById('category-filter').value;
-      var sortValue = document.getElementById('sort-filter').value;
+          function displayProducts(products, page) {
+              const start = (page - 1) * itemsPerPage;
+              const end = start + itemsPerPage;
+              const paginatedItems = products.slice(start, end);
 
-      var productCards = document.querySelectorAll('.product-card');
+              const productCardsContainer = document.getElementById('product-cards');
+              productCardsContainer.innerHTML = '';
 
-      productCards.forEach(function(card) {
-          var cardLocation = card.getAttribute('location');
-          var cardCategory = card.getAttribute('category');
+              paginatedItems.forEach(product => {
+                  const productCard = document.createElement('div');
+                  productCard.className = 'col mb-5 product-card';
+                  productCard.setAttribute('location', product.location);
+                  productCard.setAttribute('category', product.category);
 
-          // 각 필터가 'all'이거나 일치하는 경우에만 카드를 표시
-          var displayByLocation = (locationValue === 'all' || cardLocation === locationValue);
-          var displayByCategory = (categoryValue === 'all' || cardCategory === categoryValue);
-          console.log("지역 필터 값:", locationValue);
-          console.log("종목 필터 값:", categoryValue);
-
-          if (displayByLocation && displayByCategory) {
-              card.style.display = 'block';
-          } else {
-              card.style.display = 'none';
+                  productCard.innerHTML = `
+                      <div class="card h-100">
+                          <img class="card-img-top" src="${product.imageUrl}" alt="Product Image" style="object-fit: cover; width: 100%; height: 200px;"/>
+                          <div class="card-body p-4 text-center">
+                              <div class="text-center">
+                                  <h5 class="fw-bolder">${product.title}</h5>
+                                  <p>₩${product.price.toLocaleString()}</p>
+                              </div>
+                          </div>
+                          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+                              <a href="/product/ticket_inner/${product.id}" class="btn btn-outline-dark mt-auto">상세보기</a>
+                          </div>
+                      </div>
+                  `;
+                  productCardsContainer.appendChild(productCard);
+              });
           }
-      });
-      var sortedCards = Array.from(productCards).filter(card => card.style.display !== 'none');
 
-      if (sortValue === 'price-asc') {
-          sortedCards.sort((a, b) => {
-              var priceA = parseInt(a.querySelector('.card-body p').innerText.replace(/[^0-9]/g, ''));
-              var priceB = parseInt(b.querySelector('.card-body p').innerText.replace(/[^0-9]/g, ''));
-              return priceA - priceB;
-          });
-      } else if (sortValue === 'price-desc') {
-          sortedCards.sort((a, b) => {
-              var priceA = parseInt(a.querySelector('.card-body p').innerText.replace(/[^0-9]/g, ''));
-              var priceB = parseInt(b.querySelector('.card-body p').innerText.replace(/[^0-9]/g, ''));
-              return priceB - priceA;
-          });
-      } else if (sortValue === 'date-asc' || sortValue === 'date-desc') {
-          sortedCards.sort((a, b) => {
-              var dateA = new Date(a.getAttribute('data-enddate'));
-              var dateB = new Date(b.getAttribute('data-enddate'));
-              if (sortValue === 'date-asc') {
-                  return dateA - dateB;
-              } else {
-                  return dateB - dateA;
+          function setupPagination(products) {
+              const pageCount = Math.ceil(products.length / itemsPerPage);
+              const paginationControls = document.getElementById('pagination-controls');
+              paginationControls.innerHTML = '';
+
+              for (let i = 1; i <= pageCount; i++) {
+                  const pageItem = document.createElement('li');
+                  pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                  pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                  pageItem.addEventListener('click', (e) => {
+                      e.preventDefault();
+                      currentPage = i;
+                      displayProducts(filteredProducts, currentPage); // 필터링된 데이터를 표시
+                      setupPagination(filteredProducts); // 필터링된 데이터에 대한 페이지네이션 설정
+                  });
+                  paginationControls.appendChild(pageItem);
               }
-          });
-      }
+          }
 
-      var container = document.querySelector('.product-section .container .row');
-      sortedCards.forEach(card => container.appendChild(card));
-  }
+          function applyFilters() {
+              const locationFilter = document.getElementById('location-filter').value;
+              const categoryFilter = document.getElementById('category-filter').value;
+              const sortFilter = document.getElementById('sort-filter').value;
+
+              filteredProducts = products; // 전체 데이터에서 필터링 시작
+
+              if (locationFilter !== 'all') {
+                  filteredProducts = filteredProducts.filter(product => product.location === locationFilter);
+              }
+              if (categoryFilter !== 'all') {
+                  filteredProducts = filteredProducts.filter(product => product.category === categoryFilter);
+              }
+
+              switch (sortFilter) {
+                  case 'price-asc':
+                      filteredProducts.sort((a, b) => a.price - b.price);
+                      break;
+                  case 'price-desc':
+                      filteredProducts.sort((a, b) => b.price - a.price);
+                      break;
+                  case 'date-asc':
+                      filteredProducts.sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
+                      break;
+                  case 'date-desc':
+                      filteredProducts.sort((a, b) => new Date(b.endDate) - new Date(a.endDate));
+                      break;
+                  default:
+                      break;
+              }
+
+              currentPage = 1; // 필터 적용 시 페이지를 첫 페이지로 리셋
+              displayProducts(filteredProducts, currentPage);
+              setupPagination(filteredProducts);
+          }
+
+          document.getElementById('apply-filter').addEventListener('click', () => {
+              applyFilters();
+          });
+
+          displayProducts(products, currentPage);
+          setupPagination(products);
+      });
   </script>
   <div id="preloader"></div>
 

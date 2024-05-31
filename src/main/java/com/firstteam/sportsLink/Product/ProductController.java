@@ -81,30 +81,44 @@ public class ProductController {
         return "redirect:/activity";
     }
 
-
+// 백엔드에서 페이징 구현하려고 했지만,,, 필터가 해당 페이지만 적용되는 바람에 다시 만듬
+//    @GetMapping("/ticket")
+//    public String showViewTickets(
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size,
+//            Model model) {
+//        Page<ProductEntity> viewingTickets = productService.findViewingTickets(page, size);
+//        model.addAttribute("view_ticket", viewingTickets.getContent());
+//        model.addAttribute("currentPage", page);
+//        model.addAttribute("totalPages", viewingTickets.getTotalPages());
+//        return "product/ticket";
+//    }
     @GetMapping("/ticket")
-    public String showViewTickets(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            Model model) {
-        Page<ProductEntity> viewingTickets = productService.findViewingTickets(page, size);
-        model.addAttribute("view_ticket", viewingTickets.getContent());
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", viewingTickets.getTotalPages());
+    public String showViewTickets(Model model) {
+        List<ProductEntity> activityTickets = productService.findViewingTickets();
+        model.addAttribute("view_ticket", activityTickets);
         return "product/ticket";
     }
 
     @GetMapping("/activity")
-    public String showActivity(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            Model model) {
-        Page<ProductEntity> activityTickets = productService.findActivityTickets(page, size);
-        model.addAttribute("activity_ticket", activityTickets.getContent());
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", activityTickets.getTotalPages());
+    public String showActivityTickets(Model model) {
+        List<ProductEntity> activityTickets = productService.findActivityTickets();
+        model.addAttribute("activity_ticket", activityTickets);
         return "product/activity1";
     }
+
+// 백엔드에서 페이징 구현하려고 했지만,,, 필터가 해당 페이지만 적용되는 바람에 다시 만듬
+//    @GetMapping("/activity")
+//    public String showActivity(
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size,
+//            Model model) {
+//        Page<ProductEntity> activityTickets = productService.findActivityTickets(page, size);
+//        model.addAttribute("activity_ticket", activityTickets.getContent());
+//        model.addAttribute("currentPage", page);
+//        model.addAttribute("totalPages", activityTickets.getTotalPages());
+//        return "product/activity1";
+//    }
     @GetMapping("/product/ticket_inner/{id}")
     public String showProductDetail(@PathVariable("id") Long id, Model model) {
         ProductEntity product = productService.findProductById(id);
