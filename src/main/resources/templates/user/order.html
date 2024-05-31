@@ -62,7 +62,7 @@
                 <td th:text="${order.date}" class="line"></td>
                 <td th:text="${#numbers.formatDecimal((order.product_price * order.quantity), 0, 'COMMA', 0, 'POINT')} + '원'"></td>
                 <td class="button-cell">
-                  <a th:href="@{qna/new}" class="btn btn-primary button-cell btn-sm">문의하기</a>
+                  <a th:href="@{qna/new/{product}(product=${order.product_id})}" class="btn btn-primary button-cell btn-sm">문의하기</a>
                 </td>
                 <td class="button-cell">
                 <form th:action="@{'/order/delete/' + ${order.orderNo}}" method="post">

@@ -51,6 +51,13 @@ public class QnaController {
         return "qna/qna_write"; // qna_write.html로 매핑
     }
 
+    @GetMapping("/qna/new/{product}")
+    public String productQna(@PathVariable("product") String product, Model model) {
+        model.addAttribute("qnaDTO", new QnaDTO());
+        model.addAttribute("product", product);
+        return "qna/qna_write"; //
+    }
+
     @GetMapping("/qna_inner/{id}")
     public String qnainner(@PathVariable("id") Long id, Model model) {
         if (id == null) {

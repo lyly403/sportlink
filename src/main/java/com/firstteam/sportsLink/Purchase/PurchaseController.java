@@ -1,6 +1,8 @@
 package com.firstteam.sportsLink.Purchase;
 
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import java.util.List;
 @Controller
 public class PurchaseController {
 
+
     @Autowired
     private PurchaseService purchaseService;
 
@@ -18,10 +21,14 @@ public class PurchaseController {
     private PurchaseRepository purchaseRepository;
 
     @PostMapping("/purchase")
-    public String purchaseProduct(@ModelAttribute PurchaseDTO purchaseDTO) {
-        PurchaseEntity purchaseEntity = purchaseDTO.toEntity();
-        purchaseService.savePurchase(purchaseEntity);
-        return "redirect:/ticket";
+    public String purchaseProduct(@SessionAttribute("userid") String userid, @ModelAttribute PurchaseDTO purchaseDTO) {
+        if(userid != null) {
+            PurchaseEntity purchaseEntity = purchaseDTO.toEntity();
+            purchaseService.savePurchase(purchaseEntity);
+            return "redirect:/ticket";
+        } else {
+            return "/user/login";
+        }
     }
 
     @GetMapping("/order")
