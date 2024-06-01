@@ -1,4 +1,4 @@
-package com.firstteam.sportsLink.qna;
+package com.firstteam.sportsLink.Qna;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

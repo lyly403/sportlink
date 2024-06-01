@@ -1,4 +1,4 @@
-package com.firstteam.sportsLink.qna;
+package com.firstteam.sportsLink.Qna;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

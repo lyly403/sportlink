@@ -1,4 +1,4 @@
-package com.firstteam.sportsLink.qna;
+package com.firstteam.sportsLink.Qna;
 
 public class PageRequestDTO {
     private int page; // 요청한 페이지 번호

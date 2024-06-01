@@ -43,7 +43,6 @@
 }
 
 .inquiry-edit-content {
-    margin-top: 150px; /* 헤더 아래로 내리기 */
     background-color: #f9f9f9; /* 컨텐츠 배경색 설정 */
     padding: 30px; /* 내부 여백 설정 */
     border-radius: 8px; /* 테두리 둥글기 설정 */
@@ -97,9 +96,9 @@ section.inquiry-edit button.btn.btn-primary:hover {
     }
 
 
-/*--------------------------------------------------------------
-# Scroll top button
---------------------------------------------------------------*/
+    /*--------------------------------------------------------------
+    # Scroll top button
+    --------------------------------------------------------------*/
     .scroll-top {
         position: fixed;
         visibility: hidden;
@@ -155,7 +154,7 @@ section.inquiry-edit button.btn.btn-primary:hover {
             position: relative;
         }
 
-        .navbar>ul>li {
+        .navbar > ul > li {
             white-space: nowrap;
             padding: 10px 0 10px 28px;
         }
@@ -182,7 +181,7 @@ section.inquiry-edit button.btn.btn-primary:hover {
             margin-left: 5px;
         }
 
-        .navbar>ul>li>a:before {
+        .navbar > ul > li > a:before {
             content: "";
             position: absolute;
             width: 100%;
@@ -196,7 +195,7 @@ section.inquiry-edit button.btn.btn-primary:hover {
         }
 
         .navbar a:hover:before,
-        .navbar li:hover>a:before,
+        .navbar li:hover > a:before,
         .navbar .active:before {
             visibility: visible;
             width: 100%;
@@ -205,7 +204,7 @@ section.inquiry-edit button.btn.btn-primary:hover {
         .navbar a:hover,
         .navbar .active,
         .navbar .active:focus,
-        .navbar li:hover>a {
+        .navbar li:hover > a {
             color: #000;
         }
 
@@ -242,11 +241,11 @@ section.inquiry-edit button.btn.btn-primary:hover {
 
         .navbar .dropdown ul a:hover,
         .navbar .dropdown ul .active:hover,
-        .navbar .dropdown ul li:hover>a {
+        .navbar .dropdown ul li:hover > a {
             color: var(--color-primary);
         }
 
-        .navbar .dropdown:hover>ul {
+        .navbar .dropdown:hover > ul {
             opacity: 1;
             top: 100%;
             visibility: visible;
@@ -258,7 +257,7 @@ section.inquiry-edit button.btn.btn-primary:hover {
             visibility: hidden;
         }
 
-        .navbar .dropdown .dropdown:hover>ul {
+        .navbar .dropdown .dropdown:hover > ul {
             opacity: 1;
             top: 0;
             left: 100%;
@@ -271,7 +270,7 @@ section.inquiry-edit button.btn.btn-primary:hover {
             left: -90%;
         }
 
-        .navbar .dropdown .dropdown:hover>ul {
+        .navbar .dropdown .dropdown:hover > ul {
             left: -100%;
         }
     }
@@ -335,7 +334,7 @@ section.inquiry-edit button.btn.btn-primary:hover {
         }
 
         .navbar a:hover,
-        .navbar li:hover>a {
+        .navbar li:hover > a {
             color: #000;
         }
 
@@ -355,8 +354,8 @@ section.inquiry-edit button.btn.btn-primary:hover {
             border: 1px solid #eee;
         }
 
-        .navbar .dropdown>.dropdown-active,
-        .navbar .dropdown .dropdown>.dropdown-active {
+        .navbar .dropdown > .dropdown-active,
+        .navbar .dropdown .dropdown > .dropdown-active {
             display: block;
         }
 
@@ -398,3 +397,4 @@ section.inquiry-edit button.btn.btn-primary:hover {
             z-index: 9996;
         }
     }
+}

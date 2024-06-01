@@ -1,4 +1,4 @@
-package com.firstteam.sportsLink.qna;
+package com.firstteam.sportsLink.Qna;
 
 import lombok.*;
 

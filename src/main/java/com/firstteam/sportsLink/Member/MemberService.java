@@ -1,24 +1,15 @@
 package com.firstteam.sportsLink.Member;
 
-import com.firstteam.sportsLink.qna.PageRequestDTO;
-import com.firstteam.sportsLink.qna.QnaDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.ui.Model;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Member;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Optional;
-import java.util.List;
 
 @Service
 public class MemberService {
