@@ -38,7 +38,7 @@ public class QnaService {
     // 데이터베이스에서 모든 문의사항을 가져오는 메서드
     public List<QnaDTO> getAllInquiries() {
         // SQL 쿼리를 작성합니다.
-        String sql = "SELECT * FROM inquiries";
+        String sql = "SELECT * FROM inquiries ORDER BY id DESC";
         // 쿼리를 실행하여 결과를 QnaDTO 객체로 매핑하여 리스트로 반환합니다.
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(QnaDTO.class));
     }
@@ -74,7 +74,7 @@ public class QnaService {
 
     public List<QnaDTO> getInquiriesPaged(PageRequestDTO pageRequest) {
         int offset = (pageRequest.getPage() - 1) * pageRequest.getSize();
-        String sql = "SELECT * FROM inquiries LIMIT ?, ?";
+        String sql = "SELECT * FROM inquiries ORDER BY id DESC LIMIT ?, ?";
         return jdbcTemplate.query(sql, new Object[]{offset, pageRequest.getSize()}, new BeanPropertyRowMapper<>(QnaDTO.class));
     }
 

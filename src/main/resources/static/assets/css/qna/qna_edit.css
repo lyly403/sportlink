@@ -16,17 +16,20 @@
 }
 
 /*--------------------------------------------------------------
-/* ======= 문의사항 상세 페이지 CSS ======= */
+# Inquiry Edit Section
 --------------------------------------------------------------*/
-
 .inquiry-edit {
-    margin-top: 200px; /* 헤더 아래로 위치 조정 */
+    margin-top: 150px; /* 헤더 아래로 위치 조정 */
     padding: 80px; /* 추가적인 패딩 설정 */
     margin-bottom: 50px; /* 하단 여백 추가 */
 }
 
+/* 모든 폰트를 디폴트로 설정 */
+.inquiry-edit * {
+    font-family: inherit;
+}
+
 .inquiry-edit h2 {
-    font: var(--font-default);
     font-size: 36px;
     font-weight: 600;
     color: #000;
@@ -34,7 +37,6 @@
 }
 
 .inquiry-edit p {
-    font: var(--font-default);
     font-size: 18px;
     color: #555;
     margin-bottom: 30px;
@@ -61,16 +63,33 @@
     margin-bottom: 10px; /* 제목과 내용 사이 간격 설정 */
 }
 
-.btn-primary {
+/* 제목과 내용 사이의 간격 조정 */
+#editTitle {
+    margin-bottom: 10px; /* 원하는 크기로 조정 */
+}
+
+/* 내용과 버튼 사이의 간격 조정 */
+#editContent {
+    margin-bottom: 20px; /* 원하는 크기로 조정 */
+}
+
+/* 버튼과 하단 간격 조정 */
+.btn {
+    margin-top: 20px; /* 원하는 크기로 조정 */
+}
+
+
+section.inquiry-edit button.btn.btn-primary {
     background-color: #8831cf;
     border-color: #8831cf;
+    color: #fff; /* 버튼 텍스트 색상을 흰색으로 설정 */
 }
 
-.btn-primary:hover {
-    background-color: #5a1f9f;
-    border-color: #5a1f9f;
-}
 
+section.inquiry-edit button.btn.btn-primary:hover {
+    background-color: #45118e;
+    border-color: #45118e;
+}
 
 @media (min-width: 768px) {
     .inquiry-detail-content {

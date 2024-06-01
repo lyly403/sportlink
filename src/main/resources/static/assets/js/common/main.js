@@ -190,6 +190,8 @@
   window.addEventListener('load', () => {
     aos_init();
   });
+
+
 // 날씨 //
 
 
@@ -220,6 +222,7 @@ function handleSuccess(position) {
     };
     getWeather(latitude, longitude); //얻은 좌표값을 바탕으로 날씨정보를 불러온다.
 }
+
 //좌표를 얻는데 실패했을 때 쓰이는 함수
 function handleError() {
     console.log("can't not access to location");

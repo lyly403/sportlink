@@ -19,22 +19,22 @@ public class CommentService {
     }
 
     public List<CommentDTO> getCommentsByInquiryId(Long inquiryId) {
-        String sql = "SELECT * FROM comments WHERE inquiry_id = ?";
+        String sql = "SELECT * FROM comment WHERE inquiry_id = ?";
         return jdbcTemplate.query(sql, new Object[]{inquiryId}, new BeanPropertyRowMapper<>(CommentDTO.class));
     }
 
     public void saveComment(CommentDTO commentDTO) {
-        String sql = "INSERT INTO comments (inquiry_id, content, author, created_at) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO comment (inquiry_id, content, author, created_at) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, commentDTO.getInquiryId(), commentDTO.getContent(), commentDTO.getAuthor(), LocalDateTime.now());
     }
 
     public CommentDTO getCommentById(Long commentId) {
-        String sql = "SELECT * FROM comments WHERE id = ?";
+        String sql = "SELECT * FROM comment WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{commentId}, new BeanPropertyRowMapper<>(CommentDTO.class));
     }
 
     public void deleteComment(Long commentId) {
-        String sql = "DELETE FROM comments WHERE id = ?";
+        String sql = "DELETE FROM comment WHERE id = ?";
         jdbcTemplate.update(sql, commentId);
     }
 }
