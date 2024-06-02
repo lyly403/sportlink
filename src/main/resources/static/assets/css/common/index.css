@@ -80,14 +80,14 @@ h6 {
   font-size: 15px;
   letter-spacing: 1px;
   display: inline-block;
-  margin-right: 50px; 
+  margin-right: 50px;
   padding: 12px 36px;
   border-radius: 50px;
   transition: 0.5s;
   color: #fff;
   background: var(--color-primary);
   box-shadow: 0 8px 28px rgba(42, 11, 105, 0.31);
-   text-decoration: none; /* a 태그의 밑줄 제거 */
+  text-decoration: none; /* a 태그의 밑줄 제거 */
 
 }
 
@@ -95,26 +95,11 @@ h6 {
 /*--------------------------------------------------------------
 # Sections & Section Header
 --------------------------------------------------------------*/
-
-.swiper-container {
-  width: 100%;
-  /*overflow: hidden;*/
-}
-
-
-.swiper-slide {
-  /*display: flex;*/
-  width: 80%; /* 슬라이드의 너비를 부모 요소의 80%로 설정 */
-  margin-right: 20px; /* 간격 설정 */
-  background-size: cover;
-  background-position: center;
-  flex-shrink: 0;
-}
-
 section {
-  /*overflow: hidden;*/
+  overflow: hidden;
   padding: 80px 0;
   scroll-margin-top: 90px;
+  overflow: clip;
 }
 
 .section-header {
@@ -123,7 +108,7 @@ section {
 }
 
 .section-header h2 {
-  font-size: 32px; /* 적절한 크기로 변경 */
+  font-size: 1px;
   letter-spacing: 1px;
   font-weight: 400;
   margin: 0;
@@ -133,6 +118,7 @@ section {
   font-family: var(--font-default);
 }
 
+/*deal text*/
 .section-header p {
   margin: 0;
   font-size: 48px;
@@ -143,17 +129,6 @@ section {
 .section-header p span {
   color: var(--color-primary);
 }
-
-/*deal text*/
-.container-fluid {
-  padding: 0; /* 필요에 따라 조정 */
-}
-
-.swiper-container {
-  padding-left: 0; /* 필요에 따라 조정 */
-  padding-right: 100px; /* 필요에 따라 조정 */
-}
-
 
 /*--------------------------------------------------------------
 # Breadcrumbs
@@ -271,8 +246,8 @@ section {
 
   .navbar li {
     position: relative;
-     text-decoration: none; /* a 태그의 밑줄 제거 */
-      color: inherit; /* a 태그의 기본 색상을 상속 */
+    text-decoration: none; /* a 태그의 밑줄 제거 */
+    color: inherit; /* a 태그의 기본 색상을 상속 */
   }
 
   .navbar>ul>li {
@@ -293,8 +268,8 @@ section {
     white-space: nowrap;
     transition: 0.3s;
     position: relative;
-     text-decoration: none; /* a 태그의 밑줄 제거 */
-      color: inherit; /* a 태그의 기본 색상을 상속 */
+    text-decoration: none; /* a 태그의 밑줄 제거 */
+    color: inherit; /* a 태그의 기본 색상을 상속 */
   }
 
   .navbar a i,
@@ -302,8 +277,8 @@ section {
     font-size: 12px;
     line-height: 0;
     margin-left: 5px;
-     text-decoration: none; /* a 태그의 밑줄 제거 */
-      color: inherit; /* a 태그의 기본 색상을 상속 */
+    text-decoration: none; /* a 태그의 밑줄 제거 */
+    color: inherit; /* a 태그의 기본 색상을 상속 */
   }
 
   .navbar>ul>li>a:before {
@@ -534,9 +509,9 @@ section {
 .events .event-item {
   background-size: cover;
   background-position: center;
-  min-height: 600px;
-  padding: 30px;
-  margin: 20px; 
+  min-height: 550px;
+  padding: 20px;
+  /*margin: 5px;*/
 }
 
 
@@ -644,7 +619,7 @@ section {
   color: #fff;
   background: var(--color-primary);
   box-shadow: 0 8px 28px rgba(42, 11, 105, 0.31);
-   text-decoration: none; /* a 태그의 밑줄 제거 */
+  text-decoration: none; /* a 태그의 밑줄 제거 */
 }
 
 
