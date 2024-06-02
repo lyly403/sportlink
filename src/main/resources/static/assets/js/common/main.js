@@ -117,10 +117,10 @@
 
     /**  Init swiper slider with 3 slides at once in desktop view  */
     new Swiper('.slides-3', {
-        speed: 600,
+        speed: 500,
         loop: true,
         autoplay: {
-            delay: 5000,
+            delay: 3000,
             disableOnInteraction: false
         },
         slidesPerView: 'auto',

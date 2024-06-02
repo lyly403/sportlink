@@ -80,7 +80,7 @@ h6 {
   font-size: 15px;
   letter-spacing: 1px;
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 70px;
   padding: 12px 36px;
   border-radius: 50px;
   transition: 0.5s;
@@ -223,7 +223,7 @@ section {
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
-    transition-delay: 0 !important;
+    transition-delay: 0s !important;
   }
 }
 

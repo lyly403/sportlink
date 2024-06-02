@@ -52,7 +52,8 @@
           <p><strong>종목:</strong> <span th:text="${product.category}">종목</span></p>
           <p><strong>설명:</strong></p>
           <p th:text="${product.description}">텍스트 영역</p>
-          <p><strong>위치:</strong></p>
+          <br>
+          <p><strong>위치</strong></p>
           <div id="map"></div>
           <div class="text-center mt-4">
             <form th:action="@{/purchase}" method="post">

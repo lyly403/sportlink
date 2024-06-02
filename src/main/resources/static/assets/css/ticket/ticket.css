@@ -60,6 +60,18 @@
   max-width: 100px; /* Maximum width */
 }
 
+#pagepage .page-link {
+  background-color: white;
+  color: #45118e;
+}
+
+#pagepage .page-link:hover {
+  background-color: white ;
+}
+
+
+
+
 /*--------------------------------------------------------------
 # Scroll top button
 --------------------------------------------------------------*/

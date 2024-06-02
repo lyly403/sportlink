@@ -78,7 +78,9 @@
   }
   
   .order-history-content h2 {
-    font-size: 32px;
+    font-size: 36px;
+    font-weight: 600;
+    color: #000;
     margin-bottom: 30px;
   }
 
