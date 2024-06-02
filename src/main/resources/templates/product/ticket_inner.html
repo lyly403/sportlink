@@ -44,6 +44,8 @@
             </form>
           </div>
           <h1 class="text-center mb-4" th:text="${product.title}">제목</h1>
+<!--          이미지 -->
+          <img  class="img-fluid" width="100%"  th:src="${product.imageUrl}" alt="Uploaded Image"  >
           <p><strong>날짜:</strong> <span th:text="${product.endDate}">날짜</span></p>
           <p><strong>지역:</strong> <span th:text="${product.location}">지역</span></p>
           <p><strong>가격:</strong> <span th:text="'₩' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">가격</span></p>
@@ -52,8 +54,6 @@
           <p th:text="${product.description}">텍스트 영역</p>
           <p><strong>위치:</strong></p>
           <div id="map"></div>
-          <p><strong>이미지:</strong></p>
-          <img  class="img-fluid" width="100%"  th:src="${product.imageUrl}" alt="Uploaded Image"  >
           <div class="text-center mt-4">
             <form th:action="@{/purchase}" method="post">
               <input type="hidden" id="userid" name="userid" th:value="${session.userid}">
