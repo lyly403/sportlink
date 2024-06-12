@@ -25,3 +25,8 @@ spring:
 file:
   upload:
     directory: src/main/resources/static/image/
+
+spring:
+  web:
+    resources:
+      add-mappings: true
