@@ -18,7 +18,7 @@ public class MemberController {
     // [ 회원가입 ]
     @RequestMapping("/signup")
     public String signup() {
-        return "/user/signup";  // signup.html 파일을 반환
+        return "user/signup";  // signup.html 파일을 반환
     }
 
     @PostMapping("/signupProc")
@@ -29,16 +29,16 @@ public class MemberController {
             return "redirect:/index";
         } else if (msg.equals("회원 등록을 다시 시도하세요")) {
             ra.addFlashAttribute("alert", "회원 등록을 다시 시도하세요");
-            return "/user/signup";
+            return "user/signup";
         }
         model.addAttribute("msg", msg);
-        return "/user/signup";
+        return "user/signup";
     }
 
     // [ 로그인 ]
     @RequestMapping("/login")
     public String login() {
-        return "/user/login";  // signup.html 파일을 반환
+        return "user/login";  // signup.html 파일을 반환
     }
 
     @PostMapping("/loginProc")
@@ -119,7 +119,7 @@ public class MemberController {
             int size = 10; // 페이지당 항목 수
             Page<MemberDTO> memberPage = memberService.getMemberList(page, size);
             model.addAttribute("memberPage", memberPage);
-            return "/user/member_list";
+            return "user/member_list";
         }
         else {
             ra.addFlashAttribute("msg", "접근권한이 없습니다.");
