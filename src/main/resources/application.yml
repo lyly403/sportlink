@@ -19,9 +19,6 @@ spring:
     # 404 에러 페이지를 표시하지 않게 하고, 존재하지 않는 핸들러에 대한 예외를 발생시키도록 합니다.
   mvc:
     throw-exception-if-no-handler-found=true
-  web:
-    resources:
-      add-mappings=false
 
   # spring data jpa 설정
   jpa:
