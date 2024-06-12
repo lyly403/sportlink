@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Table(name = "user_info")
 public class MemberEntity {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", length = 191)
     private String userid; // 홈페이지 가입은생성값 || 네이버,카카오 > {provider + "_" + providerId}
     @Column(name = "user_name")
     private String username; // 홈페이지 > 이름 || 네이버,카카오 > 닉네임 id={profile_nickname})
