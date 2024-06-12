@@ -6,7 +6,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #    각자 PC에 만들어놓은 Database이름을 써야 합니다.
-    url: jdbc:mysql://database-1test.cvaeikuoavom.ap-northeast-2.rds.amazonaws.com:3306/database-1test
+    url: jdbc:mysql://sportlink.cvaeikuoavom.ap-northeast-2.rds.amazonaws.com:3306/sportlink
 
     username: root
     password: 01036091066
