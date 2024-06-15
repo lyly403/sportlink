@@ -51,7 +51,7 @@ public class ProductController {
             } catch (IOException e) {
                 e.printStackTrace();
                 // 파일 업로드에 실패한 경우 예외 처리
-                return "redirect:/product/ticket_write?uploadError";
+                return "redirect:product/ticket_write?uploadError";
             }
         }
         ProductEntity product = productDTO.toEntity();
@@ -73,7 +73,7 @@ public class ProductController {
             } catch (IOException e) {
                 e.printStackTrace();
                 // 파일 업로드에 실패한 경우 예외 처리
-                return "redirect:/ticket/ticket_write?uploadError";
+                return "redirect:ticket/ticket_write?uploadError";
             }
         }
         ProductEntity product = productDTO.toEntity();
@@ -168,16 +168,16 @@ public class ProductController {
                 // 파일 업로드에 실패한 경우 예외 처리
                 // 적절한 방법으로 처리하거나 사용자에게 알리는 메시지를 반환
                 // 여기서는 간단히 로그 출력 후 리다이렉트
-                return "redirect:/product/ticket_write?uploadError";
+                return "redirect:product/ticket_write?uploadError";
             }
         }
         productService.updateProduct(id, product);
-        return "redirect:/product/ticket_inner/" + id;
+        return "redirect:product/ticket_inner/" + id;
     }
     // 삭제 기능 추가
     @PostMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") Long id) {
         productService.deleteProductById(id);
-        return "redirect:/ticket";
+        return "redirect:ticket";
     }
 }

@@ -27,7 +27,7 @@ public class PurchaseController {
             purchaseService.savePurchase(purchaseEntity);
             return "redirect:/ticket";
         } else {
-            return "/user/login";
+            return "user/login";
         }
     }
 
@@ -36,13 +36,13 @@ public class PurchaseController {
         List<PurchaseEntity> orderHistory = purchaseService.getOrderHistoryByUserId(userid);
         System.out.println(orderHistory.toString());
         model.addAttribute("orderHistory", orderHistory);
-        return "/user/order"; // Thymeleaf 템플릿 파일 이름
+        return "user/order"; // Thymeleaf 템플릿 파일 이름
     }
 
     @PostMapping("/order/delete/{orderNo}")
     public String deleteProduct(@PathVariable("orderNo") Long orderNo) {
         purchaseService.deleteProductById(orderNo);
-        return "redirect:/order";
+        return "redirect:order";
     }
 }
 

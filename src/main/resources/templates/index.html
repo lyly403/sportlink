@@ -31,7 +31,6 @@
   <script src="/assets/js/common/header.js"></script>
   <script src="/assets/js/common/footer.js"></script>
   <!-- 카카오 api 스크립트  -->
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5846dfc7f744d84867dbabc481ca99d5&libraries=services"></script>
 </head>
 <body>
 
@@ -164,6 +163,41 @@
     /*<![CDATA[*/
     var products = /*[[${products}]]*/ []; // Thymeleaf를 사용하여 제품 목록을 가져옴
 
+    // 카카오 지도 API를 동적으로 로드
+    function loadKakaoMap() {
+        var script = document.createElement('script');
+        script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=5846dfc7f744d84867dbabc481ca99d5&autoload=false&libraries=services';
+        script.async = true;
+        script.onload = function() {
+            kakao.maps.load(initMap); // 카카오 맵 API 로드 후 initMap 함수 호출
+        };
+        document.head.appendChild(script);
+    }
+
+    // 지도를 생성하고 제품의 위치에 마커 표시
+    function initMap() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var lat = position.coords.latitude; // 현재 위치의 위도
+                var lng = position.coords.longitude; // 현재 위치의 경도
+
+                var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+                var mapOption = {
+                    center: new kakao.maps.LatLng(lat, lng), // 현재 위치를 중심으로 설정
+                    level: 5 // 지도의 확대 레벨
+                };
+
+                // 지도를 생성
+                var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                // 각 제품의 위치에 마커 표시
+                displayMarkers(map, products);
+            });
+        } else {
+            alert('Geolocation이 지원되지 않는 브라우저입니다');
+        }
+    }
+
     // 각 제품의 위치에 마커를 표시하는 함수
     function displayMarkers(map, products) {
         for (var i = 0; i < products.length; i++) {
@@ -180,7 +214,7 @@
             kakao.maps.event.addListener(marker, 'click', (function(marker, product) {
                 return function() {
                     var infowindow = new kakao.maps.InfoWindow({
-                        content: '<a href="/ticket/go_ticket/' + encodeURIComponent(product.title) + '" style="padding:5px;font-size:12px;">' + product.title + '</a>', 
+                        content: '<a href="/ticket/go_ticket/' + encodeURIComponent(product.title) + '" style="padding:5px;font-size:12px;">' + product.title + '</a>',
                         removable: true
                     });
                     infowindow.open(map, marker);
@@ -191,27 +225,8 @@
         }
     }
 
-    // 지도를 생성하고 제품의 위치에 마커 표시
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var lat = position.coords.latitude; // 현재 위치의 위도
-            var lng = position.coords.longitude; // 현재 위치의 경도
-
-            var mapContainer = document.getElementById('map'); // 지도를 표시할 div
-            var mapOption = {
-                center: new kakao.maps.LatLng(lat, lng), // 현재 위치를 중심으로 설정
-                level: 5 // 지도의 확대 레벨
-            };
-
-            // 지도를 생성
-            var map = new kakao.maps.Map(mapContainer, mapOption);
-
-            // 각 제품의 위치에 마커 표시
-            displayMarkers(map, products);
-        });
-    } else {
-        alert('Geolocation이 지원되지 않는 브라우저입니다');
-    }
+    // 카카오 지도 API 로드
+    loadKakaoMap();
     /*]]>*/
   </script>
   </body>
