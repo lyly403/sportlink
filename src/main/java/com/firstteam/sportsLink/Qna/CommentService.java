@@ -1,40 +1,57 @@
 package com.firstteam.sportsLink.Qna;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final CommentRepository commentRepository;
+    private final QnaRepository qnaRepository;
 
     @Autowired
-    public CommentService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public CommentService(CommentRepository commentRepository, QnaRepository qnaRepository) {
+        this.commentRepository = commentRepository;
+        this.qnaRepository = qnaRepository;
     }
 
     public List<CommentDTO> getCommentsByInquiryId(Long inquiryId) {
-        String sql = "SELECT * FROM comment WHERE inquiry_id = ?";
-        return jdbcTemplate.query(sql, new Object[]{inquiryId}, new BeanPropertyRowMapper<>(CommentDTO.class));
+        return commentRepository.findByInquiryId(inquiryId).stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     public void saveComment(CommentDTO commentDTO) {
-        String sql = "INSERT INTO comment (inquiry_id, content, author, created_at) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, commentDTO.getInquiryId(), commentDTO.getContent(), commentDTO.getAuthor(), LocalDateTime.now());
+        CommentEntity commentEntity = toEntity(commentDTO);
+        commentEntity.setCreatedAt(LocalDateTime.now());
+        commentRepository.save(commentEntity);
     }
 
     public CommentDTO getCommentById(Long commentId) {
-        String sql = "SELECT * FROM comment WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{commentId}, new BeanPropertyRowMapper<>(CommentDTO.class));
+        return commentRepository.findById(commentId)
+                .map(this::toDto)
+                .orElse(null);
     }
 
     public void deleteComment(Long commentId) {
-        String sql = "DELETE FROM comment WHERE id = ?";
-        jdbcTemplate.update(sql, commentId);
+        commentRepository.deleteById(commentId);
+    }
+
+    private CommentDTO toDto(CommentEntity entity) {
+        return new CommentDTO(entity.getId(), entity.getInquiry().getId(), entity.getContent(), entity.getAuthor(), entity.getCreatedAt().toString());
+    }
+
+    private CommentEntity toEntity(CommentDTO dto) {
+        CommentEntity entity = new CommentEntity();
+        entity.setId(dto.getId());
+        entity.setInquiry(qnaRepository.findById(dto.getInquiryId()).orElse(null));
+        entity.setContent(dto.getContent());
+        entity.setAuthor(dto.getAuthor());
+        entity.setCreatedAt(LocalDateTime.parse(dto.getCreatedAt()));
+        return entity;
     }
 }

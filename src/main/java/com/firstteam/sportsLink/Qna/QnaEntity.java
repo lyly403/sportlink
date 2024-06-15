@@ -2,6 +2,7 @@ package com.firstteam.sportsLink.Qna;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Table(name = "inquiries")
 @Getter
 @Setter
+@NoArgsConstructor
 public class QnaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +21,4 @@ public class QnaEntity {
     private LocalDate date;
     private String content;
     private int hit;
-
-    // 생성자, getter 및 setter 생략
 }

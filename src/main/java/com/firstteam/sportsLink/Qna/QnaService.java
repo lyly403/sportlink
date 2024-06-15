@@ -1,87 +1,97 @@
 package com.firstteam.sportsLink.Qna;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QnaService {
 
-
-    private final JdbcTemplate jdbcTemplate;
+    private final QnaRepository qnaRepository;
 
     @Autowired
-    public QnaService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public QnaService(QnaRepository qnaRepository) {
+        this.qnaRepository = qnaRepository;
     }
 
     public void saveQna(QnaDTO qnaDTO) {
-        // qnaDTO를 이용하여 DB에 저장하는 로직을 구현
-        LocalDate date = qnaDTO.getDate();
-        if (date == null) {
-            date = LocalDate.now(); // 현재 날짜로 설정
+        QnaEntity qnaEntity = toEntity(qnaDTO);
+        if (qnaEntity.getDate() == null) {
+            qnaEntity.setDate(LocalDate.now());
         }
-        String sql = "INSERT INTO inquiries (title, author, date, content, hit) VALUES (?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getAuthor(), date, qnaDTO.getContent(), 0);
+        qnaRepository.save(qnaEntity);
     }
 
     public void increaseHit(Long id) {
-        String sql = "UPDATE inquiries SET hit = hit + 1 WHERE id = ?";
-        jdbcTemplate.update(sql, id);
+        QnaEntity qnaEntity = qnaRepository.findById(id).orElseThrow(() -> new RuntimeException("Inquiry not found"));
+        qnaEntity.setHit(qnaEntity.getHit() + 1);
+        qnaRepository.save(qnaEntity);
     }
 
-    // 데이터베이스에서 모든 문의사항을 가져오는 메서드
     public List<QnaDTO> getAllInquiries() {
-        // SQL 쿼리를 작성합니다.
-        String sql = "SELECT * FROM inquiries ORDER BY id DESC";
-        // 쿼리를 실행하여 결과를 QnaDTO 객체로 매핑하여 리스트로 반환합니다.
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(QnaDTO.class));
+        return qnaRepository.findAll().stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     public QnaDTO getInquiryById(Long id) {
-        String sql = "SELECT * FROM inquiries WHERE id = ?";
-        try {
-            return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(QnaDTO.class));
-        } catch (EmptyResultDataAccessException e) {
-            return null; // 결과가 없을 경우 null 반환
-        }
+        return qnaRepository.findById(id)
+                .map(this::toDto)
+                .orElse(null);
     }
 
     public void editInquiry(QnaDTO qnaDTO) {
-        // qnaDTO를 이용하여 DB에서 해당 문의사항을 수정하는 로직을 구현
-        LocalDate date = qnaDTO.getDate();
-        if (date == null) {
-            date = LocalDate.now(); // 현재 날짜로 설정
+        QnaEntity qnaEntity = toEntity(qnaDTO);
+        if (qnaEntity.getDate() == null) {
+            qnaEntity.setDate(LocalDate.now());
         }
-        String sql = "UPDATE inquiries SET title = ?, content = ? WHERE id = ?";
-        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getContent(), qnaDTO.getId());
+        qnaRepository.save(qnaEntity);
     }
 
     public void updateInquiry(QnaDTO qnaDTO) {
-        String sql = "UPDATE inquiries SET title = ?, content = ? WHERE id = ?";
-        jdbcTemplate.update(sql, qnaDTO.getTitle(), qnaDTO.getContent(), qnaDTO.getId());
+        QnaEntity qnaEntity = toEntity(qnaDTO);
+        qnaRepository.save(qnaEntity);
     }
 
     public void deleteInquiry(Long id) {
-        String sql = "DELETE FROM inquiries WHERE id = ?";
-        jdbcTemplate.update(sql, id);
+        qnaRepository.deleteById(id);
     }
 
     public List<QnaDTO> getInquiriesPaged(PageRequestDTO pageRequest) {
         int offset = (pageRequest.getPage() - 1) * pageRequest.getSize();
-        String sql = "SELECT * FROM inquiries ORDER BY id DESC LIMIT ?, ?";
-        return jdbcTemplate.query(sql, new Object[]{offset, pageRequest.getSize()}, new BeanPropertyRowMapper<>(QnaDTO.class));
+        return qnaRepository.findAll().stream()
+                .skip(offset)
+                .limit(pageRequest.getSize())
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     public int getTotalInquiryCount() {
-        String sql = "SELECT COUNT(*) FROM inquiries";
-        return jdbcTemplate.queryForObject(sql, Integer.class);
+        return (int) qnaRepository.count();
     }
 
-}
+    private QnaDTO toDto(QnaEntity entity) {
+        QnaDTO dto = new QnaDTO();
+        dto.setId(entity.getId());
+        dto.setTitle(entity.getTitle());
+        dto.setAuthor(entity.getAuthor());
+        dto.setDate(entity.getDate());
+        dto.setContent(entity.getContent());
+        dto.setHit(entity.getHit());
+        return dto;
+    }
 
+    private QnaEntity toEntity(QnaDTO dto) {
+        QnaEntity entity = new QnaEntity();
+        entity.setId(dto.getId());
+        entity.setTitle(dto.getTitle());
+        entity.setAuthor(dto.getAuthor());
+        entity.setDate(dto.getDate());
+        entity.setContent(dto.getContent());
+        entity.setHit(dto.getHit());
+        return entity;
+    }
+}

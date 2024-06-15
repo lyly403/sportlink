@@ -31,15 +31,10 @@ public class CommentEntity {
 
     public CommentEntity(Long id, Long inquiryId, String content, String author, LocalDateTime createdAt) {
         this.id = id;
-        // Since this is a DTO, you might not directly map inquiryId to the inquiry entity,
-        // but here for demonstration, I'm directly mapping it to the inquiry entity.
-        // You might need to adjust this based on your actual implementation.
         this.inquiry = new QnaEntity();
         this.inquiry.setId(inquiryId);
         this.content = content;
         this.author = author;
         this.createdAt = createdAt;
     }
-
-    // Getters and setters
 }
