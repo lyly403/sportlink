@@ -1,11 +1,14 @@
 version: 0.0
 os: linux
+files:
+  - source: target/*.jar
+    destination: /home/ubuntu/first-team-project-dev
 hooks:
   ApplicationStop:
-    - location: scripts/application_stop.sh
+    - location: /home/ubuntu/first-team-project-dev/scripts/application_stop.sh
       timeout: 300
       runas: ubuntu
   AfterInstall:
-    - location: scripts/deploy.sh
+    - location: /home/ubuntu/first-team-project-dev/scripts/deploy.sh
       timeout: 300
       runas: ubuntu
