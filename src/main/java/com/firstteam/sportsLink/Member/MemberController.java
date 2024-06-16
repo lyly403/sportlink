@@ -18,7 +18,7 @@ public class MemberController {
     // [ 회원가입 ]
     @RequestMapping("/signup")
     public String signup() {
-        return "/user/signup";  // signup.html 파일을 반환
+        return "user/signup";  // signup.html 파일을 반환
     }
 
     @PostMapping("/signupProc")
@@ -26,19 +26,19 @@ public class MemberController {
         String msg = service.signupProc(member);
         if(msg.equals("회원가입 성공")) {
             ra.addFlashAttribute("msg", msg);
-            return "redirect:/index";
+            return "redirect:index";
         } else if (msg.equals("회원 등록을 다시 시도하세요")) {
             ra.addFlashAttribute("alert", "회원 등록을 다시 시도하세요");
-            return "/user/signup";
+            return "user/signup";
         }
         model.addAttribute("msg", msg);
-        return "/user/signup";
+        return "user/signup";
     }
 
     // [ 로그인 ]
     @RequestMapping("/login")
     public String login() {
-        return "/user/login";  // signup.html 파일을 반환
+        return "user/login";  // signup.html 파일을 반환
     }
 
     @PostMapping("/loginProc")
@@ -89,12 +89,12 @@ public class MemberController {
         String role = (String) session.getAttribute("role");
         if (userid == null) {
             ra.addFlashAttribute("msg", "잘못된 사용자 아이디입니다.");
-            return "redirect:/index";
+            return "redirect:index";
         }
 
         if (sessionuserid == null ) {
             ra.addFlashAttribute("msg", "로그인 후 이용해주세요.");
-            return "redirect:/login";
+            return "redirect:login";
         }
 
         if (sessionuserid.equals(userid)) {
@@ -106,7 +106,7 @@ public class MemberController {
             return "user/member_info";
         } else {
             ra.addFlashAttribute("msg", "접근 권한이 없습니다.");
-            return "redirect:/index";
+            return "redirect:index";
         }
     }
 
@@ -119,7 +119,7 @@ public class MemberController {
             int size = 10; // 페이지당 항목 수
             Page<MemberDTO> memberPage = memberService.getMemberList(page, size);
             model.addAttribute("memberPage", memberPage);
-            return "/user/member_list";
+            return "user/member_list";
         }
         else {
             ra.addFlashAttribute("msg", "접근권한이 없습니다.");
@@ -138,18 +138,17 @@ public class MemberController {
             String msg = service.member_info_edit(member);
             if (msg.equals("회원정보 수정완료.")) {
                 ra.addFlashAttribute("msg", msg);
-                return "redirect:/member_info/"+userid;
+                return "redirect:member_info/"+userid;
             } else if (msg.equals("회원 정보 수정을 다시 시도하세요")) {
                 ra.addFlashAttribute("msg", "회원 정보 수정을 다시 시도하세요");
-                return "redirect:/member_info/"+userid;
+                return "redirect:member_info/"+userid;
             }
         } else {
             ra.addFlashAttribute("msg", "로그인 후 이용해주세요.");
-            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+            return "redirect:login"; // 로그인 페이지로 리다이렉트
         }
         model.addAttribute("msg", "회원 정보 수정을 다시 시도하세요");
-        return "redirect:/member_info"+userid;
+        return "redirect:member_info"+userid;
     }
 }
-
 
