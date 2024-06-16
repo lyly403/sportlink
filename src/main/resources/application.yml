@@ -6,22 +6,17 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #    각자 PC에 만들어놓은 Database이름을 써야 합니다.
-    url: jdbc:mysql://localhost:3306/sportslink?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-
-    #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
-
-    #    생성한 사용자 계정 정보를 써야 합니다.
-
+    url: jdbc:mysql://sportlink-db.cruscyguswud.ap-northeast-2.rds.amazonaws.com:3306/sportlink?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
-    password: 1234
+    password: sportlink
+
   thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
     cache: false
     # 404 에러 페이지를 표시하지 않게 하고, 존재하지 않는 핸들러에 대한 예외를 발생시키도록 합니다.
   mvc:
     throw-exception-if-no-handler-found=true
-  web:
-    resources:
-      add-mappings=false
 
   # spring data jpa 설정
   jpa:
@@ -31,6 +26,9 @@ spring:
     hibernate:
       ddl-auto: update
 
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
 
 
   file:
