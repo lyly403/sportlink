@@ -16,7 +16,7 @@ fi
 
 echo "> Deploying new application" >> $LOG_FILE
 
-JAR_PATH=/home/build/sportsLink-0.0.1-SNAPSHOT.jar
+JAR_PATH=/home/build/sportsLink-0.1.1-SNAPSHOT.jar
 
 if [ ! -f "$JAR_PATH" ]; then
   echo "> JAR file not found: $JAR_PATH" >> $LOG_FILE
