@@ -2,25 +2,30 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/first-team-project-dev/
+    destination: /home/ubuntu/build/
+permissions:
+  - object : /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
 hooks:
   ApplicationStop:
-    - location: /home/ubuntu/first-team-project-dev/scripts/application_stop.sh
+    - location: application_stop.sh
       timeout: 300
       runas: ubuntu
   BeforeInstall:
-    - location: /home/ubuntu/first-team-project-dev/scripts/before_install.sh
+    - location: before_install.sh
       timeout: 300
       runas: ubuntu
   AfterInstall:
-    - location: /home/ubuntu/first-team-project-dev/scripts/after_install.sh
+    - location: after_install.sh
       timeout: 300
       runas: ubuntu
   ApplicationStart:
-    - location: /home/ubuntu/first-team-project-dev/scripts/application_start.sh
+    - location: application_start.sh
       timeout: 300
       runas: ubuntu
   ValidateService:
-    - location: /home/ubuntu/first-team-project-dev/scripts/validate_service.sh
+    - location: validate_service.sh
       timeout: 300
       runas: ubuntu
