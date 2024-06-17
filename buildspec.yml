@@ -7,7 +7,6 @@ phases:
     commands:
       - echo Installing dependencies...
       - chmod +x gradlew  # gradlew에 실행 권한 추가
-      - ./gradlew build -x test  # 테스트 제외하고 빌드
   build:
     commands:
       - echo Building the project...
@@ -20,5 +19,5 @@ artifacts:
   files:
     - build/libs/*.jar
     - appspec.yml
-    - scripts/**/*
+    - scripts/**
   discard-paths: yes
