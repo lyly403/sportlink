@@ -99,7 +99,7 @@ function getWeather(lat, lon) {
             const weatherIconHTML = `<img src="${weatherIconAdrs}" alt="Weather Icon" style="display: inline-block; vertical-align: middle;">`;
             const temperatureHTML = `<span style="display: inline-block; vertical-align: middle; margin-right: 20px;">${temperature} °C</span>`;
             const weatherDescriptionHTML = `<span style="display: inline-block; vertical-align: middle; margin-left: 20px;">${weatherDescription}</span>`;
-            weatherInfo.innerHTML = `${weatherIconHTML}${temperatureHTML}${weatherDescriptionHTML}`;
+            weatherInfo.innerHTML = `${weatherIconHTML}${temperatureHTML}`;
         })
         .catch((error) => console.log("error:", error));
 }
