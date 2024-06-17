@@ -13,10 +13,6 @@ hooks:
     - location: application_stop.sh
       timeout: 300
       runas: ubuntu
-  BeforeInstall:
-    - location: before_install.sh
-      timeout: 300
-      runas: ubuntu
   AfterInstall:
     - location: after_install.sh
       timeout: 300
