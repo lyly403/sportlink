@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG_FILE=/home/ubuntu/first-team-project-dev/stop.log
+LOG_FILE=/home/ubuntu/build/stop.log
 
 echo "Stopping application at $(date)" >> $LOG_FILE
 
