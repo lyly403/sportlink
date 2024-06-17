@@ -1,6 +1,13 @@
 #!/bin/bash
 
-LOG_FILE=/home/ubuntu/build/stop.log
+LOG_DIR=/home/ubuntu/build
+LOG_FILE=$LOG_DIR/stop.log
+
+# Ensure the log directory exists
+if [ ! -d "$LOG_DIR" ]; then
+  mkdir -p $LOG_DIR
+  mkdir -p $LOG_DIR/scripts
+fi
 
 echo "Stopping application at $(date)" >> $LOG_FILE
 
