@@ -3,7 +3,7 @@
 # Application start script
 echo "Starting application at $(date)"
 
-JAR_PATH=/homeubuntu/build/sportsLink-0.0.1-SNAPSHOT.jar
+JAR_PATH=/home/ubuntu/build/sportsLink-0.0.1-SNAPSHOT.jar
 
 if [ ! -f "$JAR_PATH" ]; then
   echo "JAR file not found: $JAR_PATH"
