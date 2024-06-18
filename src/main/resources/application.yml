@@ -30,7 +30,15 @@ spring:
     suffix: .html
     cache: false
 
-
+  cloud:
+    aws:
+      region:
+        static: ap-northeast-2 # 사용할 AWS 리전
+      stack:
+        auto: false
+      s3:
+        bucket: sportlink-image
+##key추가
   file:
     upload:
       directory: src/main/resources/static/image/
