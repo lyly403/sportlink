@@ -10,5 +10,6 @@ if [ ! -f "$JAR_PATH" ]; then
   exit 1
 fi
 
+sudo kill -9 $(pgrep -f 'sportsLink-.*-SNAPSHOT.jar')
 nohup java -jar $JAR_PATH > /home/ubuntu/build/app.log 2>&1 &
 echo "Application started at $(date)"
