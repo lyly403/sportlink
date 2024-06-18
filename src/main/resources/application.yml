@@ -1,5 +1,10 @@
 server:
   port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
 # database 연동 설정
 spring:
@@ -49,3 +54,4 @@ spring:
       multipart:
         max-file-size: 10MB
         max-request-size: 10MB
+
