@@ -27,7 +27,7 @@ public class KakaoService {
         String reqUrl = "https://kauth.kakao.com/oauth/token";
         String reqParam = "grant_type=authorization_code";
         reqParam += "&client_id=d08e141ab68de7d1967abb180fd6727f";
-        reqParam += "&redirect_uri=http://localhost:8080/KakaoLogin";
+        reqParam += "&redirect_uri=https://sportlink.store/KakaoLogin";
         reqParam += "&code="+code;
 
         try {
