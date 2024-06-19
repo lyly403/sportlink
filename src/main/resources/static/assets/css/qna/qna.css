@@ -20,9 +20,8 @@
 /* ======= Board Section CSS =======
 --------------------------------------------------------------*/
 .board {
-  padding: 80px 0;
-  margin-top: 10px; /* 헤더 아래로 위치 조정 */
-  padding: 20px; /* 추가적인 패딩 설정 */
+  margin-top: 150px; /* 헤더 아래로 위치 조정 */
+  padding: 80px; /* 추가적인 패딩 설정 */
   margin-bottom: 50px; /* 하단 여백 추가 */
 }
 
@@ -44,7 +43,6 @@
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  margin-top: 150px; /* 헤더 아래로 내리기 */
   margin-bottom: 50px;
 }
 
@@ -68,6 +66,16 @@
   background-color: #45118e; /* 마우스 호버 시 배경색 변경 */
   border-color: #45118e; /* 마우스 호버 시 테두리 색상 변경 */
 }
+
+#pagepage .page-link {
+  background-color: white;
+  color: #45118e;
+}
+
+#pagepage .page-link:hover {
+  background-color: white ;
+}
+
 
 /*--------------------------------------------------------------
 # Scroll top button

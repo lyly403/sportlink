@@ -80,14 +80,14 @@ h6 {
   font-size: 15px;
   letter-spacing: 1px;
   display: inline-block;
-  margin-right: 50px; 
+  margin-right: 70px;
   padding: 12px 36px;
   border-radius: 50px;
   transition: 0.5s;
   color: #fff;
   background: var(--color-primary);
   box-shadow: 0 8px 28px rgba(42, 11, 105, 0.31);
-   text-decoration: none; /* a 태그의 밑줄 제거 */
+  text-decoration: none; /* a 태그의 밑줄 제거 */
 
 }
 
@@ -223,7 +223,7 @@ section {
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
-    transition-delay: 0 !important;
+    transition-delay: 0s !important;
   }
 }
 
@@ -246,8 +246,8 @@ section {
 
   .navbar li {
     position: relative;
-     text-decoration: none; /* a 태그의 밑줄 제거 */
-      color: inherit; /* a 태그의 기본 색상을 상속 */
+    text-decoration: none; /* a 태그의 밑줄 제거 */
+    color: inherit; /* a 태그의 기본 색상을 상속 */
   }
 
   .navbar>ul>li {
@@ -268,8 +268,8 @@ section {
     white-space: nowrap;
     transition: 0.3s;
     position: relative;
-     text-decoration: none; /* a 태그의 밑줄 제거 */
-      color: inherit; /* a 태그의 기본 색상을 상속 */
+    text-decoration: none; /* a 태그의 밑줄 제거 */
+    color: inherit; /* a 태그의 기본 색상을 상속 */
   }
 
   .navbar a i,
@@ -277,8 +277,8 @@ section {
     font-size: 12px;
     line-height: 0;
     margin-left: 5px;
-     text-decoration: none; /* a 태그의 밑줄 제거 */
-      color: inherit; /* a 태그의 기본 색상을 상속 */
+    text-decoration: none; /* a 태그의 밑줄 제거 */
+    color: inherit; /* a 태그의 기본 색상을 상속 */
   }
 
   .navbar>ul>li>a:before {
@@ -509,9 +509,9 @@ section {
 .events .event-item {
   background-size: cover;
   background-position: center;
-  min-height: 600px;
-  padding: 30px;
-  margin: 20px; 
+  min-height: 550px;
+  padding: 20px;
+  /*margin: 5px;*/
 }
 
 
@@ -619,47 +619,7 @@ section {
   color: #fff;
   background: var(--color-primary);
   box-shadow: 0 8px 28px rgba(42, 11, 105, 0.31);
-   text-decoration: none; /* a 태그의 밑줄 제거 */
-}
-
-
-
-/*--------------------------------------------------------------
-# Gallery Section
---------------------------------------------------------------*/
-.gallery {
-  overflow: hidden;
-}
-
-.gallery .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.gallery .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  opacity: 1;
-}
-
-.gallery .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--color-primary);
-}
-
-.gallery .swiper-slide-active {
-  text-align: center;
-}
-
-@media (min-width: 992px) {
-  .gallery .swiper-wrapper {
-    padding: 40px 0;
-  }
-
-  .gallery .swiper-slide-active {
-    padding: 4px;
-    z-index: 1;
-    transform: scale(1.2);
-  }
+  text-decoration: none; /* a 태그의 밑줄 제거 */
 }
 
 

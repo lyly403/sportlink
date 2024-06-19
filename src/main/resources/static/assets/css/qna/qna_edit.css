@@ -16,17 +16,20 @@
 }
 
 /*--------------------------------------------------------------
-/* ======= 문의사항 상세 페이지 CSS ======= */
+# Inquiry Edit Section
 --------------------------------------------------------------*/
-
 .inquiry-edit {
-    margin-top: 200px; /* 헤더 아래로 위치 조정 */
+    margin-top: 150px; /* 헤더 아래로 위치 조정 */
     padding: 80px; /* 추가적인 패딩 설정 */
     margin-bottom: 50px; /* 하단 여백 추가 */
 }
 
+/* 모든 폰트를 디폴트로 설정 */
+.inquiry-edit * {
+    font-family: inherit;
+}
+
 .inquiry-edit h2 {
-    font: var(--font-default);
     font-size: 36px;
     font-weight: 600;
     color: #000;
@@ -34,14 +37,12 @@
 }
 
 .inquiry-edit p {
-    font: var(--font-default);
     font-size: 18px;
     color: #555;
     margin-bottom: 30px;
 }
 
 .inquiry-edit-content {
-    margin-top: 150px; /* 헤더 아래로 내리기 */
     background-color: #f9f9f9; /* 컨텐츠 배경색 설정 */
     padding: 30px; /* 내부 여백 설정 */
     border-radius: 8px; /* 테두리 둥글기 설정 */
@@ -61,16 +62,33 @@
     margin-bottom: 10px; /* 제목과 내용 사이 간격 설정 */
 }
 
-.btn-primary {
+/* 제목과 내용 사이의 간격 조정 */
+#editTitle {
+    margin-bottom: 10px; /* 원하는 크기로 조정 */
+}
+
+/* 내용과 버튼 사이의 간격 조정 */
+#editContent {
+    margin-bottom: 20px; /* 원하는 크기로 조정 */
+}
+
+/* 버튼과 하단 간격 조정 */
+.btn {
+    margin-top: 20px; /* 원하는 크기로 조정 */
+}
+
+
+section.inquiry-edit button.btn.btn-primary {
     background-color: #8831cf;
     border-color: #8831cf;
+    color: #fff; /* 버튼 텍스트 색상을 흰색으로 설정 */
 }
 
-.btn-primary:hover {
-    background-color: #5a1f9f;
-    border-color: #5a1f9f;
-}
 
+section.inquiry-edit button.btn.btn-primary:hover {
+    background-color: #45118e;
+    border-color: #45118e;
+}
 
 @media (min-width: 768px) {
     .inquiry-detail-content {
@@ -78,9 +96,9 @@
     }
 
 
-/*--------------------------------------------------------------
-# Scroll top button
---------------------------------------------------------------*/
+    /*--------------------------------------------------------------
+    # Scroll top button
+    --------------------------------------------------------------*/
     .scroll-top {
         position: fixed;
         visibility: hidden;
@@ -136,7 +154,7 @@
             position: relative;
         }
 
-        .navbar>ul>li {
+        .navbar > ul > li {
             white-space: nowrap;
             padding: 10px 0 10px 28px;
         }
@@ -163,7 +181,7 @@
             margin-left: 5px;
         }
 
-        .navbar>ul>li>a:before {
+        .navbar > ul > li > a:before {
             content: "";
             position: absolute;
             width: 100%;
@@ -177,7 +195,7 @@
         }
 
         .navbar a:hover:before,
-        .navbar li:hover>a:before,
+        .navbar li:hover > a:before,
         .navbar .active:before {
             visibility: visible;
             width: 100%;
@@ -186,7 +204,7 @@
         .navbar a:hover,
         .navbar .active,
         .navbar .active:focus,
-        .navbar li:hover>a {
+        .navbar li:hover > a {
             color: #000;
         }
 
@@ -223,11 +241,11 @@
 
         .navbar .dropdown ul a:hover,
         .navbar .dropdown ul .active:hover,
-        .navbar .dropdown ul li:hover>a {
+        .navbar .dropdown ul li:hover > a {
             color: var(--color-primary);
         }
 
-        .navbar .dropdown:hover>ul {
+        .navbar .dropdown:hover > ul {
             opacity: 1;
             top: 100%;
             visibility: visible;
@@ -239,7 +257,7 @@
             visibility: hidden;
         }
 
-        .navbar .dropdown .dropdown:hover>ul {
+        .navbar .dropdown .dropdown:hover > ul {
             opacity: 1;
             top: 0;
             left: 100%;
@@ -252,7 +270,7 @@
             left: -90%;
         }
 
-        .navbar .dropdown .dropdown:hover>ul {
+        .navbar .dropdown .dropdown:hover > ul {
             left: -100%;
         }
     }
@@ -316,7 +334,7 @@
         }
 
         .navbar a:hover,
-        .navbar li:hover>a {
+        .navbar li:hover > a {
             color: #000;
         }
 
@@ -336,8 +354,8 @@
             border: 1px solid #eee;
         }
 
-        .navbar .dropdown>.dropdown-active,
-        .navbar .dropdown .dropdown>.dropdown-active {
+        .navbar .dropdown > .dropdown-active,
+        .navbar .dropdown .dropdown > .dropdown-active {
             display: block;
         }
 
@@ -379,3 +397,4 @@
             z-index: 9996;
         }
     }
+}

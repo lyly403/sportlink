@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SportLink - 문의사항 게시판</title>
+  <title>SportLink - 문의사항</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -62,11 +62,13 @@
           </table>
 
           <!-- 페이지네이션 -->
-          <nav aria-label="Page navigation">
-            <ul class="pagination">
+          <nav id="pagepage" aria-label="Page navigation">
+            <ul class="pagination d-flex justify-content-center">
               <!-- 현재 페이지가 1보다 크면 이전 페이지로 이동할 수 있는 링크 표시 -->
               <li class="page-item" th:if="${currentPage > 1}">
-                <a class="page-link" th:href="@{'/qna-list?page=' + ${currentPage - 1} + '&size=' + ${size}}">이전</a>
+                <a class="page-link" th:href="@{'/qna-list?page=' + ${currentPage - 1} + '&size=' + ${size}}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
               </li>
 
               <!-- 전체 페이지 수를 기준으로 페이지 번호를 표시 -->
@@ -76,10 +78,13 @@
 
               <!-- 현재 페이지가 전체 페이지 수보다 작으면 다음 페이지로 이동할 수 있는 링크 표시 -->
               <li class="page-item" th:if="${currentPage < totalPages}">
-                <a class="page-link" th:href="@{'/qna-list?page=' + ${currentPage + 1} + '&size=' + ${size}}">다음</a>
+                <a class="page-link" th:href="@{'/qna-list?page=' + ${currentPage + 1} + '&size=' + ${size}}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
               </li>
             </ul>
           </nav>
+
 
         </div>
       </div>
@@ -87,32 +92,6 @@
   </div>
 </section><!-- End 문의사항 게시판 Section -->
 
-<!--<script th:inline="javascript">-->
-<!--  $(document).ready(function() {-->
-<!--    // 페이지 이동 버튼 클릭 시 이벤트 처리-->
-<!--    $('.page-link').click(function(e) {-->
-<!--      e.preventDefault();-->
-<!--      var url = $(this).attr('href'); // 클릭된 버튼의 URL-->
-<!--      var size = getUrlParameter(url, 'size'); // URL에서 페이지 크기 추출-->
-
-<!--      // 페이지 크기가 null이 아닌 경우에만 페이지 이동-->
-<!--      if (size !== null && size !== 'null') {-->
-<!--        window.location.href = url; // 페이지 이동-->
-<!--      }-->
-<!--    });-->
-
-<!--    // URL에서 파라미터 값을 추출하는 함수-->
-<!--    function getUrlParameter(url, name) {-->
-<!--      name = name.replace(/[\[\]]/g, '\\$&');-->
-<!--      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');-->
-<!--      var results = regex.exec(url);-->
-<!--      if (!results) return null;-->
-<!--      if (!results[2] || results[2] === 'null') return null; // size 값이 null이면 null 반환-->
-<!--      return decodeURIComponent(results[2].replace(/\+/g, ' '));-->
-<!--    }-->
-<!--  });-->
-
-<!--</script>-->
 
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

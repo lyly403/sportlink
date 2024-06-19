@@ -1,8 +1,8 @@
-package com.firstteam.sportsLink.qna;
+package com.firstteam.sportsLink.Qna;
 
 public class PageRequestDTO {
-    private int page; // 요청한 페이지 번호
-    private int size; // 페이지당 아이템 수
+    private int page;
+    private int size;
 
     public PageRequestDTO(int page, int size) {
         this.page = page;
