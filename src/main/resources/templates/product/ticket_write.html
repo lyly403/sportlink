@@ -33,7 +33,7 @@
 
 
   <!-- ======= Writing Section ======= -->
-  <form th:object="${productDTO}" th:action="/product/ticket_write" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+  <form th:object="${productDTO}" th:action="@{/product/ticket_write}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
     <div class="container">
   <section class="write-section">
     <div class="container">
@@ -121,9 +121,12 @@
   </form>
 
   <!-- ======= Footer ======= --><div th:replace="layout/footer :: footer"></div>
+  <!-- Script to load header -->
+  <script src="/assets/js/common/header.js"></script>
+  <script src="/assets/js/common/footer.js"></script>
 
 
-<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!--<div id="preloader"></div>-->
 <!--카카오지도 api 스크립트-->
