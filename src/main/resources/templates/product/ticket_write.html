@@ -33,7 +33,7 @@
 
 
   <!-- ======= Writing Section ======= -->
-  <form th:object="${productDTO}" th:action="@{/product/ticket_write}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+  <form th:object="${productDTO}" th:action="/product/ticket_write" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
     <div class="container">
   <section class="write-section">
     <div class="container">
