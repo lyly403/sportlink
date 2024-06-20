@@ -14,11 +14,13 @@ import java.util.UUID;
 @Service
 public class S3Service {
 
-        @Autowired
-        private AmazonS3 amazonS3;
 
-    @Value("${cloud.aws.s3.bucketName}")
-    private String bucketName;
+    @Autowired
+    private AmazonS3 amazonS3;
+
+    private final String bucketName = "sportlink-image";
+
+
 
 
 
