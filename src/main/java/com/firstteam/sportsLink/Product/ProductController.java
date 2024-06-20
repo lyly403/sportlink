@@ -40,7 +40,7 @@ public class ProductController {
     }
 
 
-    @PostMapping("/product/ticket_write")
+    @PostMapping("/ticket_write")
     public String createProduct(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file) {
         try {
             if (!file.isEmpty()) {
@@ -52,7 +52,14 @@ public class ProductController {
             return "redirect:/ticket";
         } catch (IOException e) {
             e.printStackTrace();
+            // 예외 처리 로직 추가: 웹 콘솔에 로그 출력
+            System.err.println("IOException occurred while uploading file: " + e.getMessage());
             return "redirect:/product/ticket_write?uploadError";
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 다른 예외 처리 로직 추가: 웹 콘솔에 로그 출력
+            System.err.println("Exception occurred: " + e.getMessage());
+            return "redirect:/product/ticket_write?error";
         }
     }
 

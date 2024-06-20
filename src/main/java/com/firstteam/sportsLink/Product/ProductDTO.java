@@ -30,7 +30,6 @@ public class ProductDTO {
         product.setPrice(this.price);
         product.setCategory(this.category);
         product.setDescription(this.description);
-        product.setImageUrl(this.imageUrl);
         product.setLatitude(this.latitude);
         product.setLongitude(this.longitude);
         product.setProducttype(this.producttype);
