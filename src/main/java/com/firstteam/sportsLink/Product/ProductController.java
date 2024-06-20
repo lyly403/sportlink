@@ -72,7 +72,7 @@ public class ProductController {
             }
             ProductEntity product = productDTO.toEntity();
             productService.saveProduct(product);
-            return "redirect:/activity1";
+            return "redirect:/activity";
         } catch (IOException e) {
             e.printStackTrace();
             // 예외 처리 로직 추가: 웹 콘솔에 로그 출력

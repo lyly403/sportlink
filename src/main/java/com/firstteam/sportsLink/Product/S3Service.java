@@ -21,16 +21,13 @@ public class S3Service {
     private String bucketName = "sportlink-image";
 
     public String uploadFile(MultipartFile file) throws IOException {
-        String fileName = generateFileName(file);
+        String fileName = file.getOriginalFilename();
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(file.getSize());
         amazonS3.putObject(new PutObjectRequest(bucketName, fileName, file.getInputStream(), metadata));
         return fileName;
     }
 
-    private String generateFileName(MultipartFile file) {
-        return file.getOriginalFilename();
-    }
 
 
 
