@@ -33,6 +33,7 @@ public class ProductDTO {
         product.setLatitude(this.latitude);
         product.setLongitude(this.longitude);
         product.setProducttype(this.producttype);
+        product.setImageUrl(this.imageUrl);
         return product;
     }
 

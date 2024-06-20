@@ -72,12 +72,34 @@ public class ProductController {
             }
             ProductEntity product = productDTO.toEntity();
             productService.saveProduct(product);
-            return "redirect:/ticket";
+            return "redirect:/activity1";
         } catch (IOException e) {
             e.printStackTrace();
+            // 예외 처리 로직 추가: 웹 콘솔에 로그 출력
+            System.err.println("IOException occurred while uploading file: " + e.getMessage());
             return "redirect:/product/ticket_write?uploadError";
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 다른 예외 처리 로직 추가: 웹 콘솔에 로그 출력
+            System.err.println("Exception occurred: " + e.getMessage());
+            return "redirect:/product/ticket_write?error";
         }
     }
+//    @PostMapping("/product/activity_write")
+//    public String createActivity(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file) {
+//        try {
+//            if (!file.isEmpty()) {
+//                String imageUrl = s3Service.uploadFile(file);
+//                productDTO.setImageUrl(imageUrl);
+//            }
+//            ProductEntity product = productDTO.toEntity();
+//            productService.saveProduct(product);
+//            return "redirect:/ticket";
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return "redirect:/product/ticket_write?uploadError";
+//        }
+//    }
 
 //    @PostMapping("/product/activity_write")
 //    public String createActivity(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file) {
