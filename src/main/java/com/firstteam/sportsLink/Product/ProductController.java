@@ -40,7 +40,7 @@ public class ProductController {
     }
 
 
-    @PostMapping("/ticket_write")
+    @PostMapping("/product/ticket_write")
     public String createProduct(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file) {
         try {
             if (!file.isEmpty()) {

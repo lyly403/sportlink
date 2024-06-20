@@ -20,25 +20,12 @@ public class S3Service {
 
     private String bucketName = "sportlink-image";
 
-    public String uploadFile(MultipartFile file) {
-        try {
-            String fileName = generateFileName(file);
-            ObjectMetadata metadata = new ObjectMetadata();
-            metadata.setContentLength(file.getSize());
-
-            InputStream inputStream = file.getInputStream();
-            amazonS3.putObject(new PutObjectRequest(bucketName, fileName, inputStream, metadata));
-            return fileName;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "Failed to upload file: " + e.getMessage();
-        } catch (AmazonServiceException e) {
-            e.printStackTrace();
-            return "Amazon S3 service exception: " + e.getMessage();
-        } catch (SdkClientException e) {
-            e.printStackTrace();
-            return "AWS SDK client exception: " + e.getMessage();
-        }
+    public String uploadFile(MultipartFile file) throws IOException {
+        String fileName = generateFileName(file);
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(file.getSize());
+        amazonS3.putObject(new PutObjectRequest(bucketName, fileName, file.getInputStream(), metadata));
+        return fileName;
     }
 
     private String generateFileName(MultipartFile file) {
