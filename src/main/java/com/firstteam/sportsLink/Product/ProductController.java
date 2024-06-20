@@ -57,7 +57,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/activity_write")
-    public String createActivity(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file, Model model) {
+    public String createActivity(@ModelAttribute ProductDTO productDTO, @RequestParam("image") MultipartFile file) {
         try {
             if (!file.isEmpty()) {
                 String imageUrl = s3Service.uploadFile(file);

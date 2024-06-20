@@ -4,6 +4,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,8 +17,10 @@ public class S3Service {
         @Autowired
         private AmazonS3 amazonS3;
 
+    @Value("${cloud.aws.s3.bucketName}")
+    private String bucketName;
 
-        private String bucketName = "sportlink-image";
+
 
         public String uploadFile(MultipartFile file) throws IOException {
             String fileName = generateFileName(file);
