@@ -25,8 +25,8 @@ public class S3Service {
         amazonS3.putObject(new PutObjectRequest(bucketName, fileName, file.getInputStream(), metadata));
         return fileName;
     }
-
     private String generateFileName(MultipartFile file) {
-        return UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
+        return file.getOriginalFilename();
     }
+
 }
