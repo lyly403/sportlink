@@ -27,7 +27,7 @@ public class PurchaseController {
             purchaseService.savePurchase(purchaseEntity);
             return "redirect:/ticket";
         } else {
-            return "redirect:/user/login";
+            return "redirect:/login";
         }
     }
 
