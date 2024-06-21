@@ -21,13 +21,13 @@ public class PurchaseController {
     private PurchaseRepository purchaseRepository;
 
     @PostMapping("/purchase")
-    public String purchaseProduct(@SessionAttribute("userid") String userid, @ModelAttribute PurchaseDTO purchaseDTO) {
+    public String purchaseProduct(@SessionAttribute(name = "userid", required = false) String userid, @ModelAttribute PurchaseDTO purchaseDTO) {
         if(userid != null) {
             PurchaseEntity purchaseEntity = purchaseDTO.toEntity();
             purchaseService.savePurchase(purchaseEntity);
             return "redirect:/ticket";
         } else {
-            return "user/login";
+            return "redirect:/user/login";
         }
     }
 
