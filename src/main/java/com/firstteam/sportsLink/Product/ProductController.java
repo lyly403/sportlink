@@ -215,7 +215,7 @@ public class ProductController {
             }
         }
         productService.updateProduct(id, product);
-        return "redirect:product/ticket_inner/" + id;
+        return "product/ticket_inner/" + id;
     }
     // 삭제 기능 추가
     @PostMapping("/product/delete/{id}")
